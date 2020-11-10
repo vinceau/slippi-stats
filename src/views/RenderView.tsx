@@ -41,7 +41,7 @@ export const RenderView: React.FC = (props) => {
       <input value={val} onChange={(e) => setVal(e.target.value)} />
       <pre>{JSON.stringify(paramMap, null, 2)}</pre>
       <button onClick={() => setQuery(key, val)}>set</button>
-      <StatDisplay leftText="9.5" label="OPENINGS / KILL" rightText="9.7" />
+      <StatDisplay />
     </div>
   );
 };

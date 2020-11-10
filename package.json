@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@slippi/slippi-js": "^5.0.7",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
