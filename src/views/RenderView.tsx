@@ -22,15 +22,15 @@ export const RenderView: React.FC = (props) => {
         css={css`
           text-transform: uppercase;
           font-weight: 800;
-          font-size: 60px;
-          margin: 20px;
+          font-size: 6rem;
+          margin: 2rem;
         `}
       >
         Post Match Stats
       </h1>
       <img
         css={css`
-          max-height: 50px;
+          max-height: 5rem;
         `}
         src={poweredByImage}
       />
