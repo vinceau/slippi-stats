@@ -25,6 +25,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@slippi/slippi-js": "^5.0.7",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
