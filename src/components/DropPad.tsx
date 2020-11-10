@@ -11,7 +11,6 @@ const outerStyles = css`
   left: 0;
   &&:after {
     content: "";
-    background-color: white;
     position: absolute;
     height: 100%;
     width: 100%;
