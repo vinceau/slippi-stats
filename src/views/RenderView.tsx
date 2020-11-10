@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 
 import React from "react";
+import { StatDisplay } from "../components/StatDisplay";
 import { useQuery } from "../lib/hooks";
 
 import poweredByImage from "../styles/images/powered-by.png";
@@ -40,6 +41,7 @@ export const RenderView: React.FC = (props) => {
       <input value={val} onChange={(e) => setVal(e.target.value)} />
       <pre>{JSON.stringify(paramMap, null, 2)}</pre>
       <button onClick={() => setQuery(key, val)}>set</button>
+      <StatDisplay leftText="9.5" label="OPENINGS / KILL" rightText="9.7" />
     </div>
   );
 };
