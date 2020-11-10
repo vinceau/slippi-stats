@@ -3,9 +3,29 @@ import { css, jsx } from "@emotion/core";
 import React from "react";
 import { Stat } from "./Stat";
 
-export interface StatDisplayProps {}
+export interface StatInput {
+  left: string;
+  right: string;
+}
+
+export interface StatDisplayProps {
+  mostCommonKillMove: StatInput;
+  mostCommonNeutralOpener: StatInput;
+  openingsPerKill: StatInput;
+  totalDamageDone: StatInput;
+  damagePerOpening: StatInput;
+  inputsPerMinute: StatInput;
+}
 
 export const StatDisplay: React.FC<StatDisplayProps> = (props) => {
+  const {
+    mostCommonKillMove,
+    mostCommonNeutralOpener,
+    openingsPerKill,
+    totalDamageDone,
+    damagePerOpening,
+    inputsPerMinute,
+  } = props;
   return (
     <div
       css={css`
@@ -19,10 +39,16 @@ export const StatDisplay: React.FC<StatDisplayProps> = (props) => {
           flex-direction: column;
         `}
       >
-        <Stat leftText="9.5" label="OPENINGS / KILL" rightText="9.7" />
-        <Stat leftText="1990.2" label="TOTAL DAMAGE DONE" rightText="1412.6" />
-        <Stat leftText="15.0" label="DAMAGE / OPENING" rightText="12.2" />
-        <Stat leftText="636.6" label="INPUTS / MINUTE" rightText="481.5" />
+        <Stat leftText={mostCommonKillMove.left} label="MOST COMMON KILL MOVE" rightText={mostCommonKillMove.right} />
+        <Stat
+          leftText={mostCommonNeutralOpener.left}
+          label="MOST COMMON NEUTRAL OPENER"
+          rightText={mostCommonNeutralOpener.right}
+        />
+        <Stat leftText={openingsPerKill.left} label="OPENINGS / KILL" rightText={openingsPerKill.right} />
+        <Stat leftText={totalDamageDone.left} label="TOTAL DAMAGE DONE" rightText={totalDamageDone.right} />
+        <Stat leftText={damagePerOpening.left} label="DAMAGE / OPENING" rightText={damagePerOpening.right} />
+        <Stat leftText={inputsPerMinute.left} label="INPUTS / MINUTE" rightText={inputsPerMinute.right} />
       </div>
     </div>
   );
