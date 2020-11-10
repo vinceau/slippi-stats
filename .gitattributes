@@ -7,3 +7,6 @@
 *.ts text eol=lf
 *.jsx text eol=lf
 *.tsx text eol=lf
+
+# CSS files
+*.scss text eol=lf
