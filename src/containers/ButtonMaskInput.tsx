@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import React, { useContext, useState } from "react";
-import { Types, AppContext } from "../store";
-import { ControllerDisplay } from "../components/ControllerDisplay";
 import { ButtonInput } from "react-gamecube";
+
 import { BitmaskDisplay } from "../components/BitmaskDisplay";
+import { ControllerDisplay } from "../components/ControllerDisplay";
 import { OrderedButtonPreview } from "../components/OrderedButtonPreview";
+import { AppContext, Types } from "../store";
 
 export const ButtonMaskInput: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);

@@ -1,4 +1,5 @@
 import { ButtonInput } from "react-gamecube";
+
 import { InputBit, inputBitToName } from "./types";
 
 export function isButtonPressed(bitmask: number, button: InputBit): boolean {

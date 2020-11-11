@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
+
 import { InlineEdit } from "../InlineEdit";
 
 // import CTE from "react-click-to-edit";
@@ -84,6 +85,8 @@ export const Stat: React.FC<StatProps> = (props) => {
 Stat.defaultProps = {
   labelColor: "black",
   labelBackground: "white",
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onLeftTextBlur: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onRightTextBlur: () => {},
 };

@@ -1,9 +1,8 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import { AppProvider } from "./store";
-
-import { HashRouter as Router, Route } from "react-router-dom";
 import { MainView } from "./views/MainView";
 import { RenderView } from "./views/RenderView";
 

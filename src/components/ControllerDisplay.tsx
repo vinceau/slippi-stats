@@ -1,5 +1,6 @@
 import React from "react";
 import { ButtonInput, Controller } from "react-gamecube";
+
 import { buttonsToControllerState } from "../lib/buttonsToController";
 
 export interface ControllerDisplayProps {

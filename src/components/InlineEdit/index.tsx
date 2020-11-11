@@ -1,9 +1,10 @@
 // From: https://dev.to/joelmturner/build-an-inline-edit-text-input-with-react-hooks-4nah
 
-import React, { useState, useEffect, useRef } from "react";
-import { useKeyPress, useOnClickOutside } from "../../lib/hooks";
-
 import "./index.scss";
+
+import React, { useEffect, useRef, useState } from "react";
+
+import { useKeyPress, useOnClickOutside } from "../../lib/hooks";
 
 export interface InlineEditProps {
   text: string;
@@ -56,7 +57,7 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
         setIsInputActive(false);
       }
     }
-  }, [tab, enter, esc]); // watch for key presses
+  }, [tab, enter, esc, isInputActive, onSetText, inputValue, props.text]); // watch for key presses
 
   return (
     <span className="inline-text" ref={wrapperRef}>
@@ -82,5 +83,6 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
 
 InlineEdit.defaultProps = {
   text: "",
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onSetText: () => {},
 };

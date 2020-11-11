@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 export function useParam(key: string, defaultValue = "") {
@@ -12,7 +12,7 @@ export function useParam(key: string, defaultValue = "") {
     if (currentValue && currentValue !== value) {
       setValue(currentValue);
     }
-  }, [location]);
+  }, [key, location, value]);
 
   const setParam = (val: string) => {
     const params = new URLSearchParams(location.search);

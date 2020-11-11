@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-
 import React from "react";
-import { StatDisplay } from "../components/StatDisplay";
 
+import { StatDisplay } from "../components/StatDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
 
 export const RenderView: React.FC = (props) => {

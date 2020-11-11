@@ -28,9 +28,12 @@ export interface DropPadProps {
 
 export const DropPad: React.FC<DropPadProps> = (props) => {
   const accept = ".slp";
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    props.onDrop(acceptedFiles); //acceptedFiles.map((f: any) => f.path));
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      props.onDrop(acceptedFiles); //acceptedFiles.map((f: any) => f.path));
+    },
+    [props]
+  );
   const { open, getRootProps, getInputProps /*, isDragActive */ } = useDropzone({
     multiple: true,
     onDrop,
@@ -42,7 +45,7 @@ export const DropPad: React.FC<DropPadProps> = (props) => {
     <div css={outerStyles} {...getRootProps()}>
       <input {...getInputProps()} />
       {props.files.length > 0 ? (
-        props.files.map((f) => <pre>{JSON.stringify(f, null, 2)}</pre>)
+        props.files.map((f) => <pre key={f.name}>{JSON.stringify(f, null, 2)}</pre>)
       ) : (
         <div>No files selected</div>
       )}

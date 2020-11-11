@@ -1,7 +1,8 @@
-import { InitialStateType } from "./types";
-import { bitmaskToButtons } from "../lib/bitmaskToButtons";
 import { ButtonInput } from "react-gamecube";
+
+import { bitmaskToButtons } from "../lib/bitmaskToButtons";
 import { generateInputBitmask } from "../lib/buttonsToBitmask";
+import { InitialStateType } from "./types";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -32,13 +33,14 @@ export type ReducerActions = ActionMap<ActionPayload>[keyof ActionMap<ActionPayl
 
 export const reducer = (state: InitialStateType, action: ReducerActions) => {
   switch (action.type) {
-    case Types.SetBitmask:
+    case Types.SetBitmask: {
       const { payload } = action;
       const newState = { ...state };
       newState.mask = payload.mask;
       newState.buttons = bitmaskToButtons(payload.mask);
       return newState;
-    case Types.ToggleButton:
+    }
+    case Types.ToggleButton: {
       const { button } = action.payload;
       let newButtons = [...state.buttons];
       if (state.buttons.includes(button)) {
@@ -53,6 +55,7 @@ export const reducer = (state: InitialStateType, action: ReducerActions) => {
         buttons: newButtons,
         mask: generateInputBitmask(...newButtons),
       };
+    }
     default:
       return state;
   }
