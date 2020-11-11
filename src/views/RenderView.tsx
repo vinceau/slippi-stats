@@ -10,9 +10,9 @@ import poweredByImage from "../styles/images/powered-by.png";
 const Header = styled.h1`
   text-transform: uppercase;
   font-weight: 800;
-  font-size: 6rem;
+  font-size: 5.5rem;
   margin: 2rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   position: relative;
 
   &::before {
@@ -46,7 +46,7 @@ export const RenderView: React.FC = (props) => {
         alt="Powered by Slippi"
         css={css`
           max-height: 5rem;
-          margin-bottom: 3rem;
+          margin-bottom: 2rem;
         `}
         src={poweredByImage}
       />
