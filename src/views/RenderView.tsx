@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
@@ -38,7 +39,9 @@ export const RenderView: React.FC = (props) => {
         align-items: center;
       `}
     >
-      <Header>Post Match Stats</Header>
+      <Link to="/" style={{ textDecoration: "inherit", color: "inherit" }}>
+        <Header>Post Match Stats</Header>
+      </Link>
       <img
         alt="Powered by Slippi"
         css={css`
