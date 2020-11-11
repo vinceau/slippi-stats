@@ -37,7 +37,7 @@ jobs:
           yarn install
       - name: Build and deploy
         run: |
-          yarn run build
+          CI=false yarn run build
       - name: Publish
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
