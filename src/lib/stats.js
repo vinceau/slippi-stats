@@ -1,9 +1,6 @@
-const {
-  default: SlippiGame,
-  stages: stageUtil,
-  moves: moveUtil,
-  characters: characterUtil,
-} = require("@slippi/slippi-js");
+/* eslint-disable */
+
+const { stages: stageUtil, moves: moveUtil, characters: characterUtil } = require("@slippi/slippi-js");
 const moment = require("moment");
 const _ = require("lodash");
 
