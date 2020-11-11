@@ -2,7 +2,7 @@ import generateStats from "lib/stats";
 import { GameDetails } from "store/types";
 
 function sanitize(text: string, replacement = "-"): string {
-  return text.toLowerCase().replace(/[. \&]+/gi, replacement);
+  return text.toLowerCase().replace(/[. &]+/gi, replacement);
 }
 
 export function processStats(gameDetails: GameDetails[]): URLSearchParams {

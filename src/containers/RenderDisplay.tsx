@@ -2,8 +2,8 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
-import { CharDisplay } from "./CharDisplay";
 
+import { CharDisplay } from "./CharDisplay";
 import { StatDisplay } from "./StatDisplay";
 
 const Outer = styled.div`
