@@ -82,6 +82,5 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
 
 InlineEdit.defaultProps = {
   text: "",
-  textAlign: "left",
   onSetText: () => {},
 };
