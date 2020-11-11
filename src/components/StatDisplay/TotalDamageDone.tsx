@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useParam } from "../../lib/hooks/useParam";
+import { useParam } from "lib/hooks";
 import { Stat } from "./Stat";
 
 export const TotalDamageDone: React.FC = () => {
