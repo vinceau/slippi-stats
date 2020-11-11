@@ -21,7 +21,7 @@ export const RenderDisplay: React.FC = (props) => {
           width: 100%;
         `}
       >
-        <CharDisplay charParam="char1" colorParam="color1" />
+        <CharDisplay charParam="char1" colorParam="color1" align="right" />
       </div>
       <StatDisplay />
       <div
@@ -29,7 +29,7 @@ export const RenderDisplay: React.FC = (props) => {
           width: 100%;
         `}
       >
-        <CharDisplay charParam="char2" colorParam="color2" />
+        <CharDisplay charParam="char2" colorParam="color2" align="left" />
       </div>
     </Outer>
   );

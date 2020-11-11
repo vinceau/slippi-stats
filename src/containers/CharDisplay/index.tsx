@@ -6,13 +6,15 @@ import React from "react";
 export interface CharDisplayProps {
   colorParam: string;
   charParam: string;
+  align: "left" | "right";
 }
 
 export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
-  const { colorParam, charParam } = props;
+  const { colorParam, charParam, align } = props;
   const [color] = useParam(colorParam);
   const [char] = useParam(charParam);
-  const imgSrc = `${process.env.PUBLIC_URL}/images/characters/${char}/${color}/vs-left.png`;
+  const facing = align === "left" ? "right" : "left";
+  const imgSrc = `${process.env.PUBLIC_URL}/images/characters/${char}/${color}/vs-${facing}.png`;
   return (
     <div
       css={css`
@@ -21,7 +23,8 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
         width: 100%;
         background-image: url(${imgSrc});
         background-repeat: no-repeat;
-        background-position: center center;
+        background-size: cover;
+        background-position: top ${align};
       `}
     ></div>
   );
