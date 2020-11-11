@@ -6,7 +6,7 @@ import React, { useCallback, useContext } from "react";
 
 import { AppContext, Types } from "../store";
 
-export const ButtonMaskInput: React.FC = () => {
+export const FileListInput: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
 
   const onDrop = useCallback(

@@ -1,11 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { ButtonMaskInput } from "containers/ButtonMaskInput";
+import { FileListInput } from "containers/FileListInput";
 import React from "react";
 import { useHistory } from "react-router-dom";
-
-import { DropPad } from "../components/DropPad";
-import { generateStatsOutput } from "../lib/readFile";
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
@@ -13,11 +10,6 @@ function getRandomArbitrary(min: number, max: number) {
 
 export const MainView: React.FC = () => {
   const history = useHistory();
-  const [stats, setStats] = React.useState<any>(null);
-  const onDrop = async (files: File[]) => {
-    const stats = await generateStatsOutput(files);
-    setStats(stats);
-  };
 
   const onClick = () => {
     const params = ["mckm1", "mckm2", "mcno1", "mcno2", "opk1", "opk2", "tdd1", "tdd2", "dpo1", "dpo2", "ipm1", "ipm2"];
@@ -34,9 +26,9 @@ export const MainView: React.FC = () => {
 
   return (
     <div>
-      <h1>Hello world</h1>
+      <h1>Slippi Stats</h1>
       <button onClick={onClick}>randomize</button>
-      <ButtonMaskInput />
+      <FileListInput />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
 
-import { InlineEdit } from "../InlineEdit";
+import { InlineEdit } from "./InlineEdit";
 
 // import CTE from "react-click-to-edit";
 // import EditableLabel from "react-inline-editing";

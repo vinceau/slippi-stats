@@ -1,7 +1,7 @@
 import { useParam } from "lib/hooks";
 import React from "react";
 
-import { Stat } from "./Stat";
+import { Stat } from "components/Stat";
 
 export const MostCommonKillMove: React.FC = () => {
   const [mckm1, setMckm1] = useParam("mckm1", "0");
