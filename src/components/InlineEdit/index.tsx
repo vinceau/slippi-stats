@@ -69,7 +69,7 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
       </span>
       <input
         ref={inputRef}
-        style={{ textAlign }}
+        style={{ textAlign, maxWidth: "100%" }}
         value={inputValue}
         onChange={(e) => {
           setInputValue(e.target.value);

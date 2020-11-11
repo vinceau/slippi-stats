@@ -34,6 +34,7 @@ const StatLabel = styled.div<{
 const StatContent = styled.div<{
   type: "text" | "number";
 }>`
+  width: 100%;
   font-weight: 800;
   font-size: ${(p) => (p.type === "text" ? "1.4em" : "2.3em")};
 `;
@@ -77,6 +78,7 @@ export const Stat: React.FC<StatProps> = (props) => {
         type={type!}
         css={css`
           justify-self: end;
+          text-align: right;
         `}
       >
         <InlineEdit text={rightText} textAlign="right" onSetText={props.onRightTextBlur!} />
