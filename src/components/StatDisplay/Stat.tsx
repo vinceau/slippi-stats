@@ -38,7 +38,7 @@ const StatContent = styled.div`
 
 const OuterStat = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
   align-items: center;
   position: relative;
