@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { FileList } from "components/FileList";
+import { processStats } from "lib/processStats";
 import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
-import React, { useCallback, useContext } from "react";
-import styled from "@emotion/styled";
 import generateStats from "lib/stats";
+import React, { useCallback, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import { AppContext, Types } from "../store";
-import { processStats } from "lib/processStats";
-import { useHistory } from "react-router-dom";
 
 const ProcessButton = styled.button`
   background: #286163;

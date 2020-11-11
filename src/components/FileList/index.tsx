@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import React from "react";
 import { ProcessedFile } from "store/types";
+
 import { FileItem } from "./FileItem";
 
 export interface FileListProps {

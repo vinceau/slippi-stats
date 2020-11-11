@@ -3,14 +3,14 @@ import { css, jsx } from "@emotion/core";
 import React from "react";
 
 import {
+  AverageKillPercent,
   DamagePerOpening,
   InputsPerMinute,
   MostCommonKillMove,
   MostCommonNeutralOpener,
+  NeutralWins,
   OpeningsPerKill,
   TotalDamageDone,
-  AverageKillPercent,
-  NeutralWins,
 } from "./Statistics";
 
 export const StatDisplay: React.FC = () => {
