@@ -1,7 +1,6 @@
+import { Stat } from "components/Stat";
 import { useParam } from "lib/hooks";
 import React from "react";
-
-import { Stat } from "components/Stat";
 
 export const TotalDamageDone: React.FC = () => {
   const [tdd1, setTdd1] = useParam("tdd1", "0");

@@ -1,7 +1,6 @@
+import { Stat } from "components/Stat";
 import { useParam } from "lib/hooks";
 import React from "react";
-
-import { Stat } from "components/Stat";
 
 export const MostCommonNeutralOpener: React.FC = () => {
   const [mcno1, setMcno1] = useParam("mcno1", "0");

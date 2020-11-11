@@ -1,7 +1,6 @@
+import { Stat } from "components/Stat";
 import { useParam } from "lib/hooks";
 import React from "react";
-
-import { Stat } from "components/Stat";
 
 export const InputsPerMinute: React.FC = () => {
   const [ipm1, setIpm1] = useParam("ipm1", "0");
