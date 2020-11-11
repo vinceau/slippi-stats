@@ -42,22 +42,19 @@ const OuterStat = styled.div`
   width: 100%;
   align-items: center;
   position: relative;
-`;
 
-/*
   &::before {
     z-index: -1;
     content: "";
     display: block;
-    border-bottom: solid 0.2rem rgba(255, 255, 255, 0.05);
-    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    height: 0.1rem;
     position: absolute;
-    width: 75%;
+    width: 80%;
     margin-left: 50%;
     transform: translate(-50%, -50%);
   }
 `;
-*/
 
 export const Stat: React.FC<StatProps> = (props) => {
   const { label, leftText, rightText, labelBackground, labelColor } = props;
