@@ -22,7 +22,7 @@ export const StatDisplay: React.FC = (props) => {
           display: grid;
           grid-template-columns: 100%;
           grid-row-gap: 2rem;
-          margin: 5rem 7rem;
+          margin: 5rem 5rem;
         `}
       >
         <MostCommonKillMove />

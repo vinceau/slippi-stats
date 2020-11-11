@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
 
-import { StatDisplay } from "../containers/StatDisplay";
+import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
 
 const Header = styled.h1`
@@ -47,7 +47,7 @@ export const RenderView: React.FC = (props) => {
         `}
         src={poweredByImage}
       />
-      <StatDisplay />
+      <RenderDisplay />
     </div>
   );
 };
