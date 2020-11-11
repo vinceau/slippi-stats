@@ -32,12 +32,8 @@ const StatLabel = styled.div<{
 `;
 
 const StatContent = styled.div`
-  display: block;
-  position: relative;
   font-weight: 800;
   font-size: 4rem;
-  white-space: nowrap;
-  overflow: hidden;
 `;
 
 const OuterStat = styled.div`
