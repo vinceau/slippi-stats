@@ -8,6 +8,8 @@ import styled from "@emotion/styled";
 import generateStats from "lib/stats";
 
 import { AppContext, Types } from "../store";
+import { processStats } from "lib/processStats";
+import { useHistory } from "react-router-dom";
 
 const ProcessButton = styled.button`
   background: #286163;
@@ -26,13 +28,20 @@ const ProcessButton = styled.button`
 `;
 
 export const FileListInput: React.FC = () => {
+  const history = useHistory();
   const { state, dispatch } = useContext(AppContext);
   const [stats, setStats] = React.useState<any>(null);
 
   const onClick = () => {
     const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
-    const s = generateStats(gameDetails);
-    setStats(s);
+    // const s = generateStats(gameDetails);
+    // setStats(s);
+    const params = processStats(gameDetails);
+    const search = "?" + params.toString();
+    history.push({
+      pathname: "/render",
+      search,
+    });
   };
 
   const onDrop = useCallback(
@@ -87,7 +96,7 @@ export const FileListInput: React.FC = () => {
       <ProcessButton disabled={state.files.length === 0 || !finishedProcessing} onClick={onClick}>
         {buttonText}
       </ProcessButton>
-      <textarea value={JSON.stringify(stats, null, 2)} />
+      <textarea readOnly value={JSON.stringify(stats, null, 2)} />
     </div>
   );
 };
