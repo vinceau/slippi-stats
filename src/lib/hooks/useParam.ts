@@ -9,10 +9,10 @@ export function useParam(key: string, defaultValue = "") {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const currentValue = params.get(key);
-    if (currentValue && currentValue !== value) {
-      setValue(currentValue);
+    if (currentValue !== value) {
+      setValue(currentValue || defaultValue);
     }
-  }, [key, location, value]);
+  }, [key, defaultValue, location, value]);
 
   const setParam = (val: string) => {
     const params = new URLSearchParams(location.search);

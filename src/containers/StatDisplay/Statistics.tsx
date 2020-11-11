@@ -11,8 +11,9 @@ interface ConnectedStatProps {
 
 const ConnectedStat: React.FC<ConnectedStatProps> = (props) => {
   const { param1, param2, label, type } = props;
-  const [field1, setField1] = useParam(param1);
-  const [field2, setField2] = useParam(param2);
+  const defaultValue = type === "number" ? "0" : "-";
+  const [field1, setField1] = useParam(param1, defaultValue);
+  const [field2, setField2] = useParam(param2, defaultValue);
   return (
     <Stat
       type={type}
@@ -23,6 +24,10 @@ const ConnectedStat: React.FC<ConnectedStatProps> = (props) => {
       onRightTextBlur={(text) => setField2(text)}
     />
   );
+};
+
+ConnectedStat.defaultProps = {
+  type: "number",
 };
 
 export const MostCommonKillMove: React.FC = () => {
