@@ -18,12 +18,17 @@ export const RenderDisplay: React.FC = (props) => {
       <div
         css={css`
           justify-self: end;
+          width: 100%;
         `}
       >
         <CharDisplay charParam="char1" colorParam="color1" />
       </div>
       <StatDisplay />
-      <div>
+      <div
+        css={css`
+          width: 100%;
+        `}
+      >
         <CharDisplay charParam="char2" colorParam="color2" />
       </div>
     </Outer>
