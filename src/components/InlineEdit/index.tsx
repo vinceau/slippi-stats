@@ -5,11 +5,14 @@ import { useKeyPress, useOnClickOutside } from "../../lib/hooks";
 
 import "./index.scss";
 
-export const InlineEdit: React.FC<{
+export interface InlineEditProps {
   text: string;
+  textAlign?: "left" | "right";
   onSetText: (text: string) => void;
-}> = (props) => {
-  const { text, onSetText } = props;
+}
+
+export const InlineEdit: React.FC<InlineEditProps> = (props) => {
+  const { text, onSetText, textAlign } = props;
   const [isInputActive, setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(text);
 
@@ -28,7 +31,7 @@ export const InlineEdit: React.FC<{
   // check to see if the user clicked outside of this component
   useOnClickOutside(wrapperRef, () => {
     if (isInputActive) {
-      props.onSetText(inputValue);
+      onSetText(inputValue);
       setIsInputActive(false);
     }
   });
@@ -44,7 +47,7 @@ export const InlineEdit: React.FC<{
     if (isInputActive) {
       // if Enter or tab is pressed, save the text and case the editor
       if (enter || tab) {
-        props.onSetText(inputValue);
+        onSetText(inputValue);
         setIsInputActive(false);
       }
       // if Escape is pressed, revert the text and close the editor
@@ -66,6 +69,7 @@ export const InlineEdit: React.FC<{
       </span>
       <input
         ref={inputRef}
+        style={{ textAlign }}
         value={inputValue}
         onChange={(e) => {
           setInputValue(e.target.value);
@@ -78,5 +82,6 @@ export const InlineEdit: React.FC<{
 
 InlineEdit.defaultProps = {
   text: "",
+  textAlign: "left",
   onSetText: () => {},
 };
