@@ -25,7 +25,14 @@ export const MainView: React.FC = () => {
   };
 
   return (
-    <div>
+    <div
+      css={css`
+        margin: 0 12rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      `}
+    >
       <h1>Slippi Stats</h1>
       <button onClick={onClick}>randomize</button>
       <FileListInput />
