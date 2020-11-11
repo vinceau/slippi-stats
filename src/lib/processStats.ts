@@ -43,7 +43,7 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
         params.ipm2 = s.results[1].simple.text;
         break;
       }
-      case "averageKillPercent": {
+      case "avgKillPercent": {
         params.akp1 = s.results[0].simple.text;
         params.akp2 = s.results[1].simple.text;
         break;
