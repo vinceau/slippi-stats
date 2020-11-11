@@ -28,6 +28,30 @@ export async function generateStatsOutput(files: File[]) {
   return output;
 }
 
+export async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
+  const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
+  const arr = new Int8Array(data);
+  const buf = Buffer.from(arr);
+  return new SlippiGame(buf);
+}
+
+export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
+  const game = await readFileAsSlippiGame(file);
+  return generateGameDetails(file.name, game);
+}
+
+export function generateGameDetails(name: string, game: SlippiGame): GameDetails {
+  return {
+    filePath: name,
+    settings: game.getSettings(),
+    frames: game.getFrames(),
+    stats: game.getStats(),
+    metadata: game.getMetadata(),
+    latestFrame: game.getLatestFrame(),
+    gameEnd: game.getGameEnd(),
+  };
+}
+
 export async function readFilesAsSlippiGameDetails(files: File[]): Promise<GameDetails[]> {
   const promises = files.map(async (f) => {
     console.log("checking file: ", f);

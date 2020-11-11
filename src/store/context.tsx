@@ -4,8 +4,7 @@ import { reducer, ReducerActions } from "./reducers";
 import { InitialStateType } from "./types";
 
 const initialState: InitialStateType = {
-  buttons: [],
-  mask: 0,
+  files: [],
 };
 
 const AppContext = createContext<{

@@ -1,91 +1,62 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import React, { useContext, useState } from "react";
-import { ButtonInput } from "react-gamecube";
+import { DropPad } from "components/DropPad";
+import { generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
+import React, { useCallback, useContext } from "react";
 
-import { BitmaskDisplay } from "../components/BitmaskDisplay";
-import { ControllerDisplay } from "../components/ControllerDisplay";
-import { OrderedButtonPreview } from "../components/OrderedButtonPreview";
 import { AppContext, Types } from "../store";
 
 export const ButtonMaskInput: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
-  const [error, setError] = useState<string>("");
 
-  const setBitmask = (mask: number) => {
-    dispatch({
-      type: Types.SetBitmask,
-      payload: {
-        mask,
-      },
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    acceptedFiles.forEach(async (file) => {
+      dispatch({
+        type: Types.ADD_FILE,
+        payload: {
+          file,
+        },
+      });
+      try {
+        const game = await readFileAsSlippiGame(file);
+        const details = generateGameDetails(file.name, game);
+        dispatch({
+          type: Types.ADD_GAME,
+          payload: {
+            filename: file.name,
+            game,
+            details,
+          },
+        });
+      } catch (err) {
+        dispatch({
+          type: Types.SET_ERROR,
+          payload: {
+            filename: file.name,
+            error: err,
+          },
+        });
+      }
     });
-  };
+  }, []);
 
-  const onChange = (value: string) => {
-    if (isNaN(+value)) {
-      setError("Invalid number");
-    } else {
-      setError("");
-      setBitmask(+value);
-    }
-  };
-
-  const onButtonClick = (button: ButtonInput): void => {
-    dispatch({
-      type: Types.ToggleButton,
-      payload: {
-        button,
-      },
-    });
-  };
-
+  const finishedProcessing = !Boolean(state.files.find((f) => f.loading));
   return (
-    <div>
-      <div
-        css={css`
-          margin: 20px 0;
-        `}
-      >
-        <input
-          css={css`
-            border: solid 1px white;
-            background: transparent;
-            border-radius: 5px;
-            padding: 10px 20px;
-            color: white;
-            margin-bottom: 5px;
-            width: 250px;
-            max-width: 100%;
-            font-size: 16px;
-          `}
-          onChange={({ target }) => onChange(target.value)}
-          placeholder="Enter a decimal bitmask here"
-        />
-        <div
-          css={css`
-            min-height: 21px;
-          `}
-        >
-          {error}
+    <div
+      css={css`
+        position: relative;
+        border: solid 1px black;
+        height: 500px;
+        width: 500px;
+      `}
+    >
+      <DropPad accept=".slp" onDrop={onDrop} />
+      {state.files.map((f) => (
+        <div key={f.file.name}>
+          {f.file.name} {f.loading && <span>processing...</span>}
         </div>
-      </div>
-      <div
-        css={css`
-          margin-bottom: 40px;
-        `}
-      >
-        <BitmaskDisplay mask={state.mask} />
-      </div>
-      <ControllerDisplay buttons={state.buttons} onClick={onButtonClick} />
-      <div
-        css={css`
-          font-size: 24px;
-          margin-top: 20px;
-          min-height: 32px;
-        `}
-      >
-        <OrderedButtonPreview value={state.buttons} />
-      </div>
+      ))}
+      {finishedProcessing ? <div>done</div> : <div>still processing...</div>}
     </div>
   );
 };

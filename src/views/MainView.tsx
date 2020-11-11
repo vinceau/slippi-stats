@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { ButtonMaskInput } from "containers/ButtonMaskInput";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
@@ -35,14 +36,7 @@ export const MainView: React.FC = () => {
     <div>
       <h1>Hello world</h1>
       <button onClick={onClick}>randomize</button>
-      {/* <DropPad files={[]} onDrop={onDrop} />
-      <div
-        css={css`
-          text-align: left;
-        `}
-      >
-        <pre>{JSON.stringify(stats, null, 2)}</pre>
-      </div> */}
+      <ButtonMaskInput />
     </div>
   );
 };

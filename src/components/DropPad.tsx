@@ -1,54 +1,42 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React from "react";
+import { DropzoneOptions, useDropzone } from "react-dropzone";
+import styled from "@emotion/styled";
 
-const outerStyles = css`
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  &&:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.95;
-    z-index: -1;
+const getColor = (props: any) => {
+  if (props.isDragAccept) {
+    return "#00e676";
   }
+  if (props.isDragActive) {
+    return "#2196f3";
+  }
+  return "#eeeeee";
+};
+
+const Container = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: ${(props) => getColor(props)};
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
 `;
 
-export interface DropPadProps {
-  files: any[];
-  onDrop: (files: any) => void;
-}
+export const DropPad: React.FC<Partial<DropzoneOptions>> = (props) => {
+  const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone(props);
 
-export const DropPad: React.FC<DropPadProps> = (props) => {
-  const accept = ".slp";
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      props.onDrop(acceptedFiles); //acceptedFiles.map((f: any) => f.path));
-    },
-    [props]
-  );
-  const { open, getRootProps, getInputProps /*, isDragActive */ } = useDropzone({
-    multiple: true,
-    onDrop,
-    accept,
-    noClick: true,
-    noKeyboard: true,
-  });
   return (
-    <div css={outerStyles} {...getRootProps()}>
-      <input {...getInputProps()} />
-      {props.files.length > 0 ? (
-        props.files.map((f) => <pre key={f.name}>{JSON.stringify(f, null, 2)}</pre>)
-      ) : (
-        <div>No files selected</div>
-      )}
+    <div className="container">
+      <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      </Container>
     </div>
   );
 };
