@@ -26,6 +26,7 @@ export const RenderView: React.FC = (props) => {
         Post Match Stats
       </h1>
       <img
+        alt="Powered by Slippi"
         css={css`
           max-height: 5rem;
         `}

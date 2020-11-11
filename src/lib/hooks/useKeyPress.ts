@@ -7,26 +7,26 @@ export function useKeyPress(targetKey: any) {
 
   const [keyPressed, setKeyPressed] = useState(false);
 
-  // If pressed key is our target key then set to true
-
-  function downHandler({ key }: any) {
-    console.log("key down: ", key);
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  }
-
-  // If released key is our target key then set to false
-
-  const upHandler = ({ key }: any) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
-
   // Add event listeners
 
   useEffect(() => {
+    // If pressed key is our target key then set to true
+
+    function downHandler({ key }: any) {
+      console.log("key down: ", key);
+      if (key === targetKey) {
+        setKeyPressed(true);
+      }
+    }
+
+    // If released key is our target key then set to false
+
+    const upHandler = ({ key }: any) => {
+      if (key === targetKey) {
+        setKeyPressed(false);
+      }
+    };
+
     window.addEventListener("keydown", downHandler);
 
     window.addEventListener("keyup", upHandler);
@@ -38,7 +38,7 @@ export function useKeyPress(targetKey: any) {
 
       window.removeEventListener("keyup", upHandler);
     };
-  }, [downHandler, upHandler]); // Empty array ensures that effect is only run on mount and unmount
+  }, []); // Empty array ensures that effect is only run on mount and unmount
 
   return keyPressed;
 }
