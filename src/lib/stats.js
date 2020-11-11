@@ -604,10 +604,10 @@ function generateOutput(games) {
 //   console.log("Finished writting stats to output.json!");
 // }
 
-module.exports = function (games) {
+export default function (games) {
   const filteredGames = filterGames(games);
   const output = generateOutput(filteredGames);
   //   writeToFile(output);
   //   console.log(output);
   return output;
-};
+}

@@ -8,8 +8,7 @@ import {
   StatsType,
 } from "@slippi/slippi-js";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const generateStats = require("./stats");
+import generateStats from "./stats";
 
 export interface GameDetails {
   filePath: string;
