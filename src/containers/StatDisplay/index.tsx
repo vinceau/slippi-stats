@@ -2,14 +2,18 @@
 import { css, jsx } from "@emotion/core";
 import React from "react";
 
-import { DamagePerOpening } from "./DamagePerOpening";
-import { InputsPerMinute } from "./InputsPerMinute";
-import { MostCommonKillMove } from "./MostCommonKillMove";
-import { MostCommonNeutralOpener } from "./MostCommonNeutralOpener";
-import { OpeningsPerKill } from "./OpeningsPerKill";
-import { TotalDamageDone } from "./TotalDamageDone";
+import {
+  DamagePerOpening,
+  InputsPerMinute,
+  MostCommonKillMove,
+  MostCommonNeutralOpener,
+  OpeningsPerKill,
+  TotalDamageDone,
+  AverageKillPercent,
+  NeutralWins,
+} from "./Statistics";
 
-export const StatDisplay: React.FC = (props) => {
+export const StatDisplay: React.FC = () => {
   return (
     <div
       css={css`
@@ -29,8 +33,8 @@ export const StatDisplay: React.FC = (props) => {
         <MostCommonNeutralOpener />
         <OpeningsPerKill />
         <TotalDamageDone />
-        <DamagePerOpening />
-        <InputsPerMinute />
+        <AverageKillPercent />
+        <NeutralWins />
       </div>
     </div>
   );
