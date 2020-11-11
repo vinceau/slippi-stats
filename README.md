@@ -1,16 +1,13 @@
-# Slippi Bitmask Input Visualizer
+# Slippi Set Stats
 
-> A tool for visualizing Slippi button input bitmasks
-
-[![screenshot](https://i.imgur.com/fRpKulh.png)](https://vinceau.github.io/slp-bitmask-visualizer)
-
-[Click here](https://vinceau.github.io/slp-bitmask-visualizer) to try it out!
+> An open version of the Smash Summit post-match stats graphic
 
 ### Features
 
-* Convert from bitmask to button inputs
-* Convert from button inputs to bitmask
-* Shows bitmask as hex, decimal, and binary
+- Local SLP stats computation
+- Drag-and-drop into OBS
+- Highly customizable
+- Free and open source!
 
 ## Development
 
