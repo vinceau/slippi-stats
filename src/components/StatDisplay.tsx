@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import React from "react";
+import { useQuery } from "../lib/hooks";
+import { useParam } from "../lib/hooks/useParam";
 import { Stat } from "./Stat";
 
 export interface StatInput {
@@ -26,6 +28,9 @@ export const StatDisplay: React.FC<StatDisplayProps> = (props) => {
     damagePerOpening,
     inputsPerMinute,
   } = props;
+
+  const [mckm1, setMckm1] = useParam("mckm1", "0");
+  const [mckm2, setMckm2] = useParam("mckm2", "0");
   return (
     <div
       css={css`
@@ -39,7 +44,13 @@ export const StatDisplay: React.FC<StatDisplayProps> = (props) => {
           flex-direction: column;
         `}
       >
-        <Stat leftText={mostCommonKillMove.left} label="MOST COMMON KILL MOVE" rightText={mostCommonKillMove.right} />
+        <Stat
+          leftText={mckm1}
+          onLeftTextBlur={(text) => setMckm1(text)}
+          label="MOST COMMON KILL MOVE"
+          rightText={mckm2}
+          onRightTextBlur={(text) => setMckm2(text)}
+        />
         <Stat
           leftText={mostCommonNeutralOpener.left}
           label="MOST COMMON NEUTRAL OPENER"

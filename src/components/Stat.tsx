@@ -2,6 +2,10 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
+import { InlineEdit } from "./InlineEdit";
+
+// import CTE from "react-click-to-edit";
+// import EditableLabel from "react-inline-editing";
 
 export interface StatProps {
   label: string;
@@ -9,21 +13,42 @@ export interface StatProps {
   labelBackground?: string;
   leftText: string;
   rightText: string;
+  onLeftTextBlur?: (text: string) => void;
+  onRightTextBlur?: (text: string) => void;
 }
 
+const StatLabel = styled.div<{
+  labelBackground: string;
+  labelColor: string;
+}>`
+  background-color: ${(p) => p.labelBackground};
+  color: ${(p) => p.labelColor};
+  padding: 1rem 5rem;
+  font-weight: 700;
+  font-size: 2rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem black;
+  justify-self: center;
+  z-index: 1;
+`;
+
 const StatContent = styled.div`
+  display: block;
+  position: relative;
   font-weight: 800;
   font-size: 4rem;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const OuterStat = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
   position: relative;
+`;
 
+/*
   &::before {
     z-index: -1;
     content: "";
@@ -36,25 +61,29 @@ const OuterStat = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+*/
 
 export const Stat: React.FC<StatProps> = (props) => {
   const { label, leftText, rightText, labelBackground, labelColor } = props;
   return (
     <OuterStat>
-      <StatContent>{leftText}</StatContent>
-      <div
+      <StatContent
         css={css`
-          background-color: ${labelBackground};
-          color: ${labelColor};
-          padding: 1rem 5rem;
-          font-weight: 700;
-          font-size: 2rem;
-          box-shadow: 0.5rem 0.5rem 0.5rem black;
+          justify-self: start;
         `}
       >
+        <InlineEdit text={leftText} onSetText={props.onLeftTextBlur!} />
+      </StatContent>
+      <StatLabel labelBackground={labelBackground!} labelColor={labelColor!}>
         {label}
-      </div>
-      <StatContent>{rightText}</StatContent>
+      </StatLabel>
+      <StatContent
+        css={css`
+          justify-self: end;
+        `}
+      >
+        <InlineEdit text={rightText} onSetText={props.onRightTextBlur!} />
+      </StatContent>
     </OuterStat>
   );
 };
@@ -62,4 +91,6 @@ export const Stat: React.FC<StatProps> = (props) => {
 Stat.defaultProps = {
   labelColor: "black",
   labelBackground: "white",
+  onLeftTextBlur: () => {},
+  onRightTextBlur: () => {},
 };
