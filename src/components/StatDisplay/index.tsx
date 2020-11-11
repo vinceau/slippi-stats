@@ -18,8 +18,10 @@ export const StatDisplay: React.FC = (props) => {
     >
       <div
         css={css`
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: 100%;
+          grid-row-gap: 2rem;
+          margin: 5rem 7rem;
         `}
       >
         <MostCommonKillMove />
