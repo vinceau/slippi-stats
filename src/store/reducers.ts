@@ -1,4 +1,5 @@
 import SlippiGame from "@slippi/slippi-js";
+
 import { GameDetails, InitialStateType } from "./types";
 
 type ActionMap<M extends { [index: string]: any }> = {

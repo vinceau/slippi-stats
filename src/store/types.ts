@@ -1,10 +1,10 @@
 import {
-  SlippiGame,
   FrameEntryType,
   FramesType,
   GameEndType,
   GameStartType,
   MetadataType,
+  SlippiGame,
   StatsType,
 } from "@slippi/slippi-js";
 

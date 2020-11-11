@@ -9,38 +9,41 @@ import { AppContext, Types } from "../store";
 export const ButtonMaskInput: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    acceptedFiles.forEach(async (file) => {
-      dispatch({
-        type: Types.ADD_FILE,
-        payload: {
-          file,
-        },
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      acceptedFiles.forEach(async (file) => {
+        dispatch({
+          type: Types.ADD_FILE,
+          payload: {
+            file,
+          },
+        });
+        try {
+          const game = await readFileAsSlippiGame(file);
+          const details = generateGameDetails(file.name, game);
+          dispatch({
+            type: Types.ADD_GAME,
+            payload: {
+              filename: file.name,
+              game,
+              details,
+            },
+          });
+        } catch (err) {
+          dispatch({
+            type: Types.SET_ERROR,
+            payload: {
+              filename: file.name,
+              error: err,
+            },
+          });
+        }
       });
-      try {
-        const game = await readFileAsSlippiGame(file);
-        const details = generateGameDetails(file.name, game);
-        dispatch({
-          type: Types.ADD_GAME,
-          payload: {
-            filename: file.name,
-            game,
-            details,
-          },
-        });
-      } catch (err) {
-        dispatch({
-          type: Types.SET_ERROR,
-          payload: {
-            filename: file.name,
-            error: err,
-          },
-        });
-      }
-    });
-  }, []);
+    },
+    [dispatch]
+  );
 
-  const finishedProcessing = !Boolean(state.files.find((f) => f.loading));
+  const finishedProcessing = !state.files.find((f) => f.loading);
   return (
     <div
       css={css`

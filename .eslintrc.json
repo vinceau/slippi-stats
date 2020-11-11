@@ -8,10 +8,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "simple-import-sort"
-  ],
+  "plugins": ["@typescript-eslint", "simple-import-sort"],
   "extends": [
     "prettier",
     "prettier/react",
@@ -33,6 +30,7 @@
     "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/camelcase": "off",
+    "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
     "simple-import-sort/sort": "warn",
     "no-console": "off",

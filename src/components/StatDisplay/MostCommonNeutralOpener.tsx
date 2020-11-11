@@ -1,6 +1,6 @@
+import { useParam } from "lib/hooks";
 import React from "react";
 
-import { useParam } from "lib/hooks";
 import { Stat } from "./Stat";
 
 export const MostCommonNeutralOpener: React.FC = () => {
