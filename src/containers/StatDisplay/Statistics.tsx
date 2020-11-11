@@ -6,14 +6,16 @@ interface ConnectedStatProps {
   param1: string;
   param2: string;
   label: string;
+  type?: "text" | "number";
 }
 
 const ConnectedStat: React.FC<ConnectedStatProps> = (props) => {
-  const { param1, param2, label } = props;
+  const { param1, param2, label, type } = props;
   const [field1, setField1] = useParam(param1);
   const [field2, setField2] = useParam(param2);
   return (
     <Stat
+      type={type}
       leftText={field1}
       onLeftTextBlur={(text) => setField1(text)}
       label={label}
@@ -21,6 +23,14 @@ const ConnectedStat: React.FC<ConnectedStatProps> = (props) => {
       onRightTextBlur={(text) => setField2(text)}
     />
   );
+};
+
+export const MostCommonKillMove: React.FC = () => {
+  return <ConnectedStat type="text" param1="mckm1" param2="mckm2" label="MOST COMMON KILL MOVE" />;
+};
+
+export const MostCommonNeutralOpener: React.FC = () => {
+  return <ConnectedStat type="text" param1="mcno1" param2="mcno2" label="MOST COMMON NEUTRAL OPENER" />;
 };
 
 export const AverageKillPercent: React.FC = () => {
@@ -37,14 +47,6 @@ export const DamagePerOpening: React.FC = () => {
 
 export const InputsPerMinute: React.FC = () => {
   return <ConnectedStat param1="ipm1" param2="ipm2" label="INPUTS / MINUTE" />;
-};
-
-export const MostCommonKillMove: React.FC = () => {
-  return <ConnectedStat param1="mckm1" param2="mckm2" label="MOST COMMON KILL MOVE" />;
-};
-
-export const MostCommonNeutralOpener: React.FC = () => {
-  return <ConnectedStat param1="mcno1" param2="mcno2" label="MOST COMMON NEUTRAL OPENER" />;
 };
 
 export const OpeningsPerKill: React.FC = () => {

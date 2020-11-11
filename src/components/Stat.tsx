@@ -5,10 +5,8 @@ import React from "react";
 
 import { InlineEdit } from "./InlineEdit";
 
-// import CTE from "react-click-to-edit";
-// import EditableLabel from "react-inline-editing";
-
 export interface StatProps {
+  type?: "text" | "number";
   label: string;
   labelColor?: string;
   labelBackground?: string;
@@ -22,19 +20,22 @@ const StatLabel = styled.div<{
   labelBackground: string;
   labelColor: string;
 }>`
+  text-align: center;
   background-color: ${(p) => p.labelBackground};
   color: ${(p) => p.labelColor};
-  padding: 1rem 5rem;
+  padding: 0.3em 2.5em;
   font-weight: 700;
-  font-size: 2rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem black;
+  font-size: 1.2em;
+  box-shadow: 0.2em 0.2em 0.2em black;
   justify-self: center;
   z-index: 1;
 `;
 
-const StatContent = styled.div`
+const StatContent = styled.div<{
+  type: "text" | "number";
+}>`
   font-weight: 800;
-  font-size: 4rem;
+  font-size: ${(p) => (p.type === "text" ? "1.4em" : "2.3em")};
 `;
 
 const OuterStat = styled.div`
@@ -58,10 +59,11 @@ const OuterStat = styled.div`
 `;
 
 export const Stat: React.FC<StatProps> = (props) => {
-  const { label, leftText, rightText, labelBackground, labelColor } = props;
+  const { type, label, leftText, rightText, labelBackground, labelColor } = props;
   return (
     <OuterStat>
       <StatContent
+        type={type!}
         css={css`
           justify-self: start;
         `}
@@ -72,6 +74,7 @@ export const Stat: React.FC<StatProps> = (props) => {
         {label}
       </StatLabel>
       <StatContent
+        type={type!}
         css={css`
           justify-self: end;
         `}
@@ -83,6 +86,7 @@ export const Stat: React.FC<StatProps> = (props) => {
 };
 
 Stat.defaultProps = {
+  type: "number",
   labelColor: "black",
   labelBackground: "white",
   // eslint-disable-next-line @typescript-eslint/no-empty-function
