@@ -20,7 +20,7 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
   return (
     <div
       css={css`
-        height: 100%;
+        height: 80%;
         width: 100%;
         position: relative;
         background: radial-gradient(circle at center -30%, ${theme}, transparent);
