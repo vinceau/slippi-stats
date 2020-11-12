@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import React from "react";
 import styled from "@emotion/styled";
-import { getCharacterFolderFromId } from "lib/resources";
+import { getCharacterPortrait } from "lib/resources";
 
 const Outer = styled.div`
   position: relative;
@@ -59,8 +59,8 @@ export interface HeadToHeadProps {
 
 export const HeadToHead: React.FC<HeadToHeadProps> = ({ char1, color1, result1, char2, color2, result2 }) => {
   const waypoint = 55;
-  const p1 = `${getCharacterFolderFromId(char1, color1)}/portrait.png`;
-  const p2 = `${getCharacterFolderFromId(char2, color2)}/portrait.png`;
+  const p1 = getCharacterPortrait(char1, color1);
+  const p2 = getCharacterPortrait(char2, color2);
 
   return (
     <Outer>
