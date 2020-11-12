@@ -37,8 +37,8 @@ const HeadImage = styled(BaseHeadImage)<{
     const invWaypoint = 100 - p.waypoint;
     return `
       ${p.side === "right" ? `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);` : ""}
-      ${p.dim ? "filter: brightness(30%);" : ""}
-      ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
+      ${p.dim ? "filter: brightness(25%);" : ""}
+      ${p.backgroundColor ? `background: radial-gradient(circle at center -30%, ${p.backgroundColor}, black);` : ""}
       &::after {
         width: ${p.waypoint}%;
         background-image: url("${p.imageSrc}");
@@ -56,17 +56,34 @@ export interface HeadToHeadProps {
   char2: number | string;
   color2: string;
   result2: string;
+  leftColor: string;
+  rightColor: string;
 }
 
-export const HeadToHead: React.FC<HeadToHeadProps> = ({ char1, color1, result1, char2, color2, result2 }) => {
+export const HeadToHead: React.FC<HeadToHeadProps> = ({
+  char1,
+  color1,
+  result1,
+  char2,
+  color2,
+  result2,
+  leftColor,
+  rightColor,
+}) => {
   const waypoint = 55;
   const p1 = getCharacterPortrait(char1, color1);
   const p2 = getCharacterPortrait(char2, color2);
 
   return (
     <Outer>
-      <HeadImage backgroundColor="red" imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
-      <HeadImage backgroundColor="green" imageSrc={p2} waypoint={waypoint} side="right" dim={result2 === "loser"} />
+      <HeadImage backgroundColor={leftColor} imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
+      <HeadImage
+        backgroundColor={rightColor}
+        imageSrc={p2}
+        waypoint={waypoint}
+        side="right"
+        dim={result2 === "loser"}
+      />
     </Outer>
   );
 };

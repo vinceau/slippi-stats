@@ -14,6 +14,8 @@ export interface GameResultProps {
   char2: number | string;
   color2: string;
   result2: string;
+  leftColor: string;
+  rightColor: string;
 }
 
 export const GameResult: React.FC<GameResultProps> = (props) => {

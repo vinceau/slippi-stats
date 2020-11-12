@@ -8,10 +8,11 @@ export interface CharDisplayProps {
   colorParam: string;
   charParam: string;
   align: Side;
+  theme: string;
 }
 
 export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
-  const { colorParam, charParam, align } = props;
+  const { colorParam, charParam, align, theme } = props;
   const [color] = useParam(colorParam);
   const [char] = useParam(charParam);
   const facing: Side = align === "left" ? "right" : "left";
@@ -19,13 +20,20 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
   return (
     <div
       css={css`
-        display: block;
         height: 100%;
         width: 100%;
-        background-image: url("${imgSrc}");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top ${align};
+        position: relative;
+        background: radial-gradient(circle at center -30%, ${theme}, transparent);
+        &::after {
+          content: ' ';
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background-image: url("${imgSrc}");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: top ${align};
+        }
       `}
     ></div>
   );

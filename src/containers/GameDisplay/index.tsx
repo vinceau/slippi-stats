@@ -6,7 +6,9 @@ import React from "react";
 
 const Game: React.FC<{
   index: number;
-}> = ({ index }) => {
+  leftColor: string;
+  rightColor: string;
+}> = ({ index, leftColor, rightColor }) => {
   const [gameInfo] = useParam(`g${index}`);
   // The game info starts off undefined
   if (!gameInfo) {
@@ -24,17 +26,22 @@ const Game: React.FC<{
       char2={char2}
       color2={color2}
       result2={res2}
+      leftColor={leftColor}
+      rightColor={rightColor}
     />
   );
 };
 
-export const GameDisplay: React.FC = () => {
+export const GameDisplay: React.FC<{
+  leftColor: string;
+  rightColor: string;
+}> = (props) => {
   const [gt] = useParam(`gt`);
   const total = parseInt(gt, 10) || 0;
 
   const games = [];
   for (let i = 1; i <= total; i++) {
-    games.push(<Game key={`g${i}`} index={i} />);
+    games.push(<Game key={`g${i}`} index={i} leftColor={props.leftColor} rightColor={props.rightColor} />);
   }
 
   return (

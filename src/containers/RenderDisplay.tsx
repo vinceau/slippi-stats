@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { useParam } from "lib/hooks";
 import React from "react";
 
 import { CharDisplay } from "./CharDisplay";
@@ -13,6 +14,8 @@ const Outer = styled.div`
 `;
 
 export const RenderDisplay: React.FC = (props) => {
+  const [leftColor] = useParam("leftColor", "#f52e2e");
+  const [rightColor] = useParam("rightColor", "#5463ff");
   return (
     <Outer>
       <div
@@ -21,15 +24,15 @@ export const RenderDisplay: React.FC = (props) => {
           width: 100%;
         `}
       >
-        <CharDisplay charParam="char1" colorParam="color1" align="right" />
+        <CharDisplay theme={leftColor} charParam="char1" colorParam="color1" align="right" />
       </div>
-      <StatDisplay />
+      <StatDisplay leftColor={leftColor} rightColor={rightColor} />
       <div
         css={css`
           width: 100%;
         `}
       >
-        <CharDisplay charParam="char2" colorParam="color2" align="left" />
+        <CharDisplay theme={rightColor} charParam="char2" colorParam="color2" align="left" />
       </div>
     </Outer>
   );

@@ -24,7 +24,10 @@ const Divider = styled.div`
   background-color: rgba(255, 255, 255, 0.05);
 `;
 
-export const StatDisplay: React.FC = () => {
+export const StatDisplay: React.FC<{
+  leftColor: string;
+  rightColor: string;
+}> = (props) => {
   return (
     <div
       css={css`
@@ -48,7 +51,7 @@ export const StatDisplay: React.FC = () => {
         <AverageKillPercent />
         <NeutralWins />
         <Divider />
-        <GameDisplay />
+        <GameDisplay leftColor={props.leftColor} rightColor={props.rightColor} />
       </div>
     </div>
   );
