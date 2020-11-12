@@ -1,11 +1,21 @@
 import React from "react";
 import { HeadToHead } from "./HeadToHead";
 
-export const GameResult = () => {
+export interface GameResultProps {
+  stageId: string;
+  duration: string;
+  char1: number | string;
+  color1: string;
+  result1: string;
+  char2: number | string;
+  color2: string;
+  result2: string;
+}
+
+export const GameResult: React.FC<GameResultProps> = (props) => {
   return (
     <div>
-      <h3>game result</h3>
-      <HeadToHead />
+      <HeadToHead {...props} />
     </div>
   );
 };

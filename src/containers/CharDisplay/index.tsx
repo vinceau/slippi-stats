@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { useParam } from "lib/hooks";
+import { getCharacterFolderFromId } from "lib/resources";
 import React from "react";
 
 export interface CharDisplayProps {
@@ -14,7 +15,8 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
   const [color] = useParam(colorParam);
   const [char] = useParam(charParam);
   const facing = align === "left" ? "right" : "left";
-  const imgSrc = `${process.env.PUBLIC_URL}/images/characters/${char}/${color}/vs-${facing}.png`;
+  const charFolder = getCharacterFolderFromId(char, color);
+  const imgSrc = `${charFolder}/vs-${facing}.png`;
   return (
     <div
       css={css`

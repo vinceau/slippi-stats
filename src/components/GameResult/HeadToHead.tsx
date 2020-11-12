@@ -2,11 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import React from "react";
 import styled from "@emotion/styled";
-
-export interface HeadToHeadProps {
-  // leftPicture: string;
-  // rightPicture: string;
-}
+import { getCharacterFolderFromId } from "lib/resources";
 
 const Outer = styled.div`
   position: relative;
@@ -59,13 +55,19 @@ const HeadImage = styled(BaseHeadImage)<{
   }}
 `;
 
-export const HeadToHead: React.FC<HeadToHeadProps> = () => {
+export interface HeadToHeadProps {
+  char1: number | string;
+  color1: string;
+  result1: string;
+  char2: number | string;
+  color2: string;
+  result2: string;
+}
+
+export const HeadToHead: React.FC<HeadToHeadProps> = ({ char1, color1, result1, char2, color2, result2 }) => {
   const waypoint = 55;
-  const p1 = `${process.env.PUBLIC_URL}/images/characters/jigglypuff/headband/portrait.png`;
-  const p1Align = "right";
-  const p2 = `${process.env.PUBLIC_URL}/images/characters/pikachu/party-hat/portrait.png`;
-  const p2Align = "right";
-  const winner: string = "left";
+  const p1 = `${getCharacterFolderFromId(char1, color1)}/portrait.png`;
+  const p2 = `${getCharacterFolderFromId(char2, color2)}/portrait.png`;
 
   return (
     <Outer>
@@ -73,17 +75,17 @@ export const HeadToHead: React.FC<HeadToHeadProps> = () => {
         backgroundColor="red"
         imageSrc={p1}
         waypoint={waypoint}
-        imageAlignment={p1Align}
+        imageAlignment={"right"}
         side="left"
-        dim={winner !== "left"}
+        dim={result1 === "loser"}
       />
       <HeadImage
         backgroundColor="green"
         imageSrc={p2}
         waypoint={waypoint}
-        imageAlignment={p2Align}
+        imageAlignment={"right"}
         side="right"
-        dim={winner !== "right"}
+        dim={result2 === "loser"}
       />
     </Outer>
   );
