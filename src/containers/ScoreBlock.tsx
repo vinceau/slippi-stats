@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-
-import React from "react";
 import { Block } from "components/Block";
 import { InlineEdit } from "components/InlineEdit";
 import { useParam } from "lib/hooks";
+import React from "react";
 
 export interface ScoreBlockProps {
   primaryColor: string;

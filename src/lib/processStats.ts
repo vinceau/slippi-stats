@@ -1,6 +1,7 @@
-import { get } from "lodash";
 import generateStats, { filterGames } from "lib/stats";
+import { get } from "lodash";
 import { GameDetails } from "store/types";
+
 import { getPortColor } from "./portColor";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import React from "react";
 import styled from "@emotion/styled";
 import { getCharacterPortrait } from "lib/resources";
+import React from "react";
 
 const Outer = styled.div`
   position: relative;

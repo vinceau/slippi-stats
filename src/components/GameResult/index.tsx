@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-
 import React from "react";
+
 import { HeadToHead } from "./HeadToHead";
 import { StageTimer } from "./StageTimer";
 

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { useParam } from "lib/hooks";
-import { Side, getCharacterVSScreen } from "lib/resources";
+import { getCharacterVSScreen, Side } from "lib/resources";
 import React from "react";
 
 export interface CharDisplayProps {

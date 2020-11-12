@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-
 import React from "react";
+
 import { Block } from "./Block";
 import { InlineEdit } from "./InlineEdit";
 

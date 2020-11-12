@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { GameDisplay } from "../GameDisplay";
 import React from "react";
 
+import { GameDisplay } from "../GameDisplay";
 import {
   AverageKillPercent,
   DamagePerOpening,

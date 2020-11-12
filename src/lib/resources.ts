@@ -1,4 +1,4 @@
-import { stages as stageUtil, characters as characterUtil } from "@slippi/slippi-js";
+import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
 
 export type Side = "left" | "right";
 
