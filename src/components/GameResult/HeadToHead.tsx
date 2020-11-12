@@ -17,12 +17,16 @@ const Outer = styled.div`
 `;
 
 const BaseHeadImage = styled.div`
-  display: block;
   height: 100%;
+  width: 100%;
   position: absolute;
-  top: 0;
-  background-repeat: no-repeat;
-  background-size: contain;
+  &::after {
+    content: " ";
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+  }
 `;
 
 type Side = "left" | "right";
@@ -38,22 +42,17 @@ const HeadImage = styled(BaseHeadImage)<{
 }>`
   ${(p) => {
     const position = p.imageAlignment === p.side ? p.side : flip(p.side);
-    const transform = p.imageAlignment === p.side ? "" : "transform: scaleX(-1);";
     const invWaypoint = 100 - p.waypoint;
     return `
-      width: ${p.waypoint}%;
-      background-image: url(${p.imageSrc});
-      background-position: top ${position};
-      ${p.backgroundColor && `background-color: ${p.backgroundColor}`};
-      ${transform}
-      ${
-        p.side === "right" &&
-        `
-          clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);
-          padding-left: ${invWaypoint}%;
-          right: 0;
-        `
+      &::after {
+        width: ${p.waypoint}%;
+        background-image: url(${p.imageSrc});
+        background-position: top ${position};
+        ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
+        ${p.side === "right" ? `left: ${invWaypoint}%;` : ""}
+        ${p.side !== p.imageAlignment ? "transform: scaleX(-1);" : ""}
       }
+      ${p.side === "right" && `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);`}
     `;
   }}
 `;
