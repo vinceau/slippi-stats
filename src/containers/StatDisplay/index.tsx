@@ -34,7 +34,7 @@ export const StatDisplay: React.FC<{
   return (
     <div
       css={css`
-        background: rgba(0, 0, 0, 0.3);
+        background: linear-gradient(to right, ${props.secondaryColor}, transparent, ${props.secondaryColor});
         width: 100%;
       `}
     >
