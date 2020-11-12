@@ -11,9 +11,9 @@ export interface HeadToHeadProps {
 const Outer = styled.div`
   position: relative;
   display: block;
+  border: solid 0.1rem rgba(255, 255, 255, 0.3);
   height: 40px;
   width: 90px;
-  background-color: red;
 `;
 
 const BaseHeadImage = styled.div`
@@ -47,11 +47,11 @@ const HeadImage = styled(BaseHeadImage)<{
     return `
       ${p.side === "right" ? `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);` : ""}
       ${p.dim ? "filter: brightness(45%);" : ""}
+      ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
       &::after {
         width: ${p.waypoint}%;
         background-image: url(${p.imageSrc});
         background-position: top ${position};
-        ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
         ${p.side === "right" ? `left: ${invWaypoint}%;` : ""}
         ${p.side !== p.imageAlignment ? "transform: scaleX(-1);" : ""}
       }
@@ -69,7 +69,14 @@ export const HeadToHead: React.FC<HeadToHeadProps> = () => {
 
   return (
     <Outer>
-      <HeadImage imageSrc={p1} waypoint={waypoint} imageAlignment={p1Align} side="left" dim={winner !== "left"} />
+      <HeadImage
+        backgroundColor="red"
+        imageSrc={p1}
+        waypoint={waypoint}
+        imageAlignment={p1Align}
+        side="left"
+        dim={winner !== "left"}
+      />
       <HeadImage
         backgroundColor="green"
         imageSrc={p2}
