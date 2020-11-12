@@ -4,10 +4,6 @@ import { GameResult } from "components/GameResult";
 import { useParam } from "lib/hooks";
 import React from "react";
 
-export interface GameDisplayProps {
-  total: number;
-}
-
 const Game: React.FC<{
   index: number;
 }> = ({ index }) => {
@@ -17,7 +13,6 @@ const Game: React.FC<{
     return null;
   }
 
-  console.log(`game info: ${gameInfo}`);
   const [stageId, duration, char1, color1, res1, char2, color2, res2] = gameInfo.split(",");
   return (
     <GameResult
@@ -33,11 +28,15 @@ const Game: React.FC<{
   );
 };
 
-export const GameDisplay: React.FC<GameDisplayProps> = ({ total }) => {
+export const GameDisplay: React.FC = () => {
+  const [gt] = useParam(`gt`);
+  const total = parseInt(gt, 10) || 0;
+
   const games = [];
   for (let i = 1; i <= total; i++) {
     games.push(<Game key={`g${i}`} index={i} />);
   }
+
   return (
     <div
       css={css`

@@ -13,6 +13,8 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
   params.color2 = lastGame.players[1].characterColor;
 
   // Set game info
+  params.gt = games.length; // Set the total number of games
+
   (games as any[]).forEach((game, i) => {
     console.log("processing game: ", game);
     const gameKey = `g${i + 1}`;

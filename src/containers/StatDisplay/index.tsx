@@ -48,7 +48,7 @@ export const StatDisplay: React.FC = () => {
         <AverageKillPercent />
         <NeutralWins />
         <Divider />
-        <GameDisplay total={4} />
+        <GameDisplay />
       </div>
     </div>
   );
