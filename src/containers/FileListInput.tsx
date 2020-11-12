@@ -50,7 +50,7 @@ export const FileListInput: React.FC = () => {
         dispatch({
           type: Types.ADD_FILE,
           payload: {
-            file,
+            filename: file.name,
           },
         });
         try {

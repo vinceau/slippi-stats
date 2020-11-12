@@ -1,12 +1,4 @@
-import {
-  FrameEntryType,
-  FramesType,
-  GameEndType,
-  GameStartType,
-  MetadataType,
-  SlippiGame,
-  StatsType,
-} from "@slippi/slippi-js";
+import { FrameEntryType, FramesType, GameEndType, GameStartType, MetadataType, StatsType } from "@slippi/slippi-js";
 
 export interface GameDetails {
   filePath: string;
@@ -19,10 +11,9 @@ export interface GameDetails {
 }
 
 export interface ProcessedFile {
-  file: File;
+  filename: string;
   loading: boolean;
   error?: any;
-  game: SlippiGame | null;
   details: GameDetails | null;
 }
 

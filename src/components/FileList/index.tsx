@@ -14,7 +14,7 @@ export const FileList: React.FC<FileListProps> = (props) => {
   return (
     <div>
       {files.map((f) => (
-        <FileItem key={f.file.name} {...f} />
+        <FileItem key={f.filename} {...f} />
       ))}
     </div>
   );
