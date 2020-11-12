@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { FileList } from "components/FileList";
 import { processStats } from "lib/processStats";
-import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
+import { GameDetails, generateGameDetails, readFileAsArrayBuffer, readFileAsSlippiGame } from "lib/readFile";
+import generateStats from "lib/stats";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -54,16 +55,18 @@ export const FileListInput: React.FC = () => {
           },
         });
         try {
-          const game = await readFileAsSlippiGame(file);
-          const details = generateGameDetails(file.name, game);
-          dispatch({
-            type: Types.ADD_GAME,
-            payload: {
-              filename: file.name,
-              game,
-              details,
-            },
-          });
+          const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
+          console.log(`${file.name} has ${data.byteLength} length`);
+          // const game = await readFileAsSlippiGame(file);
+          // const details = generateGameDetails(file.name, game);
+          // dispatch({
+          //   type: Types.ADD_GAME,
+          //   payload: {
+          //     filename: file.name,
+          //     game,
+          //     details,
+          //   },
+          // });
         } catch (err) {
           dispatch({
             type: Types.SET_ERROR,
@@ -76,7 +79,7 @@ export const FileListInput: React.FC = () => {
       });
       Promise.all(promises).then(() => {
         const time = new Date().getTime() - startTime;
-        console.log(`Finished processing in ${time}ms`);
+        console.log(`Processed in ${time}ms`);
       });
     },
     [dispatch]
