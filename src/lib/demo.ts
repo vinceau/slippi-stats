@@ -117,7 +117,7 @@ function generateRandomStageId(): number {
 
 function generateRandomDuration(): string {
   const mins = getRandomInt(0, 7);
-  const secs = Math.floor(getRandomArbitrary(0, 60));
+  const secs = String(getRandomInt(0, 60)).padStart(2, "0");
   return `${mins}:${secs}`;
 }
 
