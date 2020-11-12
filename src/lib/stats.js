@@ -1,5 +1,9 @@
 /* eslint-disable */
 
+/*
+ * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
+ */
+
 const { stages: stageUtil, moves: moveUtil, characters: characterUtil } = require("@slippi/slippi-js");
 const moment = require("moment");
 const _ = require("lodash");
