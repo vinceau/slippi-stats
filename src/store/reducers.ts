@@ -1,6 +1,7 @@
 import SlippiGame from "@slippi/slippi-js";
+import { GameDetails } from "lib/readFile";
 
-import { GameDetails, InitialStateType } from "./types";
+import { InitialStateType } from "./types";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined

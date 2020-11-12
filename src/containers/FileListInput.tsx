@@ -5,7 +5,6 @@ import { DropPad } from "components/DropPad";
 import { FileList } from "components/FileList";
 import { processStats } from "lib/processStats";
 import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
-import generateStats from "lib/stats";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
