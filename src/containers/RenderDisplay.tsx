@@ -33,14 +33,6 @@ const Subtitle = styled.div<{
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  opacity: 0;
-  transition: opacity 0.1s ease-in-out;
-  ${(p) =>
-    p.show
-      ? "opacity: 1;"
-      : `&:hover {
-                  opacity: 1
-                }`}
 `;
 
 export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor }) => {
@@ -94,16 +86,16 @@ export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor })
             <Name>
               <TextBlock value={name1} onEdit={setName1} color="white" backgroundColor={primaryColor} />
             </Name>
-            <Subtitle show={Boolean(sub1)}>
-              <TextBlock value={sub1} onEdit={setSub1} color={secondaryColor} backgroundColor="white" />
+            <Subtitle>
+              <TextBlock value={sub1} optional={true} onEdit={setSub1} color={secondaryColor} backgroundColor="white" />
             </Subtitle>
           </NameBlock>
           <NameBlock>
             <Name>
               <TextBlock value={name2} onEdit={setName2} color="white" backgroundColor={primaryColor} />
             </Name>
-            <Subtitle show={Boolean(sub2)}>
-              <TextBlock value={sub2} onEdit={setSub2} color={secondaryColor} backgroundColor="white" />
+            <Subtitle>
+              <TextBlock value={sub2} optional={true} onEdit={setSub2} color={secondaryColor} backgroundColor="white" />
             </Subtitle>
           </NameBlock>
         </div>
