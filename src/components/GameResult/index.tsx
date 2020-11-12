@@ -1,5 +1,9 @@
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+
 import React from "react";
 import { HeadToHead } from "./HeadToHead";
+import { StageTimer } from "./StageTimer";
 
 export interface GameResultProps {
   stageId: string;
@@ -13,9 +17,19 @@ export interface GameResultProps {
 }
 
 export const GameResult: React.FC<GameResultProps> = (props) => {
+  const { stageId, duration, ...rest } = props;
   return (
-    <div>
-      <HeadToHead {...props} />
+    <div
+      css={css`
+        display: grid;
+        grid-template-columns: 100%;
+        justify-items: center;
+        width: 100%;
+        max-width: 18rem;
+      `}
+    >
+      <HeadToHead {...rest} />
+      <StageTimer stageId={stageId} duration={duration} />
     </div>
   );
 };

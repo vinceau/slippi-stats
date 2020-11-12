@@ -41,8 +41,9 @@ export const GameDisplay: React.FC<GameDisplayProps> = ({ total }) => {
   return (
     <div
       css={css`
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(${total}, 1fr);
+        justify-items: center;
       `}
     >
       {games}

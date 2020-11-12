@@ -1,4 +1,4 @@
-import { characters as characterUtil } from "@slippi/slippi-js";
+import { stages as stageUtil, characters as characterUtil } from "@slippi/slippi-js";
 
 export type Side = "left" | "right";
 
@@ -25,4 +25,9 @@ export function getCharacterPortrait(characterId: string | number, color?: strin
 export function getCharacterVSScreen(side: Side, characterId: string | number, color?: string): string {
   const folder = getCharacterFolderFromId(characterId, color);
   return `${folder}/vs-${side}.png`;
+}
+
+export function getStageIcon(stageId: string | number): string {
+  const stageName = stageUtil.getStageName(+stageId);
+  return `${process.env.PUBLIC_URL}/images/stages/${stageName}.png`;
 }

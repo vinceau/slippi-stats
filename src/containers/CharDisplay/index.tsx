@@ -22,7 +22,7 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
         display: block;
         height: 100%;
         width: 100%;
-        background-image: url(${imgSrc});
+        background-image: url("${imgSrc}");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top ${align};

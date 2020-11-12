@@ -40,7 +40,7 @@ const HeadImage = styled(BaseHeadImage)<{
       ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
       &::after {
         width: ${p.waypoint}%;
-        background-image: url(${p.imageSrc});
+        background-image: url("${p.imageSrc}");
         background-position: top ${p.side};
         ${p.side === "right" ? `left: ${invWaypoint}%;` : "transform: scaleX(-1);"}
       }
