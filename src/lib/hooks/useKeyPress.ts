@@ -13,7 +13,6 @@ export function useKeyPress(targetKey: any) {
     // If pressed key is our target key then set to true
 
     function downHandler({ key }: any) {
-      console.log("key down: ", key);
       if (key === targetKey) {
         setKeyPressed(true);
       }
