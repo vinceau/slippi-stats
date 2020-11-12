@@ -8,6 +8,7 @@ import { Theme } from "styles/theme";
 
 import { CharDisplay } from "./CharDisplay";
 import { NameBlock } from "./NameBlock";
+import { ScoreBlock } from "./ScoreBlock";
 import { StatDisplay } from "./StatDisplay";
 
 const Outer = styled.div`
@@ -70,6 +71,17 @@ export const RenderDisplay: React.FC<Theme> = (theme) => {
             <NameBlock nameParam="name2" subtitleParam="sub2" defaultName="Player" {...theme} />
           </div>
         </div>
+      </div>
+      <div
+        css={css`
+          position: absolute;
+          bottom: -6rem;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <ScoreBlock primaryColor={theme.primaryColor} />
       </div>
     </Outer>
   );
