@@ -25,20 +25,14 @@ const BaseHeadImage = styled.div`
   }
 `;
 
-type Side = "left" | "right";
-
-const flip = (side: Side): Side => (side === "left" ? "right" : "left");
-
 const HeadImage = styled(BaseHeadImage)<{
   backgroundColor?: string;
   imageSrc: string;
-  imageAlignment: Side;
-  side: Side;
+  side: "left" | "right";
   waypoint: number;
   dim?: boolean;
 }>`
   ${(p) => {
-    const position = p.imageAlignment === p.side ? p.side : flip(p.side);
     const invWaypoint = 100 - p.waypoint;
     return `
       ${p.side === "right" ? `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);` : ""}
@@ -47,9 +41,8 @@ const HeadImage = styled(BaseHeadImage)<{
       &::after {
         width: ${p.waypoint}%;
         background-image: url(${p.imageSrc});
-        background-position: top ${position};
-        ${p.side === "right" ? `left: ${invWaypoint}%;` : ""}
-        ${p.side !== p.imageAlignment ? "transform: scaleX(-1);" : ""}
+        background-position: top ${p.side};
+        ${p.side === "right" ? `left: ${invWaypoint}%;` : "transform: scaleX(-1);"}
       }
     `;
   }}
@@ -71,22 +64,8 @@ export const HeadToHead: React.FC<HeadToHeadProps> = ({ char1, color1, result1, 
 
   return (
     <Outer>
-      <HeadImage
-        backgroundColor="red"
-        imageSrc={p1}
-        waypoint={waypoint}
-        imageAlignment={"right"}
-        side="left"
-        dim={result1 === "loser"}
-      />
-      <HeadImage
-        backgroundColor="green"
-        imageSrc={p2}
-        waypoint={waypoint}
-        imageAlignment={"right"}
-        side="right"
-        dim={result2 === "loser"}
-      />
+      <HeadImage backgroundColor="red" imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
+      <HeadImage backgroundColor="green" imageSrc={p2} waypoint={waypoint} side="right" dim={result2 === "loser"} />
     </Outer>
   );
 };
