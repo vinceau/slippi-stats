@@ -9,7 +9,7 @@ export const Block = styled.div<{
   color: ${(p) => p.color};
   background-color: ${(p) => p.backgroundColor};
   text-align: center;
-  padding: 0.3em 2.5em;
+  padding: 0.3em 0;
   font-size: 1.2em;
   box-shadow: 0.2em 0.2em 0.2em black;
   ${(p) =>
