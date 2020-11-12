@@ -50,13 +50,21 @@ export const MainView: React.FC = () => {
       <h1>Slippi Stats</h1>
       <button onClick={onClick}>randomize</button>
       <FileListInput />
-      <div>{counter}</div>
-      <button onClick={() => setCounter(counter - 1)}>dec</button>
-      <button onClick={() => setCounter(counter + 1)}>inc</button>
-      <div>
-        <input value={fibIndex} onChange={(e) => setFibIndex(e.target.value)} />
-        <button onClick={calcFib}>calculate fib</button>
-        <div>{fibResult}</div>
+      <div
+        css={css`
+          position: absolute;
+          top: 0;
+          left: 0;
+        `}
+      >
+        <div>{counter}</div>
+        <button onClick={() => setCounter(counter - 1)}>dec</button>
+        <button onClick={() => setCounter(counter + 1)}>inc</button>
+        <div>
+          <input value={fibIndex} onChange={(e) => setFibIndex(e.target.value)} />
+          <button onClick={calcFib}>calculate fib</button>
+          <div>{fibResult}</div>
+        </div>
       </div>
     </div>
   );
