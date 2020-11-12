@@ -20,9 +20,8 @@ const Title = styled.div<{
   background-color: ${(p) => p.backgroundColor};
   text-align: center;
   padding: 0.3em 2.5em;
-  font-weight: 700;
-  font-size: 2.8rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem black;
+  font-size: 1.2em;
+  box-shadow: 0.2em 0.2em 0.2em black;
 `;
 
 export const TextBlock: React.FC<TextBlockProps> = ({ onEdit, backgroundColor, value, color }) => {

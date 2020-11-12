@@ -17,6 +17,15 @@ const Outer = styled.div`
   grid-template-columns: 20% 60% 20%;
 `;
 
+const NameBlock = styled.div`
+  width: 20%;
+`;
+
+const Name = styled.div`
+  font-size: 150%;
+  font-weight: 800;
+`;
+
 export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor }) => {
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
@@ -62,20 +71,16 @@ export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor })
             align-items: center;
           `}
         >
-          <div
-            css={css`
-              width: 20%;
-            `}
-          >
-            <TextBlock value={name1} onEdit={setName1} color="white" backgroundColor={primaryColor} />
-          </div>
-          <div
-            css={css`
-              width: 20%;
-            `}
-          >
-            <TextBlock value={name2} onEdit={setName2} color="white" backgroundColor={primaryColor} />
-          </div>
+          <NameBlock>
+            <Name>
+              <TextBlock value={name1} onEdit={setName1} color="white" backgroundColor={primaryColor} />
+            </Name>
+          </NameBlock>
+          <NameBlock>
+            <Name>
+              <TextBlock value={name2} onEdit={setName2} color="white" backgroundColor={primaryColor} />
+            </Name>
+          </NameBlock>
         </div>
       </div>
     </Outer>
