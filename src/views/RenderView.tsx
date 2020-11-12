@@ -47,14 +47,22 @@ export const RenderView: React.FC = () => {
       <Link to="/" style={{ textDecoration: "inherit", color: "inherit" }}>
         <Header>Post Match Stats</Header>
       </Link>
-      <img
-        alt="Powered by Slippi"
+      <div
         css={css`
-          max-height: 5rem;
           margin-bottom: 2rem;
         `}
-        src={poweredByImage}
-      />
+      >
+        <a href="https://slippi.gg" target="_blank" rel="noopener noreferrer">
+          <img
+            alt="Powered by Slippi"
+            title="Open Slippi.gg homepage"
+            src={poweredByImage}
+            css={css`
+              max-height: 5rem;
+            `}
+          />
+        </a>
+      </div>
       <RenderDisplay primaryColor={primaryColor} secondaryColor={secondaryColor} />
     </div>
   );
