@@ -39,11 +39,14 @@ const HeadImage = styled(BaseHeadImage)<{
   imageAlignment: Side;
   side: Side;
   waypoint: number;
+  dim?: boolean;
 }>`
   ${(p) => {
     const position = p.imageAlignment === p.side ? p.side : flip(p.side);
     const invWaypoint = 100 - p.waypoint;
     return `
+      ${p.side === "right" ? `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);` : ""}
+      ${p.dim ? "filter: brightness(45%);" : ""}
       &::after {
         width: ${p.waypoint}%;
         background-image: url(${p.imageSrc});
@@ -52,7 +55,6 @@ const HeadImage = styled(BaseHeadImage)<{
         ${p.side === "right" ? `left: ${invWaypoint}%;` : ""}
         ${p.side !== p.imageAlignment ? "transform: scaleX(-1);" : ""}
       }
-      ${p.side === "right" && `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);`}
     `;
   }}
 `;
@@ -63,11 +65,19 @@ export const HeadToHead: React.FC<HeadToHeadProps> = () => {
   const p1Align = "right";
   const p2 = `${process.env.PUBLIC_URL}/images/characters/pikachu/party-hat/portrait.png`;
   const p2Align = "right";
+  const winner: string = "left";
 
   return (
     <Outer>
-      <HeadImage imageSrc={p1} waypoint={waypoint} imageAlignment={p1Align} side="left" />
-      <HeadImage backgroundColor="green" imageSrc={p2} waypoint={waypoint} imageAlignment={p2Align} side="right" />
+      <HeadImage imageSrc={p1} waypoint={waypoint} imageAlignment={p1Align} side="left" dim={winner !== "left"} />
+      <HeadImage
+        backgroundColor="green"
+        imageSrc={p2}
+        waypoint={waypoint}
+        imageAlignment={p2Align}
+        side="right"
+        dim={winner !== "right"}
+      />
     </Outer>
   );
 };
