@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, Global, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
@@ -15,6 +15,8 @@ const Outer = styled.div`
 `;
 
 export const RenderDisplay: React.FC = () => {
+  const [primaryColor] = useParam("primaryColor", "#286163");
+  const [secondaryColor] = useParam("secondaryColor", "#121020");
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
   return (
@@ -27,7 +29,12 @@ export const RenderDisplay: React.FC = () => {
       >
         <CharDisplay theme={leftColor} charParam="char1" colorParam="color1" align="right" />
       </div>
-      <StatDisplay leftColor={leftColor} rightColor={rightColor} />
+      <StatDisplay
+        primaryColor={primaryColor}
+        secondaryColor={secondaryColor}
+        leftColor={leftColor}
+        rightColor={rightColor}
+      />
       <div
         css={css`
           width: 100%;
@@ -35,6 +42,13 @@ export const RenderDisplay: React.FC = () => {
       >
         <CharDisplay theme={rightColor} charParam="char2" colorParam="color2" align="left" />
       </div>
+      <Global
+        styles={css`
+          body.themed {
+            background: radial-gradient(circle at center -30%, ${primaryColor}, ${secondaryColor});
+          }
+        `}
+      />
     </Outer>
   );
 };

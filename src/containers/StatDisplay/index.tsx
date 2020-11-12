@@ -25,9 +25,12 @@ const Divider = styled.div`
 `;
 
 export const StatDisplay: React.FC<{
+  primaryColor: string;
+  secondaryColor: string;
   leftColor: string;
   rightColor: string;
 }> = (props) => {
+  const { leftColor, rightColor, ...theme } = props;
   return (
     <div
       css={css`
@@ -43,15 +46,15 @@ export const StatDisplay: React.FC<{
           margin: 4rem;
         `}
       >
-        <MostCommonKillMove />
-        <MostCommonNeutralOpener />
+        <MostCommonKillMove {...theme} />
+        <MostCommonNeutralOpener {...theme} />
         <Divider />
-        <OpeningsPerKill />
-        <TotalDamageDone />
-        <AverageKillPercent />
-        <NeutralWins />
+        <OpeningsPerKill {...theme} />
+        <TotalDamageDone {...theme} />
+        <AverageKillPercent {...theme} />
+        <NeutralWins {...theme} />
         <Divider />
-        <GameDisplay leftColor={props.leftColor} rightColor={props.rightColor} />
+        <GameDisplay leftColor={leftColor} rightColor={rightColor} />
       </div>
     </div>
   );
