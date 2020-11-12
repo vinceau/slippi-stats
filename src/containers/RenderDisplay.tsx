@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { TextBlock } from "components/TextBlock";
 import { useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
@@ -10,6 +11,7 @@ import { CharDisplay } from "./CharDisplay";
 import { StatDisplay } from "./StatDisplay";
 
 const Outer = styled.div`
+  position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -18,6 +20,8 @@ const Outer = styled.div`
 export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor }) => {
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
+  const [name1, setName1] = useParam("name1", "HELLO");
+  const [name2, setName2] = useParam("name2", "WORLD");
   return (
     <Outer>
       <div
@@ -40,6 +44,39 @@ export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor })
         `}
       >
         <CharDisplay theme={rightColor} charParam="char2" colorParam="color2" align="left" />
+      </div>
+      <div
+        css={css`
+          position: absolute;
+          bottom: 15%;
+          display: inline-flex;
+          width: 98%;
+          margin: 0 1%;
+        `}
+      >
+        <div
+          css={css`
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          `}
+        >
+          <div
+            css={css`
+              width: 20%;
+            `}
+          >
+            <TextBlock value={name1} onEdit={setName1} color="white" backgroundColor={primaryColor} />
+          </div>
+          <div
+            css={css`
+              width: 20%;
+            `}
+          >
+            <TextBlock value={name2} onEdit={setName2} color="white" backgroundColor={primaryColor} />
+          </div>
+        </div>
       </div>
     </Outer>
   );
