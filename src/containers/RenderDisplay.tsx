@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useParam } from "lib/hooks";
+import { PortColor } from "lib/portColor";
 import React from "react";
 
 import { CharDisplay } from "./CharDisplay";
@@ -13,9 +14,9 @@ const Outer = styled.div`
   grid-template-columns: 20% 60% 20%;
 `;
 
-export const RenderDisplay: React.FC = (props) => {
-  const [leftColor] = useParam("leftColor", "#f52e2e");
-  const [rightColor] = useParam("rightColor", "#5463ff");
+export const RenderDisplay: React.FC = () => {
+  const [leftColor] = useParam("leftColor", PortColor.P1);
+  const [rightColor] = useParam("rightColor", PortColor.P2);
   return (
     <Outer>
       <div

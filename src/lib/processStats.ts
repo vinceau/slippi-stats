@@ -1,5 +1,6 @@
 import generateStats from "lib/stats";
 import { GameDetails } from "store/types";
+import { getPortColor } from "./portColor";
 
 export function processStats(gameDetails: GameDetails[]): URLSearchParams {
   const { games, summary, btsSummary } = generateStats(gameDetails);
@@ -7,10 +8,15 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
 
   // Set character info
   const lastGame = games[games.length - 1];
-  params.char1 = lastGame.players[0].characterId;
-  params.char2 = lastGame.players[1].characterId;
-  params.color1 = lastGame.players[0].characterColor;
-  params.color2 = lastGame.players[1].characterColor;
+  const leftPlayer = lastGame.players[0];
+  const rightPlayer = lastGame.players[1];
+  params.leftColor = getPortColor(leftPlayer.port);
+  params.rightColor = getPortColor(rightPlayer.port);
+
+  params.char1 = leftPlayer.characterId;
+  params.char2 = rightPlayer.characterId;
+  params.color1 = leftPlayer.characterColor;
+  params.color2 = rightPlayer.characterColor;
 
   // Set game info
   params.gt = games.length; // Set the total number of games
