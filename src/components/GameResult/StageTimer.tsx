@@ -26,7 +26,7 @@ const Outer = styled.div<{
   height: 9rem;
   width: 100%;
   border: solid 1px rgba(255, 255, 255, 0.3);
-  z-index: 1;
+  z-index: 0;
 
   &::after {
     content: ' ';
