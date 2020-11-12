@@ -6,12 +6,16 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
-function getRandomArbitrary(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
+import Worker from "../worker";
+
+// Create new instance
+const instance = new Worker();
 
 export const MainView: React.FC = () => {
   const history = useHistory();
+  const [counter, setCounter] = React.useState(0);
+  const [fibIndex, setFibIndex] = React.useState("");
+  const [fibResult, setFibResult] = React.useState("");
 
   const onClick = () => {
     const paramMap = generateDemoQuery();
@@ -20,6 +24,17 @@ export const MainView: React.FC = () => {
       pathname: "/render",
       search,
     });
+  };
+
+  const calcFib = async () => {
+    const num = +fibIndex;
+    if (num < 2) {
+      setFibResult("error: number needs to be greater than 2");
+      return;
+    }
+
+    const processed = await instance.processData(num);
+    setFibResult(processed);
   };
 
   return (
@@ -35,6 +50,14 @@ export const MainView: React.FC = () => {
       <h1>Slippi Stats</h1>
       <button onClick={onClick}>randomize</button>
       <FileListInput />
+      <div>{counter}</div>
+      <button onClick={() => setCounter(counter - 1)}>dec</button>
+      <button onClick={() => setCounter(counter + 1)}>inc</button>
+      <div>
+        <input value={fibIndex} onChange={(e) => setFibIndex(e.target.value)} />
+        <button onClick={calcFib}>calculate fib</button>
+        <div>{fibResult}</div>
+      </div>
     </div>
   );
 };
