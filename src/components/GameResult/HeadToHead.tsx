@@ -46,7 +46,7 @@ const HeadImage = styled(BaseHeadImage)<{
     const invWaypoint = 100 - p.waypoint;
     return `
       ${p.side === "right" ? `clip-path: polygon(${p.waypoint}% 0, 100% 0, 100% 100%, ${invWaypoint}% 100%);` : ""}
-      ${p.dim ? "filter: brightness(45%);" : ""}
+      ${p.dim ? "filter: brightness(30%);" : ""}
       ${p.backgroundColor ? `background-color: ${p.backgroundColor};` : ""}
       &::after {
         width: ${p.waypoint}%;
