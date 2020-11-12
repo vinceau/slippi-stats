@@ -1,9 +1,27 @@
-import generateStats from "lib/stats";
+import { get } from "lodash";
+import generateStats, { filterGames } from "lib/stats";
 import { GameDetails } from "store/types";
 import { getPortColor } from "./portColor";
 
+const extractNameAndCode = (playerPort: number, details: GameDetails) => {
+  const settings = details.settings;
+  const metadata = details.metadata;
+  const index = playerPort - 1;
+  const player = settings.players.find((player) => player.playerIndex === index);
+  const playerTag = player ? player.nametag : null;
+  const netplayName: string | null = get(metadata, ["players", index, "names", "netplay"], null);
+  const netplayCode: string | null = get(metadata, ["players", index, "names", "code"], null);
+  const name = playerTag || netplayName || "";
+  return [name, netplayCode || ""] as const;
+};
+
 export function processStats(gameDetails: GameDetails[]): URLSearchParams {
-  const { games, summary, btsSummary } = generateStats(gameDetails);
+  const filtered = filterGames(gameDetails);
+  if (!filtered || filtered.length === 0) {
+    throw new Error("No valid games");
+  }
+
+  const { games, summary } = generateStats(filtered);
   const params: any = {}; // "mckm1": , "mckm2", "mcno1", "mcno2", "opk1", "opk2", "tdd1", "tdd2", "dpo1", "dpo2", "ipm1", "ipm2", "akp1", "akp2", "nw1", "nw2"};
 
   // Set character info
@@ -17,6 +35,15 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
   params.char2 = rightPlayer.characterId;
   params.color1 = leftPlayer.characterColor;
   params.color2 = rightPlayer.characterColor;
+
+  // Set name tags
+  const lastGameDetails = filtered[filtered.length - 1];
+  const [leftTag, leftCode] = extractNameAndCode(leftPlayer.port, lastGameDetails);
+  const [rightTag, rightCode] = extractNameAndCode(rightPlayer.port, lastGameDetails);
+  params.name1 = leftTag.toUpperCase();
+  params.name2 = rightTag.toUpperCase();
+  params.sub1 = leftCode;
+  params.sub2 = rightCode;
 
   // Set game info
   params.gt = games.length; // Set the total number of games

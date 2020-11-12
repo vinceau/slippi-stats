@@ -400,7 +400,7 @@ function parseFilesInFolder() {
 }
 */
 
-function filterGames(games) {
+export function filterGames(games) {
   // console.log(games);
   const gamesByIsSingles = _.groupBy(games, (game) => {
     const numberOfPlayers = game.settings.players.length;
@@ -588,7 +588,7 @@ function convertFrameCountToDurationString(frameCount) {
   return moment.utc(duration.as("milliseconds")).format("m:ss");
 }
 
-function generateOutput(games) {
+export default function generateOutput(games) {
   const stats = computeStats(games);
 
   return {
@@ -604,10 +604,10 @@ function generateOutput(games) {
 //   console.log("Finished writting stats to output.json!");
 // }
 
-export default function (games) {
-  const filteredGames = filterGames(games);
-  const output = generateOutput(filteredGames);
-  //   writeToFile(output);
-  //   console.log(output);
-  return output;
-}
+// export default function (games) {
+//   const filteredGames = filterGames(games);
+//   const output = generateOutput(filteredGames);
+//   writeToFile(output);
+//   console.log(output);
+//   return output;
+// }
