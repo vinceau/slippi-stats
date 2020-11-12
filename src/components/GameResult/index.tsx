@@ -26,6 +26,7 @@ export const GameResult: React.FC<GameResultProps> = (props) => {
         justify-items: center;
         width: 100%;
         max-width: 18rem;
+        grid-row-gap: 2rem;
       `}
     >
       <HeadToHead {...rest} />

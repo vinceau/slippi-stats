@@ -42,6 +42,7 @@ export const GameDisplay: React.FC<GameDisplayProps> = ({ total }) => {
     <div
       css={css`
         display: grid;
+        grid-column-gap: 2rem;
         grid-template-columns: repeat(${total}, 1fr);
         justify-items: center;
       `}

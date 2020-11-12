@@ -8,8 +8,9 @@ const Outer = styled.div`
   position: relative;
   display: block;
   border: solid 0.1rem rgba(255, 255, 255, 0.3);
-  height: 40px;
-  width: 90px;
+  height: 5rem;
+  width: 100%;
+  max-width: 10rem;
 `;
 
 const BaseHeadImage = styled.div`
