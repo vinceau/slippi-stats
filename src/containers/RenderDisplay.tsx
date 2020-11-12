@@ -26,11 +26,30 @@ const Name = styled.div`
   font-weight: 800;
 `;
 
+const Subtitle = styled.div<{
+  show?: boolean;
+}>`
+  margin-top: -0.3rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  ${(p) =>
+    p.show
+      ? "opacity: 1;"
+      : `&:hover {
+                  opacity: 1
+                }`}
+`;
+
 export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor }) => {
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
   const [name1, setName1] = useParam("name1", "HELLO");
   const [name2, setName2] = useParam("name2", "WORLD");
+  const [sub1, setSub1] = useParam("sub1", "");
+  const [sub2, setSub2] = useParam("sub2", "");
   return (
     <Outer>
       <div
@@ -75,11 +94,17 @@ export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor })
             <Name>
               <TextBlock value={name1} onEdit={setName1} color="white" backgroundColor={primaryColor} />
             </Name>
+            <Subtitle show={Boolean(sub1)}>
+              <TextBlock value={sub1} onEdit={setSub1} color={secondaryColor} backgroundColor="white" />
+            </Subtitle>
           </NameBlock>
           <NameBlock>
             <Name>
               <TextBlock value={name2} onEdit={setName2} color="white" backgroundColor={primaryColor} />
             </Name>
+            <Subtitle show={Boolean(sub2)}>
+              <TextBlock value={sub2} onEdit={setSub2} color={secondaryColor} backgroundColor="white" />
+            </Subtitle>
           </NameBlock>
         </div>
       </div>

@@ -13,6 +13,10 @@
 
 .inline-text_copy--active {
   cursor: pointer;
+  display: inline-block;
+  min-width: 50px;
+  min-height: 1.25em;
+  line-height: 1.25;
 }
 
 .inline-text_copy--hidden,
