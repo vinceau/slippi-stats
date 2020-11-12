@@ -3,6 +3,7 @@ import { css, jsx } from "@emotion/core";
 import { FileListInput } from "containers/FileListInput";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { defaultTheme, GlobalTheme } from "styles/theme";
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
@@ -33,6 +34,7 @@ export const MainView: React.FC = () => {
         align-items: center;
       `}
     >
+      <GlobalTheme {...defaultTheme} />
       <h1>Slippi Stats</h1>
       <button onClick={onClick}>randomize</button>
       <FileListInput />

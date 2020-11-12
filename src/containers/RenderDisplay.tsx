@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { css, Global, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
+import { Theme } from "styles/theme";
 
 import { CharDisplay } from "./CharDisplay";
 import { StatDisplay } from "./StatDisplay";
@@ -14,9 +15,7 @@ const Outer = styled.div`
   grid-template-columns: 20% 60% 20%;
 `;
 
-export const RenderDisplay: React.FC = () => {
-  const [primaryColor] = useParam("primaryColor", "#286163");
-  const [secondaryColor] = useParam("secondaryColor", "#121020");
+export const RenderDisplay: React.FC<Theme> = ({ primaryColor, secondaryColor }) => {
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
   return (
@@ -42,13 +41,6 @@ export const RenderDisplay: React.FC = () => {
       >
         <CharDisplay theme={rightColor} charParam="char2" colorParam="color2" align="left" />
       </div>
-      <Global
-        styles={css`
-          body.themed {
-            background: radial-gradient(circle at center -30%, ${primaryColor}, ${secondaryColor});
-          }
-        `}
-      />
     </Outer>
   );
 };

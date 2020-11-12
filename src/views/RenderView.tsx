@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { useParam } from "lib/hooks";
 import React from "react";
 import { Link } from "react-router-dom";
+import { defaultTheme, GlobalTheme } from "styles/theme";
 
 import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
@@ -29,7 +31,9 @@ const Header = styled.h1`
   }
 `;
 
-export const RenderView: React.FC = (props) => {
+export const RenderView: React.FC = () => {
+  const [primaryColor] = useParam("primaryColor", defaultTheme.primaryColor);
+  const [secondaryColor] = useParam("secondaryColor", defaultTheme.secondaryColor);
   return (
     <div
       css={css`
@@ -39,6 +43,7 @@ export const RenderView: React.FC = (props) => {
         align-items: center;
       `}
     >
+      <GlobalTheme primaryColor={primaryColor} secondaryColor={secondaryColor} />
       <Link to="/" style={{ textDecoration: "inherit", color: "inherit" }}>
         <Header>Post Match Stats</Header>
       </Link>
@@ -50,7 +55,7 @@ export const RenderView: React.FC = (props) => {
         `}
         src={poweredByImage}
       />
-      <RenderDisplay />
+      <RenderDisplay primaryColor={primaryColor} secondaryColor={secondaryColor} />
     </div>
   );
 };
