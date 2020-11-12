@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { GameResult } from "components/GameResult";
 import React from "react";
 
 import {
@@ -47,6 +48,7 @@ export const StatDisplay: React.FC = () => {
         <AverageKillPercent />
         <NeutralWins />
         <Divider />
+        <GameResult />
       </div>
     </div>
   );
