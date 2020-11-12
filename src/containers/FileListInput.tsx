@@ -46,7 +46,8 @@ export const FileListInput: React.FC = () => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      acceptedFiles.forEach(async (file) => {
+      const startTime = new Date().getTime();
+      const promises = acceptedFiles.map(async (file) => {
         dispatch({
           type: Types.ADD_FILE,
           payload: {
@@ -73,6 +74,10 @@ export const FileListInput: React.FC = () => {
             },
           });
         }
+      });
+      Promise.all(promises).then(() => {
+        const time = new Date().getTime() - startTime;
+        console.log(`Finished processing in ${time}ms`);
       });
     },
     [dispatch]
