@@ -4,7 +4,7 @@ function sanitize(text: string, replacement = "-"): string {
   return text.toLowerCase().replace(/[. &]+/gi, replacement);
 }
 
-export function getCharacterFolderFromId(characterId: string | number, color = "Default") {
+export function getCharacterFolderFromId(characterId: string | number, color?: string) {
   const characterName = characterUtil.getCharacterName(+characterId);
   return getCharacterFolderFromName(characterName, color);
 }
