@@ -587,7 +587,7 @@ function generateBtsSummary(summary) {
   return result;
 }
 
-function convertFrameCountToDurationString(frameCount) {
+export function convertFrameCountToDurationString(frameCount) {
   const duration = moment.duration(frameCount / 60, "seconds");
   return moment.utc(duration.as("milliseconds")).format("m:ss");
 }

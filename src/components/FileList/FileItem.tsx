@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { characters as characterUtil } from "@slippi/slippi-js";
+import { stages as stageUtil, characters as characterUtil } from "@slippi/slippi-js";
 import { getCharacterStockIcon } from "lib/resources";
+import { convertFrameCountToDurationString } from "lib/stats";
+import { findWinner } from "lib/winner";
 import React from "react";
 import { ProcessedFile } from "store/types";
 
@@ -14,13 +16,26 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         display: flex;
         justify-content: space-between;
         align-items: center;
+        color: rgba(255, 255, 255, 0.8);
         background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0.8;
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+          opacity: 1;
+        }
       `}
     >
-      <div>
+      <div
+        css={css`
+          flex: 1;
+        `}
+      >
         <div
           css={css`
             font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: monospace;
           `}
         >
           {name}
@@ -28,6 +43,37 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         <div>{children}</div>
       </div>
       {onRemove && <button onClick={onRemove}>x</button>}
+    </div>
+  );
+};
+
+const CharacterIcon: React.FC<{
+  charId: string | number;
+  color: string;
+  winner?: boolean;
+}> = ({ charId, color, winner }) => {
+  const src = getCharacterStockIcon(charId, color);
+  return (
+    <div
+      css={css`
+        position: relative;
+        display: inline-block;
+        margin-top: 0.5rem;
+        ${winner &&
+        `&::after {
+          position: absolute;
+          content: " ";
+          height: 0.7rem;
+          width: 60%;
+          background-color: #ffa700;
+          left: 20%;
+          bottom: 110%;
+          clip-path: polygon(50% 0%, 75% 35%, 100% 0, 100% 100%, 0 100%, 0 0, 25% 35%);
+        }
+      `}
+      `}
+    >
+      <img src={src} style={{ height: "3rem" }} />
     </div>
   );
 };
@@ -51,16 +97,40 @@ export const FileItem: React.FC<FileItemProps> = (props) => {
     );
   }
 
+  console.log(details);
+  const stageName = stageUtil.getStageName(details.settings.stageId as number);
   const players = details.settings.players;
+  const duration = details.latestFrame ? convertFrameCountToDurationString(details.latestFrame.frame) : "N/A";
+  const winnerIndex = details.latestFrame ? findWinner(details.latestFrame) : null;
   const icons = players.map((player) => {
+    const winner = player.playerIndex === winnerIndex;
     const charId = player.characterId as number;
     const color = characterUtil.getCharacterColorName(charId, player.characterColor as number);
-    const src = getCharacterStockIcon(charId, color);
-    return <img key={`${player.port}-icon`} src={src} />;
+    return <CharacterIcon key={`${player.port}-icon`} charId={charId} color={color} winner={winner} />;
   });
   return (
     <BasicFileItem onRemove={onRemove} name={filename}>
-      {icons}
+      <div
+        css={css`
+          display: grid;
+          justify-items: center;
+          align-items: center;
+          grid-template-columns: repeat(3, 1fr);
+          font-weight: bold;
+        `}
+      >
+        <div>{stageName}</div>
+        <div
+          css={css`
+            display: grid;
+            grid-auto-flow: column;
+            grid-column-gap: 1rem;
+          `}
+        >
+          {icons}
+        </div>
+        <div>{duration}</div>
+      </div>
     </BasicFileItem>
   );
 };
