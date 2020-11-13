@@ -1,8 +1,8 @@
 /** @jsx jsx */ import { css, jsx } from "@emotion/core";
-import React from "react";
-import { ColorPicker } from "components/ColorPicker";
 import styled from "@emotion/styled";
+import { ColorPicker } from "components/ColorPicker";
 import { useParam } from "lib/hooks";
+import React from "react";
 
 const ColorContainer = styled.div`
   display: grid;

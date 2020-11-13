@@ -7,6 +7,7 @@ import { useOnClickOutside, useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
 import { defaultTheme } from "styles/theme";
+
 import { DualColorPanel } from "./Options/Panel";
 
 const Outer = styled.div`

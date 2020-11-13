@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { Header } from "components/Header";
 import { ExternalLink as A } from "components/ExternalLink";
+import { Header } from "components/Header";
 import { Settings } from "containers/Settings";
 import { useParam } from "lib/hooks";
 import React from "react";

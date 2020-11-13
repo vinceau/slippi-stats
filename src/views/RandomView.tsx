@@ -1,5 +1,5 @@
-import React from "react";
 import { generateDemoQuery } from "lib/demo";
+import React from "react";
 import { Redirect } from "react-router-dom";
 
 export const RandomView: React.FC = () => {

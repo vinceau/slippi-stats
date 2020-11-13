@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { stages as stageUtil, characters as characterUtil } from "@slippi/slippi-js";
+import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
 import { getCharacterStockIcon } from "lib/resources";
 import { convertFrameCountToDurationString } from "lib/stats";
 import { findWinner } from "lib/winner";
