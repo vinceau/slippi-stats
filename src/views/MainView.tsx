@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Header } from "components/Header";
+import { ExternalLink as A } from "components/ExternalLink";
 import { FileListInput } from "containers/FileListInput";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -87,24 +88,12 @@ export const MainView: React.FC = () => {
           <Link css={linkStyle} to="/random" title="Show random sample stats">
             DEMO
           </Link>
-          <a
-            css={linkStyle}
-            title="Fork this on Github"
-            href="https://github.com/vinceau/slippi-stats"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <A css={linkStyle} title="Fork this on Github" href="https://github.com/vinceau/slippi-stats">
             GITHUB
-          </a>
-          <a
-            css={linkStyle}
-            title="Send love"
-            href="https://twitter.com/_vinceau"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          </A>
+          <A css={linkStyle} title="Send love" href="https://twitter.com/_vinceau">
             AUTHOR
-          </a>
+          </A>
         </div>
       </Container>
     </div>

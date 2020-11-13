@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { Header } from "components/Header";
+import { ExternalLink as A } from "components/ExternalLink";
 import { Settings } from "containers/Settings";
 import { useParam } from "lib/hooks";
 import React from "react";
@@ -36,7 +37,7 @@ export const RenderView: React.FC = () => {
           margin-bottom: 2rem;
         `}
       >
-        <a href="https://slippi.gg" target="_blank" rel="noopener noreferrer">
+        <A href="https://slippi.gg">
           <img
             alt="Powered by Slippi"
             title="Open Slippi.gg homepage"
@@ -45,7 +46,7 @@ export const RenderView: React.FC = () => {
               max-height: 5rem;
             `}
           />
-        </a>
+        </A>
       </div>
       <RenderDisplay primaryColor={primaryColor} secondaryColor={secondaryColor} />
       <div
