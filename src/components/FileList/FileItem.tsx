@@ -6,6 +6,7 @@ import { convertFrameCountToDurationString } from "lib/stats";
 import { findWinner } from "lib/winner";
 import React from "react";
 import { ProcessedFile } from "store/types";
+import { defaultTheme } from "styles/theme";
 
 const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props) => {
   const { onRemove, name, children } = props;
@@ -22,6 +23,21 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         transition: opacity 0.2s ease-in-out;
         &:hover {
           opacity: 1;
+          .remove-button {
+            opacity: 1;
+          }
+        }
+        .remove-button {
+          opacity: 0;
+          transition: opacity 0.2s ease-in-out;
+          background: white;
+          color: ${defaultTheme.secondaryColor};
+          border: none;
+          font-weight: bold;
+          font-size: 2.5rem;
+          cursor: pointer;
+          padding: 0.2rem 1.2rem;
+          margin: 0;
         }
       `}
     >
@@ -42,7 +58,11 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         </div>
         <div>{children}</div>
       </div>
-      {onRemove && <button onClick={onRemove}>x</button>}
+      {onRemove && (
+        <button className="remove-button" onClick={onRemove} title="Remove">
+          x
+        </button>
+      )}
     </div>
   );
 };
