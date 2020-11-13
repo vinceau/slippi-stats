@@ -26,8 +26,8 @@ export const ColorPicker: React.FC<{
       ref={wrapperRef}
       css={css`
         position: relative;
-        height: 10rem;
-        width: 10rem;
+        height: 5rem;
+        width: 5rem;
         border-radius: 0.5rem;
         background-color: ${value};
       `}

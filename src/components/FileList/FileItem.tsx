@@ -36,7 +36,7 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
           font-weight: bold;
           font-size: 2.5rem;
           cursor: pointer;
-          padding: 0.2rem 1.2rem;
+          padding: 0.2rem 1rem;
           margin: 0;
         }
       `}
@@ -60,7 +60,7 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
       </div>
       {onRemove && (
         <button className="remove-button" onClick={onRemove} title="Remove">
-          x
+          ✕
         </button>
       )}
     </div>
