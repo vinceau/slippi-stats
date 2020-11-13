@@ -7,13 +7,17 @@ import { processStats } from "lib/processStats";
 import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { defaultTheme } from "styles/theme";
 
 import { AppContext, Types } from "../store";
 
-const ProcessButton = styled.button`
-  background: #286163;
+const ProcessButton = styled.button<{
+  backgroundColor: string;
+  color: string;
+}>`
+  background: ${(p) => p.backgroundColor};
   border: none;
-  color: inherit;
+  color: ${(p) => p.color};
   cursor: pointer;
   font: inherit;
   padding: 1rem 0rem;
@@ -91,7 +95,8 @@ export const FileListInput: React.FC = () => {
   );
 
   const finishedProcessing = !state.files.find((f) => f.loading);
-  const buttonText = state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "COMPUTE STATS" : "PLEASE WAIT";
+  const buttonText =
+    state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "GENERATE STATS" : "PLEASE WAIT";
   return (
     <div
       css={css`
@@ -102,7 +107,12 @@ export const FileListInput: React.FC = () => {
     >
       <DropPad accept=".slp" onDrop={onDrop} />
       <FileList files={state.files} onRemove={onRemove} />
-      <ProcessButton disabled={state.files.length === 0 || !finishedProcessing} onClick={onClick}>
+      <ProcessButton
+        backgroundColor={defaultTheme.primaryColor}
+        color="white"
+        disabled={state.files.length === 0 || !finishedProcessing}
+        onClick={onClick}
+      >
         {buttonText}
       </ProcessButton>
     </div>

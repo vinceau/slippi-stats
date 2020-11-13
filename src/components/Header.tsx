@@ -7,6 +7,7 @@ export const Header = styled.h1`
   margin: 2rem;
   padding-bottom: 1rem;
   position: relative;
+  text-align: center;
 
   &::before {
     z-index: -1;
