@@ -19,24 +19,25 @@ const Container = styled.div`
   align-items: center;
   padding: 20px;
   border-width: 2px;
-  border-radius: 2px;
   border-color: ${(props) => getColor(props)};
   border-style: dashed;
-  background-color: #fafafa;
-  color: #bdbdbd;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
   outline: none;
   transition: border 0.24s ease-in-out;
+  p {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 `;
 
 export const DropPad: React.FC<Partial<DropzoneOptions>> = (props) => {
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone(props);
 
   return (
-    <div className="container">
-      <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      </Container>
-    </div>
+    <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
+      <input {...getInputProps()} />
+      <p>Drag SLP files here or click to select</p>
+    </Container>
   );
 };

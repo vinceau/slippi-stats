@@ -29,7 +29,6 @@ const ProcessButton = styled.button`
 export const FileListInput: React.FC = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(AppContext);
-  const [stats, setStats] = React.useState<any>(null);
 
   const onClick = () => {
     const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
@@ -92,22 +91,20 @@ export const FileListInput: React.FC = () => {
   );
 
   const finishedProcessing = !state.files.find((f) => f.loading);
-  const ready = state.files.length === 0 || finishedProcessing;
-  const buttonText = ready ? "COMPUTE STATS" : "PLEASE WAIT";
+  const buttonText = state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "COMPUTE STATS" : "PLEASE WAIT";
   return (
     <div
       css={css`
-        position: relative;
-        border: solid 1px black;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-row-gap: 1rem;
       `}
     >
       <DropPad accept=".slp" onDrop={onDrop} />
       <FileList files={state.files} onRemove={onRemove} />
-      {finishedProcessing ? <div>done</div> : <div>still processing...</div>}
       <ProcessButton disabled={state.files.length === 0 || !finishedProcessing} onClick={onClick}>
         {buttonText}
       </ProcessButton>
-      <textarea readOnly value={JSON.stringify(stats, null, 2)} />
     </div>
   );
 };

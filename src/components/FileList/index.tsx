@@ -15,6 +15,9 @@ export const FileList: React.FC<FileListProps> = (props) => {
   return (
     <div
       css={css`
+        display: grid;
+        grid-template-columns: 100%;
+        grid-row-gap: 1rem;
         max-height: 500px;
         overflow-y: auto;
       `}

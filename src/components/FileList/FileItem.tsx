@@ -15,7 +15,6 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         justify-content: space-between;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.3);
-        margin: 1rem;
       `}
     >
       <div>
