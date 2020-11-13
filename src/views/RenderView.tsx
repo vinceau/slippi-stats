@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { Header } from "components/Header";
+import { Settings } from "containers/Settings";
 import { useParam } from "lib/hooks";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -15,10 +16,15 @@ export const RenderView: React.FC = () => {
   return (
     <div
       css={css`
-        margin: 0 12rem;
+        padding: 0 12rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        &:hover {
+          .settings {
+            opacity: 1;
+          }
+        }
       `}
     >
       <GlobalTheme primaryColor={primaryColor} secondaryColor={secondaryColor} />
@@ -42,6 +48,20 @@ export const RenderView: React.FC = () => {
         </a>
       </div>
       <RenderDisplay primaryColor={primaryColor} secondaryColor={secondaryColor} />
+      <div
+        className="settings"
+        css={css`
+          opacity: 0.1;
+          position: absolute;
+          left: 0;
+          top: 100%;
+          height: 100%;
+          width: 100%;
+          z-index: 10;
+        `}
+      >
+        <Settings />
+      </div>
     </div>
   );
 };
