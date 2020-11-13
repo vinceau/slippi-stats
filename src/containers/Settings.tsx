@@ -93,7 +93,7 @@ export const Settings: React.FC = () => {
             rightLabel="RIGHT"
             leftDefault={PortColor.P1}
             leftColorParam="leftColor"
-            rightColorParam="rightParam"
+            rightColorParam="rightColor"
             rightDefault={PortColor.P2}
           />
         </div>
