@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
 import { generateDemoQuery } from "lib/demo";
 import React from "react";
@@ -32,7 +33,7 @@ export const MainView: React.FC = () => {
       `}
     >
       <GlobalTheme {...defaultTheme} />
-      <h1>Slippi Stats</h1>
+      <Header>Slippi Stats</Header>
       <button onClick={onClick}>randomize</button>
       <FileListInput />
     </div>
