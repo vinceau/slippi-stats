@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { OBSDragButton } from "components/OBSDragButton";
-import { useOnClickOutside, useParam } from "lib/hooks";
+import { useOnClickOutside } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
 import { defaultTheme } from "styles/theme";
@@ -11,7 +11,6 @@ import { defaultTheme } from "styles/theme";
 import { DualColorPanel } from "./Options/Panel";
 
 const Outer = styled.div`
-  color: inherit;
   position: relative;
   background-color: black;
   height: 100%;
@@ -118,9 +117,12 @@ export const Settings: React.FC = () => {
               &:hover {
                 opacity: 1;
               }
+              a:hover {
+                text-decoration: underline;
+              }
             `}
           >
-            Made with love by <A href="https://twitter.com/_vinceau">Vincent Au</A>
+            Made with love by <A href="https://twitter.com/_vinceau">Vince Au</A>
           </div>
         </div>
         <div>

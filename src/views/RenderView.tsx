@@ -29,7 +29,7 @@ export const RenderView: React.FC = () => {
       `}
     >
       <GlobalTheme primaryColor={primaryColor} secondaryColor={secondaryColor} />
-      <Link to="/" style={{ textDecoration: "inherit", color: "inherit" }} title="Home">
+      <Link to="/" title="Home">
         <Header>Post Match Stats</Header>
       </Link>
       <div
