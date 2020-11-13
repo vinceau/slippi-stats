@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { ColorPicker } from "components/ColorPicker";
-import { useParam } from "lib/hooks";
+import { useOnClickOutside, useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
 import { defaultTheme } from "styles/theme";
@@ -24,8 +24,16 @@ export const Settings: React.FC = () => {
   const [rightColor, setRightColor] = useParam("rightColor", PortColor.P2);
   //   const [color, setColor] = React.useState("#ffffff");
   const [open, setOpen] = React.useState(false);
+  const wrapperRef = React.useRef(null);
+
+  useOnClickOutside(wrapperRef, () => {
+    if (open) {
+      setOpen(false);
+    }
+  });
+
   return (
-    <Outer className={open ? "open" : ""}>
+    <Outer className={open ? "open" : ""} ref={wrapperRef}>
       <div
         onClick={() => setOpen(!open)}
         css={css`
