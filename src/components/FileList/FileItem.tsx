@@ -5,8 +5,8 @@ import { getCharacterStockIcon } from "lib/resources";
 import React from "react";
 import { ProcessedFile } from "store/types";
 
-const BasicFileItem: React.FC<{ name: string }> = (props) => {
-  const { name, children } = props;
+const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props) => {
+  const { onRemove, name, children } = props;
   return (
     <div
       css={css`
@@ -28,18 +28,28 @@ const BasicFileItem: React.FC<{ name: string }> = (props) => {
         </div>
         <div>{children}</div>
       </div>
-      <div>x</div>
+      {onRemove && <button onClick={onRemove}>x</button>}
     </div>
   );
 };
 
-export const FileItem: React.FC<ProcessedFile> = (props) => {
-  const { filename, loading, error, details } = props;
+export interface FileItemProps {
+  file: ProcessedFile;
+  onRemove: () => void;
+}
+
+export const FileItem: React.FC<FileItemProps> = (props) => {
+  const { file, onRemove } = props;
+  const { filename, loading, error, details } = file;
   if (loading) {
     return <BasicFileItem name={filename}> loading...</BasicFileItem>;
   }
   if (error || !details) {
-    return <BasicFileItem name={filename}>error :c</BasicFileItem>;
+    return (
+      <BasicFileItem onRemove={onRemove} name={filename}>
+        error :c
+      </BasicFileItem>
+    );
   }
 
   const players = details.settings.players;
@@ -49,5 +59,9 @@ export const FileItem: React.FC<ProcessedFile> = (props) => {
     const src = getCharacterStockIcon(charId, color);
     return <img key={`${player.port}-icon`} src={src} />;
   });
-  return <BasicFileItem name={filename}>{icons}</BasicFileItem>;
+  return (
+    <BasicFileItem onRemove={onRemove} name={filename}>
+      {icons}
+    </BasicFileItem>
+  );
 };

@@ -43,6 +43,15 @@ export const FileListInput: React.FC = () => {
     });
   };
 
+  const onRemove = (filename: string) => {
+    dispatch({
+      type: Types.REMOVE_FILE,
+      payload: {
+        filename,
+      },
+    });
+  };
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const startTime = new Date().getTime();
@@ -93,7 +102,7 @@ export const FileListInput: React.FC = () => {
       `}
     >
       <DropPad accept=".slp" onDrop={onDrop} />
-      <FileList files={state.files} />
+      <FileList files={state.files} onRemove={onRemove} />
       {finishedProcessing ? <div>done</div> : <div>still processing...</div>}
       <ProcessButton disabled={state.files.length === 0 || !finishedProcessing} onClick={onClick}>
         {buttonText}

@@ -18,6 +18,7 @@ export enum Types {
   ADD_GAME = "ADD_GAME",
   SET_ERROR = "SET_ERROR",
   ADD_FILE = "ADD_FILE",
+  REMOVE_FILE = "REMOVE_FILE",
 }
 
 type ActionPayload = {
@@ -31,6 +32,9 @@ type ActionPayload = {
     error: any;
   };
   [Types.ADD_FILE]: {
+    filename: string;
+  };
+  [Types.REMOVE_FILE]: {
     filename: string;
   };
 };
@@ -76,6 +80,14 @@ export const reducer = (state: InitialStateType, action: ReducerActions) => {
           details: null,
         });
       }
+      return {
+        ...state,
+        files,
+      };
+    }
+    case Types.REMOVE_FILE: {
+      const { filename } = action.payload;
+      const files = state.files.filter((f) => f.filename !== filename);
       return {
         ...state,
         files,

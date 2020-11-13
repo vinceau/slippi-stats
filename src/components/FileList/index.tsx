@@ -7,10 +7,11 @@ import { FileItem } from "./FileItem";
 
 export interface FileListProps {
   files: ProcessedFile[];
+  onRemove: (filename: string) => void;
 }
 
 export const FileList: React.FC<FileListProps> = (props) => {
-  const { files } = props;
+  const { files, onRemove } = props;
   return (
     <div
       css={css`
@@ -19,7 +20,7 @@ export const FileList: React.FC<FileListProps> = (props) => {
       `}
     >
       {files.map((f) => (
-        <FileItem key={f.filename} {...f} />
+        <FileItem key={f.filename} file={f} onRemove={() => onRemove(f.filename)} />
       ))}
     </div>
   );
