@@ -26,6 +26,7 @@ const Outer = styled.div`
   }
   transition: all 0.2 ease-in-out;
   .close-button {
+    z-index: 10;
     position: absolute;
     right: 2rem;
     top: 2rem;
@@ -72,8 +73,17 @@ export const Settings: React.FC = () => {
             margin: 0;
             padding: 1rem 0;
             font-size: 2rem;
-            border-bottom: solid 0.1rem rgba(255, 255, 255, 0.8);
             margin-bottom: 2rem;
+            position: relative;
+            &::before {
+              content: "";
+              display: block;
+              background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+              height: 0.1rem;
+              position: absolute;
+              width: 80%;
+              bottom: 0;
+            }
           `}
         >
           OPTIONS
