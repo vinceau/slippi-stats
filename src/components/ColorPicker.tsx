@@ -37,6 +37,7 @@ export const ColorPicker: React.FC<{
         <div
           css={css`
             position: absolute;
+            z-index: 9999;
           `}
         >
           <ChromePicker color={value} onChange={(color) => onChange(color.hex)} />
