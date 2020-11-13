@@ -25,6 +25,7 @@ export const ColorPicker: React.FC<{
     <div
       ref={wrapperRef}
       css={css`
+        cursor: pointer;
         position: relative;
         height: 5rem;
         width: 5rem;

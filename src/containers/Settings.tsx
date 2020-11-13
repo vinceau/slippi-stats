@@ -11,25 +11,26 @@ import { defaultTheme } from "styles/theme";
 import { DualColorPanel } from "./Options/Panel";
 
 const Outer = styled.div`
+  opacity: 0.2;
   position: relative;
   background-color: black;
-  height: 100%;
-  margin-top: -5rem;
-  &.closed {
+  &.closed:hover {
     cursor: pointer;
+    opacity: 0.8;
   }
   &.open {
-    margin-top: -25%;
+    opacity: 1;
+    transform: translateY(-100%);
     .close-button {
       opacity: 1;
     }
   }
-  transition: all 0.2 ease-in-out;
+  transition: all 0.2s ease-in-out;
   .close-button {
     z-index: 10;
     position: absolute;
-    right: 2rem;
-    top: 2rem;
+    right: 3rem;
+    top: 1rem;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     color: black;
@@ -38,6 +39,7 @@ const Outer = styled.div`
     font-weight: bold;
     font-size: 2.5rem;
     cursor: pointer;
+    transform: translateY(-100%);
   }
 `;
 
@@ -66,6 +68,11 @@ export const Settings: React.FC = () => {
       <div
         css={css`
           text-align: center;
+          position: absolute;
+          width: 100%;
+          top: 0;
+          transform: translateY(-100%);
+          background-color: inherit;
         `}
       >
         <h3
@@ -73,7 +80,6 @@ export const Settings: React.FC = () => {
             margin: 0;
             padding: 1rem 0;
             font-size: 2rem;
-            margin-bottom: 2rem;
             position: relative;
             &::before {
               content: "";
@@ -82,6 +88,7 @@ export const Settings: React.FC = () => {
               height: 0.1rem;
               position: absolute;
               width: 80%;
+              margin-left: 10%;
               bottom: 0;
             }
           `}
@@ -91,6 +98,7 @@ export const Settings: React.FC = () => {
       </div>
       <div
         css={css`
+          padding-top: 2rem;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
         `}

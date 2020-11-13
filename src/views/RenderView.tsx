@@ -52,7 +52,8 @@ export const RenderView: React.FC = () => {
       <div
         className="settings"
         css={css`
-          opacity: 0.1;
+          opacity: 0;
+          transition: opacity 0.2s ease-in-out;
           position: absolute;
           left: 0;
           top: 100%;
