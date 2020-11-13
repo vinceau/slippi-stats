@@ -19,7 +19,7 @@ export const ButtonLink = styled.a`
   font-weight: 700;
   font-size: 2.3rem;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 0.2s ease-in-out;
   &:hover {
     opacity: 1;
