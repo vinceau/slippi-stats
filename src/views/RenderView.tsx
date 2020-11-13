@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import { ExternalLink as A } from "components/ExternalLink";
 import { Header } from "components/Header";
-import { Settings } from "containers/Settings";
+import { Options } from "containers/Options";
 import { useParam } from "lib/hooks";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -62,7 +62,7 @@ export const RenderView: React.FC = () => {
           z-index: 10;
         `}
       >
-        <Settings />
+        <Options />
       </div>
     </div>
   );

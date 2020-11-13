@@ -8,7 +8,42 @@ import { PortColor } from "lib/portColor";
 import React from "react";
 import { defaultTheme } from "styles/theme";
 
-import { DualColorPanel } from "./Options/Panel";
+import { DualColorPanel } from "./Panel";
+
+const Content = styled.div`
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Heading = styled.h2`
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transform: translateY(-100%);
+  background-color: inherit;
+  margin: 0;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 2rem;
+  &::after {
+    content: "";
+    display: block;
+    background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    height: 0.1rem;
+    position: absolute;
+    width: 80%;
+    margin-left: 10%;
+    bottom: 0;
+  }
+`;
 
 const Outer = styled.div`
   opacity: 0.2;
@@ -43,67 +78,32 @@ const Outer = styled.div`
   }
 `;
 
-export const Settings: React.FC = () => {
+export const Options: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-  const wrapperRef = React.useRef(null);
+  const outerRef = React.useRef(null);
 
-  useOnClickOutside(wrapperRef, () => {
+  useOnClickOutside(outerRef, () => {
     if (open) {
       setOpen(false);
     }
   });
 
-  const onClick = () => {
+  const showOptions = () => {
     if (!open) {
       setOpen(true);
     }
   };
 
+  const closeOptions = () => setOpen(false);
+
   return (
-    <Outer className={open ? "open" : "closed"} ref={wrapperRef} onClick={onClick}>
-      <div className="close-button" onClick={() => setOpen(false)}>
+    <Outer className={open ? "open" : "closed"} ref={outerRef} onClick={showOptions}>
+      <div className="close-button" onClick={closeOptions}>
         ✕
       </div>
-
-      <div
-        css={css`
-          text-align: center;
-          position: absolute;
-          width: 100%;
-          top: 0;
-          transform: translateY(-100%);
-          background-color: inherit;
-        `}
-      >
-        <h3
-          css={css`
-            margin: 0;
-            padding: 1rem 0;
-            font-size: 2rem;
-            position: relative;
-            &::before {
-              content: "";
-              display: block;
-              background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-              height: 0.1rem;
-              position: absolute;
-              width: 80%;
-              margin-left: 10%;
-              bottom: 0;
-            }
-          `}
-        >
-          OPTIONS
-        </h3>
-      </div>
-      <div
-        css={css`
-          padding-top: 2rem;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        `}
-      >
-        <div>
+      <Heading>OPTIONS</Heading>
+      <Content>
+        <Column>
           <DualColorPanel
             panelLabel="PLAYER COLOR"
             leftLabel="LEFT"
@@ -113,17 +113,13 @@ export const Settings: React.FC = () => {
             rightColorParam="rightColor"
             rightDefault={PortColor.P2}
           />
-        </div>
-        <div
-          css={css`
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-top: 1rem;
-          `}
-        >
-          <div>
+        </Column>
+        <Column>
+          <div
+            css={css`
+              margin-top: 1rem;
+            `}
+          >
             <OBSDragButton />
           </div>
           <div
@@ -142,8 +138,8 @@ export const Settings: React.FC = () => {
           >
             Made with love by <A href="https://twitter.com/_vinceau">Vince Au</A>
           </div>
-        </div>
-        <div>
+        </Column>
+        <Column>
           <DualColorPanel
             panelLabel="THEME COLOR"
             leftLabel="PRIMARY"
@@ -153,8 +149,8 @@ export const Settings: React.FC = () => {
             rightColorParam="secondaryColor"
             rightDefault={defaultTheme.secondaryColor}
           />
-        </div>
-      </div>
+        </Column>
+      </Content>
     </Outer>
   );
 };
