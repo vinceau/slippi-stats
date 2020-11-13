@@ -65,6 +65,10 @@ export function generateDemoQuery(): Record<string, any> {
 
   // Set score
   paramMap.score = `${leftWins} - ${rightWins}`;
+  // Set winner
+  if (leftWins !== rightWins) {
+    paramMap.winner = leftWins > rightWins ? "left" : "right";
+  }
 
   // Random moves
   ["mckm1", "mckm2", "mcno1", "mcno2"].forEach((key) => {

@@ -4,10 +4,12 @@ import styled from "@emotion/styled";
 import { getCharacterPortrait } from "lib/resources";
 import React from "react";
 
-const Outer = styled.div`
+const Outer = styled.div<{
+  highlight?: boolean;
+}>`
   position: relative;
   display: block;
-  border: solid 0.1rem rgba(255, 255, 255, 0.3);
+  border: solid 0.1rem rgba(255, 255, 255, ${(p) => (p.highlight ? "0.8" : "0.2")});
   height: 5rem;
   width: 100%;
   max-width: 10rem;
@@ -58,6 +60,7 @@ export interface HeadToHeadProps {
   result2: string;
   leftColor: string;
   rightColor: string;
+  highlight?: boolean;
 }
 
 export const HeadToHead: React.FC<HeadToHeadProps> = ({
@@ -69,13 +72,14 @@ export const HeadToHead: React.FC<HeadToHeadProps> = ({
   result2,
   leftColor,
   rightColor,
+  highlight,
 }) => {
   const waypoint = 55;
   const p1 = getCharacterPortrait(char1, color1);
   const p2 = getCharacterPortrait(char2, color2);
 
   return (
-    <Outer>
+    <Outer highlight={highlight}>
       <HeadImage backgroundColor={leftColor} imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
       <HeadImage
         backgroundColor={rightColor}

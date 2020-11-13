@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { useParam } from "lib/hooks";
 import React from "react";
 
 import { GameDisplay } from "../GameDisplay";
@@ -30,6 +31,7 @@ export const StatDisplay: React.FC<{
   leftColor: string;
   rightColor: string;
 }> = (props) => {
+  const [winningSide] = useParam("winner");
   const { leftColor, rightColor, ...theme } = props;
   return (
     <div
@@ -54,7 +56,7 @@ export const StatDisplay: React.FC<{
         <AverageKillPercent {...theme} />
         <NeutralWins {...theme} />
         <Divider />
-        <GameDisplay leftColor={leftColor} rightColor={rightColor} />
+        <GameDisplay winningSide={winningSide} leftColor={leftColor} rightColor={rightColor} />
       </div>
     </div>
   );

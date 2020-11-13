@@ -16,6 +16,7 @@ export interface GameResultProps {
   result2: string;
   leftColor: string;
   rightColor: string;
+  highlight?: boolean;
 }
 
 export const GameResult: React.FC<GameResultProps> = (props) => {
@@ -32,7 +33,7 @@ export const GameResult: React.FC<GameResultProps> = (props) => {
       `}
     >
       <HeadToHead {...rest} />
-      <StageTimer stageId={stageId} duration={duration} />
+      <StageTimer stageId={stageId} duration={duration} highlight={props.highlight} />
     </div>
   );
 };

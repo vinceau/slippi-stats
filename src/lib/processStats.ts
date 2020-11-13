@@ -72,6 +72,9 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
   });
 
   params.score = `${leftWins} - ${rightWins}`;
+  if (leftWins !== rightWins) {
+    params.winner = leftWins > rightWins ? "left" : "right";
+  }
 
   // Set the stat values
   (summary as any[]).forEach((s) => {

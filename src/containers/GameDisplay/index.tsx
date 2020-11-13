@@ -8,16 +8,18 @@ const Game: React.FC<{
   index: number;
   leftColor: string;
   rightColor: string;
-}> = ({ index, leftColor, rightColor }) => {
+  winningSide?: string;
+}> = ({ index, leftColor, rightColor, winningSide }) => {
   const [gameInfo] = useParam(`g${index}`);
   // The game info starts off undefined
   if (!gameInfo) {
     return null;
   }
-
   const [stageId, duration, char1, color1, res1, char2, color2, res2] = gameInfo.split(",");
+  const gameWinner = res1 === "winner" ? "left" : res2 === "winner" ? "right" : "";
   return (
     <GameResult
+      highlight={winningSide === gameWinner}
       stageId={stageId}
       duration={duration}
       char1={char1}
@@ -35,13 +37,22 @@ const Game: React.FC<{
 export const GameDisplay: React.FC<{
   leftColor: string;
   rightColor: string;
+  winningSide?: string;
 }> = (props) => {
   const [gt] = useParam(`gt`);
   const total = parseInt(gt, 10) || 0;
 
   const games = [];
   for (let i = 1; i <= total; i++) {
-    games.push(<Game key={`g${i}`} index={i} leftColor={props.leftColor} rightColor={props.rightColor} />);
+    games.push(
+      <Game
+        key={`g${i}`}
+        index={i}
+        leftColor={props.leftColor}
+        rightColor={props.rightColor}
+        winningSide={props.winningSide}
+      />
+    );
   }
 
   return (
