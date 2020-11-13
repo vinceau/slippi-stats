@@ -4,8 +4,9 @@ import styled from "@emotion/styled";
 import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
 import { generateDemoQuery } from "lib/demo";
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { AppContext, Types } from "store";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
 export const ButtonLink = styled.a`
@@ -33,7 +34,14 @@ const Container = styled.div`
 `;
 
 export const MainView: React.FC = () => {
+  const { dispatch } = useContext(AppContext);
   const history = useHistory();
+
+  const clearAll = () => {
+    dispatch({
+      type: Types.CLEAR_ALL,
+    });
+  };
 
   const onClick = () => {
     const paramMap = generateDemoQuery();
@@ -60,7 +68,15 @@ export const MainView: React.FC = () => {
             flex: none;
           `}
         >
-          <Header>Slippi Stats</Header>
+          <Header
+            onClick={clearAll}
+            title="Refresh page"
+            css={css`
+              cursor: pointer;
+            `}
+          >
+            Slippi Stats
+          </Header>
         </div>
         <div
           css={css`

@@ -19,6 +19,7 @@ export enum Types {
   SET_ERROR = "SET_ERROR",
   ADD_FILE = "ADD_FILE",
   REMOVE_FILE = "REMOVE_FILE",
+  CLEAR_ALL = "CLEAR_ALL",
 }
 
 type ActionPayload = {
@@ -37,6 +38,7 @@ type ActionPayload = {
   [Types.REMOVE_FILE]: {
     filename: string;
   };
+  [Types.CLEAR_ALL]: never;
 };
 
 export type ReducerActions = ActionMap<ActionPayload>[keyof ActionMap<ActionPayload>];
@@ -91,6 +93,12 @@ export const reducer = (state: InitialStateType, action: ReducerActions) => {
       return {
         ...state,
         files,
+      };
+    }
+    case Types.CLEAR_ALL: {
+      return {
+        ...state,
+        files: [],
       };
     }
     default:
