@@ -90,8 +90,6 @@ export const FileListInput: React.FC = () => {
       css={css`
         position: relative;
         border: solid 1px black;
-        height: 500px;
-        width: 500px;
       `}
     >
       <DropPad accept=".slp" onDrop={onDrop} />

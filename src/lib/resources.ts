@@ -27,6 +27,11 @@ export function getCharacterVSScreen(side: Side, characterId: string | number, c
   return `${folder}/vs-${side}.png`;
 }
 
+export function getCharacterStockIcon(characterId: string | number, color?: string): string {
+  const folder = getCharacterFolderFromId(characterId, color);
+  return `${folder}/stock.png`;
+}
+
 export function getStageIcon(stageId: string | number): string {
   const stageName = stageUtil.getStageName(+stageId);
   return `${process.env.PUBLIC_URL}/images/stages/${stageName}.png`;
