@@ -1,4 +1,3 @@
-import SlippiGame from "@slippi/slippi-js";
 import { GameDetails } from "lib/readFile";
 
 import { InitialStateType } from "./types";
@@ -23,7 +22,6 @@ export enum Types {
 type ActionPayload = {
   [Types.ADD_GAME]: {
     filename: string;
-    game: SlippiGame;
     details: GameDetails;
   };
   [Types.SET_ERROR]: {

@@ -30,7 +30,7 @@ export async function generateStatsOutput(files: File[]) {
 
 export async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
   const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
-  const arr = new Int8Array(data);
+  const arr = new Int8Array(); // data);
   const buf = Buffer.from(arr);
   return new SlippiGame(buf);
 }

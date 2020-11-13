@@ -1,15 +1,18 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+// import SlippiGame from "@slippi/slippi-js";
 import { DropPad } from "components/DropPad";
 import { FileList } from "components/FileList";
+import { Loader } from "components/Loader";
 import { processStats } from "lib/processStats";
-import { GameDetails, generateGameDetails, readFileAsArrayBuffer, readFileAsSlippiGame } from "lib/readFile";
-import generateStats from "lib/stats";
+import { GameDetails } from "lib/readFile";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { AppContext, Types } from "../store";
+
+import Worker from "../worker";
 
 const ProcessButton = styled.button`
   background: #286163;
@@ -55,19 +58,28 @@ export const FileListInput: React.FC = () => {
           },
         });
         try {
-          const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
-          console.log(`${file.name} has ${data.byteLength} length`);
-          // const game = await readFileAsSlippiGame(file);
+          // const data = (await instance.readFileAsArrayBuffer(file)) as ArrayBuffer;
+          // console.log(`${file.name} length: ${data.byteLength}`);
+          // const buf = Buffer.from(data);
+          // const game = new SlippiGame(buf);
+          // game.getFrames();
+          // console.log(game.getSettings());
+
+          // Create new instance
+          const instance = new Worker();
+
+          const details = await instance.processFile(file); //readFileAsSlippiGame(file);
           // const details = generateGameDetails(file.name, game);
-          // dispatch({
-          //   type: Types.ADD_GAME,
-          //   payload: {
-          //     filename: file.name,
-          //     game,
-          //     details,
-          //   },
-          // });
+          dispatch({
+            type: Types.ADD_GAME,
+            payload: {
+              filename: file.name,
+              // game,
+              details,
+            },
+          });
         } catch (err) {
+          console.error(err);
           dispatch({
             type: Types.SET_ERROR,
             payload: {

@@ -6,10 +6,10 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
-import Worker from "../worker";
+// import Worker from "../worker";
 
 // Create new instance
-const instance = new Worker();
+// const instance = new Worker();
 
 export const MainView: React.FC = () => {
   const history = useHistory();
@@ -26,14 +26,14 @@ export const MainView: React.FC = () => {
     });
   };
 
-  const calcFib = async () => {
+  const calcFib = () => {
     const num = +fibIndex;
     if (num < 2) {
       setFibResult("error: number needs to be greater than 2");
       return;
     }
 
-    const processed = await instance.processData(num);
+    const processed = ""; // await instance.processData(num);
     setFibResult(processed);
   };
 
