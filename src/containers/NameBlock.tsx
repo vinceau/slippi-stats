@@ -18,6 +18,7 @@ const Subtitle = styled.div<{
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  font-weight: 600;
 `;
 
 export interface NameBlockProps {
