@@ -11,6 +11,7 @@ import { defaultTheme, GlobalTheme } from "styles/theme";
 export const ButtonLink = styled.a`
   display: block;
   text-align: center;
+  text-decoration: none;
   color: ${defaultTheme.secondaryColor};
   background: white;
   padding: 1rem 0rem;
@@ -18,6 +19,11 @@ export const ButtonLink = styled.a`
   font-weight: 700;
   font-size: 2.3rem;
   cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const Container = styled.div`
@@ -70,12 +76,23 @@ export const MainView: React.FC = () => {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-column-gap: 1rem;
-            padding-bottom: 2rem;
+            padding: 2rem 0;
           `}
         >
-          <ButtonLink onClick={onClick}>DEMO</ButtonLink>
-          <ButtonLink>GITHUB</ButtonLink>
-          <ButtonLink>AUTHOR</ButtonLink>
+          <ButtonLink onClick={onClick} title="Show random sample stats">
+            DEMO
+          </ButtonLink>
+          <ButtonLink
+            title="Fork this on Github"
+            href="https://github.com/vinceau/slippi-stats"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GITHUB
+          </ButtonLink>
+          <ButtonLink title="Send love" href="https://twitter.com/_vinceau" target="_blank" rel="noopener noreferrer">
+            AUTHOR
+          </ButtonLink>
         </div>
       </Container>
     </div>
