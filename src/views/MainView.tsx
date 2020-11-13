@@ -3,13 +3,12 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
-import { generateDemoQuery } from "lib/demo";
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppContext, Types } from "store";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
-export const ButtonLink = styled.a`
+const linkStyle = css`
   display: block;
   text-align: center;
   text-decoration: none;
@@ -35,20 +34,10 @@ const Container = styled.div`
 
 export const MainView: React.FC = () => {
   const { dispatch } = useContext(AppContext);
-  const history = useHistory();
 
   const clearAll = () => {
     dispatch({
       type: Types.CLEAR_ALL,
-    });
-  };
-
-  const onClick = () => {
-    const paramMap = generateDemoQuery();
-    const search = "?" + new URLSearchParams(paramMap).toString();
-    history.push({
-      pathname: "/render",
-      search,
     });
   };
 
@@ -95,20 +84,27 @@ export const MainView: React.FC = () => {
             padding: 2rem 0;
           `}
         >
-          <ButtonLink onClick={onClick} title="Show random sample stats">
+          <Link css={linkStyle} to="/random" title="Show random sample stats">
             DEMO
-          </ButtonLink>
-          <ButtonLink
+          </Link>
+          <a
+            css={linkStyle}
             title="Fork this on Github"
             href="https://github.com/vinceau/slippi-stats"
             target="_blank"
             rel="noopener noreferrer"
           >
             GITHUB
-          </ButtonLink>
-          <ButtonLink title="Send love" href="https://twitter.com/_vinceau" target="_blank" rel="noopener noreferrer">
+          </a>
+          <a
+            css={linkStyle}
+            title="Send love"
+            href="https://twitter.com/_vinceau"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             AUTHOR
-          </ButtonLink>
+          </a>
         </div>
       </Container>
     </div>
