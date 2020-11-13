@@ -1,7 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { ColorPicker } from "components/ColorPicker";
+import { useParam } from "lib/hooks";
 import React from "react";
+import { defaultTheme } from "styles/theme";
 
 const Outer = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -14,6 +17,9 @@ const Outer = styled.div`
 `;
 
 export const Settings: React.FC = () => {
+  const [primaryColor, setPrimaryColor] = useParam("primaryColor", defaultTheme.primaryColor);
+  const [secondaryColor, setSecondaryColor] = useParam("secondaryColor", defaultTheme.secondaryColor);
+  //   const [color, setColor] = React.useState("#ffffff");
   const [open, setOpen] = React.useState(false);
   return (
     <Outer className={open ? "open" : ""}>
@@ -24,6 +30,14 @@ export const Settings: React.FC = () => {
         `}
       >
         {open ? "CLOSE SETTINGS" : "OPEN SETTINGS"}
+      </div>
+      <div>
+        <div>Primary color</div>
+        <ColorPicker value={primaryColor} onChange={setPrimaryColor} />
+      </div>
+      <div>
+        <div>Secondary color</div>
+        <ColorPicker value={secondaryColor} onChange={setSecondaryColor} />
       </div>
     </Outer>
   );
