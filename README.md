@@ -1,13 +1,14 @@
-# Slippi Set Stats
+# Slippi Stats
 
-> An open and customizable Slippi stats graphic, inspired by [BTS Smash](https://twitter.com/BTSsmash/)
+> An open and customizable Slippi stats graphic
 
 ### Features
 
+- No download required
 - Local offline SLP stats computation
 - Drag-and-drop into OBS
 - Highly customizable
-- Free and open source!
+- Free and open source
 
 ## Development
 
