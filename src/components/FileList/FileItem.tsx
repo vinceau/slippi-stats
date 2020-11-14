@@ -93,7 +93,7 @@ const CharacterIcon: React.FC<{
       `}
       `}
     >
-      <img src={src} style={{ height: "3rem" }} />
+      <img src={src} style={{ height: "3rem" }} alt="stock icon" />
     </div>
   );
 };

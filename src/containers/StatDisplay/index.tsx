@@ -7,8 +7,6 @@ import React from "react";
 import { GameDisplay } from "../GameDisplay";
 import {
   AverageKillPercent,
-  DamagePerOpening,
-  InputsPerMinute,
   MostCommonKillMove,
   MostCommonNeutralOpener,
   NeutralWins,

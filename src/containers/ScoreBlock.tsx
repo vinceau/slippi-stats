@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Block } from "components/Block";
 import { InlineEdit } from "components/InlineEdit";

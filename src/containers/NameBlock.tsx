@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useParam } from "lib/hooks";
 import React from "react";

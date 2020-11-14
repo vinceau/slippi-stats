@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
 
@@ -24,23 +22,14 @@ export const OBSDragButton: React.FC = () => {
   const wrapperRef = React.useRef(null);
   const pos = 30;
   const handleDragStart = (e: any) => {
-    console.log("drag start");
-    console.log(e.target);
-    const dragged = e.target;
-    console.log(dragged.href);
     const img = new Image();
     img.src = obsImage;
     // Customize the visible 'thumbnail' while dragging
-    e.dataTransfer.setDragImage(img /*wrapperRef.current*/, pos, pos);
+    e.dataTransfer.setDragImage(img, pos, pos);
     // Set the data type, and the value. You specifically want text/uri-list.
-    e.dataTransfer.setData("text/uri-list", dragged.href);
-    // e.preventDefault();
-    // e.stopPropagation();
+    e.dataTransfer.setData("text/uri-list", e.target.href);
   };
-  const handleDragEnd = (e: any) => {
-    console.log("end");
-    e.target.blur();
-  };
+  const handleDragEnd = (e: any) => e.target.blur();
   return (
     <Draggable
       href={window.location.href}
@@ -49,7 +38,7 @@ export const OBSDragButton: React.FC = () => {
       onClick={(e) => e.preventDefault()}
       ref={wrapperRef}
     >
-      <img style={{ width: "3rem", marginRight: "1rem" }} src={obsImage} /> Drag me into OBS
+      <img style={{ width: "3rem", marginRight: "1rem" }} src={obsImage} alt="OBS Logo" /> Drag me into OBS
     </Draggable>
   );
 };
