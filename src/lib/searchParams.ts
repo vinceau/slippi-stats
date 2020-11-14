@@ -1,3 +1,5 @@
+import { defaultTheme } from "styles/theme";
+
 function getStoredValues(keys: string[]): Record<string, string | null> {
   const res: Record<string, string | null> = {};
   keys.forEach((key) => {
@@ -10,9 +12,10 @@ function getStoredValues(keys: string[]): Record<string, string | null> {
 }
 
 export function generateSearchParams(params: Record<string, any>): URLSearchParams {
-  const defaultParams = getStoredValues(["primaryColor", "secondaryColor", "leftColor", "rightColor"]);
+  const restoredParams = getStoredValues(["primaryColor", "secondaryColor", "leftColor", "rightColor"]);
   const searchParams = new URLSearchParams({
-    ...defaultParams,
+    ...defaultTheme,
+    ...restoredParams,
     ...params,
   });
   return searchParams;
