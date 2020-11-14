@@ -13,7 +13,7 @@ const getColor = (props: any) => {
 };
 
 const Container = styled.div`
-  flex: 1;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
