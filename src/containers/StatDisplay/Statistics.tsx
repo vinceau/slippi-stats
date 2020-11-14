@@ -1,13 +1,9 @@
 import { Stat } from "components/Stat";
 import { useParam } from "lib/hooks";
 import React from "react";
+import { Theme } from "styles/theme";
 
-interface ThemeProps {
-  primaryColor: string;
-  secondaryColor: string;
-}
-
-interface ConnectedStatProps extends ThemeProps {
+interface ConnectedStatProps extends Theme {
   param1: string;
   param2: string;
   label: string;
@@ -39,34 +35,34 @@ ConnectedStat.defaultProps = {
   type: "number",
 };
 
-export const MostCommonKillMove: React.FC<ThemeProps> = (props) => {
+export const MostCommonKillMove: React.FC<Theme> = (props) => {
   return <ConnectedStat type="text" param1="mckm1" param2="mckm2" label="MOST COMMON KILL MOVE" {...props} />;
 };
 
-export const MostCommonNeutralOpener: React.FC<ThemeProps> = (props) => {
+export const MostCommonNeutralOpener: React.FC<Theme> = (props) => {
   return <ConnectedStat type="text" param1="mcno1" param2="mcno2" label="MOST COMMON NEUTRAL OPENER" {...props} />;
 };
 
-export const AverageKillPercent: React.FC<ThemeProps> = (props) => {
+export const AverageKillPercent: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="akp1" param2="akp2" label="AVERAGE KILL PERCENT" {...props} />;
 };
 
-export const NeutralWins: React.FC<ThemeProps> = (props) => {
+export const NeutralWins: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="nw1" param2="nw2" label="NEUTRAL WINS" {...props} />;
 };
 
-export const DamagePerOpening: React.FC<ThemeProps> = (props) => {
+export const DamagePerOpening: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="dpo1" param2="dpo2" label="DAMAGE / OPENING" {...props} />;
 };
 
-export const InputsPerMinute: React.FC<ThemeProps> = (props) => {
+export const InputsPerMinute: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="ipm1" param2="ipm2" label="INPUTS / MINUTE" {...props} />;
 };
 
-export const OpeningsPerKill: React.FC<ThemeProps> = (props) => {
+export const OpeningsPerKill: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="opk1" param2="opk2" label="OPENINGS / KILL" {...props} />;
 };
 
-export const TotalDamageDone: React.FC<ThemeProps> = (props) => {
+export const TotalDamageDone: React.FC<Theme> = (props) => {
   return <ConnectedStat param1="tdd1" param2="tdd2" label="TOTAL DAMAGE DONE" {...props} />;
 };
