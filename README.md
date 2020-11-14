@@ -16,6 +16,32 @@ Instantly compute Slippi stats in-browser and beautifully render the results. Pe
 - No download required
 - Free and open source
 
+## Usage
+
+1. Drag and drop your SLP files
+2. Click "Generate Stats"
+3. Drag the OBS button into OBS to instantly create a source
+
+![animated gif showing the usage](docs/images/usage.gif)
+
+The gif above is real-time speed and is not sped up!
+
+## FAQ
+
+### How is it so fast?
+
+It reads your SLP files locally and does all the computation in-browser. Nothing is sent to any servers so this works offline too! This allows very fast Slippi game parsing so you can generate these graphics instantly.
+
+### Can I remove the background in OBS?
+
+Yes, you can! Just add this to the Custom CSS in the source properties.
+
+```css
+body {
+  background: none !important;
+}
+```
+
 ## Development
 
 In the project directory, you can run:
