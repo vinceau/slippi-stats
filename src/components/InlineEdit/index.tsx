@@ -11,10 +11,11 @@ export interface InlineEditProps {
   onSetText: (text: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  placeholder?: string;
 }
 
 export const InlineEdit: React.FC<InlineEditProps> = (props) => {
-  const { text, onSetText, textAlign } = props;
+  const { text, onSetText, textAlign, placeholder } = props;
   const [isInputActive, _setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(text);
 
@@ -84,7 +85,7 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
         onClick={() => setIsInputActive(true)}
         className={`inline-text_copy inline-text_copy--${!isInputActive ? "active" : "hidden"}`}
       >
-        {props.text}
+        {props.text || placeholder}
       </span>
       <input
         ref={inputRef}

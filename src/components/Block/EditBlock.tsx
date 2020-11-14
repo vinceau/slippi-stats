@@ -8,6 +8,7 @@ export interface EditBlockProps {
   color: string;
   backgroundColor: string;
   value: string;
+  placeholder?: string;
   onEdit: (val: string) => void;
 }
 
@@ -29,12 +30,22 @@ const OptionalBlock = styled(Block)<{
   }
 `;
 
-export const OptionalEditBlock: React.FC<EditBlockProps> = ({ onEdit, backgroundColor, value, color }) => {
+export const OptionalEditBlock: React.FC<EditBlockProps> = ({ onEdit, backgroundColor, value, color, placeholder }) => {
   const [focused, setFocused] = React.useState(false);
   const show = focused || Boolean(value);
   return (
     <OptionalBlock show={show} color={color} backgroundColor={backgroundColor}>
-      <InlineEdit text={value} onSetText={onEdit} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} />
+      <InlineEdit
+        text={value}
+        onSetText={onEdit}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        placeholder={placeholder}
+      />
     </OptionalBlock>
   );
+};
+
+OptionalEditBlock.defaultProps = {
+  placeholder: "click to edit",
 };
