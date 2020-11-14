@@ -1,6 +1,8 @@
 # Slippi Stats Graphic Generator
 
-> Generate pretty Summit-style Slippi set stats
+> Automatically generate Summit-style Slippi set stats. Say that 5 times.
+
+Instantly compute Slippi stats in-browser and beautifully render the results. Perfect for both tournament broadcasts and competitors.
 
 ## Screenshot
 
