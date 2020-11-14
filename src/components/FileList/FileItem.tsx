@@ -107,7 +107,17 @@ export const FileItem: React.FC<FileItemProps> = (props) => {
   const { file, onRemove } = props;
   const { filename, loading, error, details } = file;
   if (loading) {
-    return <BasicFileItem name={filename}> loading...</BasicFileItem>;
+    return (
+      <BasicFileItem name={filename}>
+        <span
+          css={css`
+            font-weight: bold;
+          `}
+        >
+          LOADING...
+        </span>
+      </BasicFileItem>
+    );
   }
   if (error || !details) {
     return (
