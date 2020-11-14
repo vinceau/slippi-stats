@@ -15,14 +15,8 @@ export const GlobalTheme: React.FC<Theme> = ({ primaryColor, secondaryColor }) =
   return (
     <Global
       styles={css`
-        body.themed::before {
-          content: "";
-          position: fixed;
-          top: 0;
+        body.themed {
           background: radial-gradient(circle at center -30%, ${primaryColor}, ${secondaryColor});
-          height: 100%;
-          width: 100%;
-          z-index: -1;
         }
       `}
     />
