@@ -1,13 +1,13 @@
-# Slippi Stats
+# Slippi Stats Graphic Generator
 
-> An open and customizable Slippi stats graphic
+> Generate pretty Summit-style Slippi set stats
 
 ### Features
 
-- No download required
-- Local offline SLP stats computation
 - Drag-and-drop into OBS
 - Highly customizable
+- Local offline SLP stats computation
+- No download required
 - Free and open source
 
 ## Development
