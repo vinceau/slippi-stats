@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
+import { Block } from "./Block";
 
 import { InlineEdit } from "./InlineEdit";
 
@@ -16,19 +17,11 @@ export interface StatProps {
   onRightTextBlur?: (text: string) => void;
 }
 
-const StatLabel = styled.div<{
-  labelBackground: string;
-  labelColor: string;
-}>`
-  text-align: center;
-  background-color: ${(p) => p.labelBackground};
-  color: ${(p) => p.labelColor};
+const StatLabel = styled(Block)`
   padding: 0.3em 2.5em;
   font-weight: 700;
   font-size: 1.2em;
-  box-shadow: 0.2em 0.2em 0.2em black;
   justify-self: center;
-  z-index: 1;
 `;
 
 const StatContent = styled.div<{
@@ -71,7 +64,7 @@ export const Stat: React.FC<StatProps> = (props) => {
       >
         <InlineEdit text={leftText} onSetText={props.onLeftTextBlur!} />
       </StatContent>
-      <StatLabel labelBackground={labelBackground!} labelColor={labelColor!}>
+      <StatLabel backgroundColor={labelBackground!} color={labelColor!}>
         {label}
       </StatLabel>
       <StatContent
