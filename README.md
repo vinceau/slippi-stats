@@ -2,11 +2,16 @@
 
 > Generate pretty Summit-style Slippi set stats
 
-### Features
+## Screenshot
 
-- Drag-and-drop into OBS
+![generated slippi stats screenshot](docs/images/screenshot.png)
+
+## Features
+
+- Extremely fast offline stats computation
+- Easy drag-and-drop into OBS
+- hi
 - Highly customizable
-- Local offline SLP stats computation
 - No download required
 - Free and open source
 
