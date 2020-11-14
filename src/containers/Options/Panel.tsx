@@ -37,6 +37,8 @@ export const DualColorPanel: React.FC<DualColorPanelProps> = (props) => {
         rightLabel={rightLabel}
         leftColor={leftColor}
         rightColor={rightColor}
+        defaultLeftColor={leftDefault}
+        defaultRightColor={rightDefault}
         onLeftColorChange={onLeftColorChange}
         onRightColorChange={onRightColorChange}
       />

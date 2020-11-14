@@ -21,12 +21,23 @@ export interface DualColorPickerProps {
   rightLabel: string;
   leftColor: string;
   rightColor: string;
+  defaultLeftColor?: string;
+  defaultRightColor?: string;
   onLeftColorChange: (color: string) => void;
   onRightColorChange: (color: string) => void;
 }
 
 export const DualColorPicker: React.FC<DualColorPickerProps> = (props) => {
-  const { leftLabel, rightLabel, leftColor, rightColor, onLeftColorChange, onRightColorChange } = props;
+  const {
+    defaultLeftColor,
+    defaultRightColor,
+    leftLabel,
+    rightLabel,
+    leftColor,
+    rightColor,
+    onLeftColorChange,
+    onRightColorChange,
+  } = props;
   return (
     <div
       css={css`
@@ -42,7 +53,7 @@ export const DualColorPicker: React.FC<DualColorPickerProps> = (props) => {
       >
         <ColorLabel>{leftLabel}</ColorLabel>
         <div>
-          <ColorPicker value={leftColor} onChange={onLeftColorChange} />
+          <ColorPicker value={leftColor} onChange={onLeftColorChange} defaultColor={defaultLeftColor} />
         </div>
       </ColorContainer>
       <ColorContainer
@@ -51,7 +62,7 @@ export const DualColorPicker: React.FC<DualColorPickerProps> = (props) => {
         `}
       >
         <div>
-          <ColorPicker value={rightColor} onChange={onRightColorChange} />
+          <ColorPicker value={rightColor} onChange={onRightColorChange} defaultColor={defaultRightColor} />
         </div>
         <ColorLabel>{rightLabel}</ColorLabel>
       </ColorContainer>
