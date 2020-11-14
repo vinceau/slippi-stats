@@ -8,5 +8,6 @@
 *.jsx text eol=lf
 *.tsx text eol=lf
 
-# CSS files
+*.html text eol=lf
 *.scss text eol=lf
+*.md text eol=lf
