@@ -6,14 +6,14 @@ import { Options } from "containers/Options";
 import { useParam } from "lib/hooks";
 import React from "react";
 import { Link } from "react-router-dom";
-import { defaultTheme, GlobalTheme } from "styles/theme";
+import { GlobalTheme } from "styles/theme";
 
 import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
 
 export const RenderView: React.FC = () => {
-  const [primaryColor] = useParam("primaryColor", defaultTheme.primaryColor);
-  const [secondaryColor] = useParam("secondaryColor", defaultTheme.secondaryColor);
+  const [primaryColor] = useParam("primaryColor");
+  const [secondaryColor] = useParam("secondaryColor");
   return (
     <div
       css={css`
