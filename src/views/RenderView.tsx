@@ -13,7 +13,6 @@ import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
 
 const Container = styled.div`
-  padding: 0 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,6 +35,7 @@ export const RenderView: React.FC = () => {
       css={css`
         width: 1700px;
         height: 980px;
+        margin: 0 auto;
       `}
     >
       <Container>
