@@ -26,6 +26,7 @@ const Container = styled.div`
   outline: none;
   transition: border 0.24s ease-in-out;
   p {
+    text-align: center;
     text-transform: uppercase;
     font-weight: bold;
   }

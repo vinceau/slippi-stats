@@ -46,9 +46,13 @@ const Heading = styled.h2`
 `;
 
 const Outer = styled.div`
-  opacity: 0.2;
-  position: relative;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
   background-color: black;
+  opacity: 0.2;
+  z-index: 10;
   &.closed:hover {
     cursor: pointer;
     opacity: 0.8;
