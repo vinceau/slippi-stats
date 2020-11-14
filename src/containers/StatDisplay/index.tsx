@@ -49,10 +49,10 @@ export const StatDisplay: React.FC<{
         <MostCommonKillMove {...theme} />
         <MostCommonNeutralOpener {...theme} />
         <Divider />
-        <OpeningsPerKill {...theme} />
-        <TotalDamageDone {...theme} />
-        <AverageKillPercent {...theme} />
-        <NeutralWins {...theme} />
+        <OpeningsPerKill />
+        <TotalDamageDone />
+        <AverageKillPercent />
+        <NeutralWins />
         <Divider />
         <GameDisplay winningSide={winningSide} leftColor={leftColor} rightColor={rightColor} />
       </div>

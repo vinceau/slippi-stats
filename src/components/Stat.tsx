@@ -4,17 +4,12 @@ import styled from "@emotion/styled";
 import React from "react";
 import { Block } from "./Block";
 
-import { InlineEdit } from "./InlineEdit";
-
 export interface StatProps {
-  type?: "text" | "number";
   label: string;
-  labelColor?: string;
-  labelBackground?: string;
-  leftText: string;
-  rightText: string;
-  onLeftTextBlur?: (text: string) => void;
-  onRightTextBlur?: (text: string) => void;
+  color: string;
+  backgroundColor: string;
+  leftComponent: React.ReactNode;
+  rightComponent: React.ReactNode;
 }
 
 const StatLabel = styled(Block)`
@@ -24,12 +19,14 @@ const StatLabel = styled(Block)`
   justify-self: center;
 `;
 
-const StatContent = styled.div<{
-  type: "text" | "number";
-}>`
+const StatContent = styled.div`
   width: 100%;
   font-weight: 800;
-  font-size: ${(p) => (p.type === "text" ? "1.4em" : "2.3em")};
+  font-size: 2.3em;
+`;
+
+const TextContent = styled(StatContent)`
+  font-size: 1.4em;
 `;
 
 const OuterStat = styled.div`
@@ -52,40 +49,57 @@ const OuterStat = styled.div`
   }
 `;
 
-export const Stat: React.FC<StatProps> = (props) => {
-  const { type, label, leftText, rightText, labelBackground, labelColor } = props;
+const Stat: React.FC<StatProps> = (props) => {
+  const { label, backgroundColor, color, leftComponent, rightComponent } = props;
   return (
     <OuterStat>
-      <StatContent
-        type={type!}
+      <div
         css={css`
+          width: 100%;
           justify-self: start;
         `}
       >
-        <InlineEdit text={leftText} onSetText={props.onLeftTextBlur!} />
-      </StatContent>
-      <StatLabel backgroundColor={labelBackground!} color={labelColor!}>
+        {leftComponent}
+      </div>
+      <StatLabel backgroundColor={backgroundColor} color={color}>
         {label}
       </StatLabel>
-      <StatContent
-        type={type!}
+      <div
         css={css`
+          width: 100%;
           justify-self: end;
           text-align: right;
         `}
       >
-        <InlineEdit text={rightText} textAlign="right" onSetText={props.onRightTextBlur!} />
-      </StatContent>
+        {rightComponent}
+      </div>
     </OuterStat>
   );
 };
 
 Stat.defaultProps = {
-  type: "number",
-  labelColor: "black",
-  labelBackground: "white",
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onLeftTextBlur: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onRightTextBlur: () => {},
+  color: "black",
+  backgroundColor: "white",
+};
+
+export const NumberStat: React.FC<StatProps> = (props) => {
+  const { leftComponent, rightComponent, ...rest } = props;
+  return (
+    <Stat
+      leftComponent={<StatContent>{leftComponent}</StatContent>}
+      rightComponent={<StatContent>{rightComponent}</StatContent>}
+      {...rest}
+    />
+  );
+};
+
+export const TextStat: React.FC<StatProps> = (props) => {
+  const { leftComponent, rightComponent, ...rest } = props;
+  return (
+    <Stat
+      leftComponent={<TextContent>{leftComponent}</TextContent>}
+      rightComponent={<TextContent>{rightComponent}</TextContent>}
+      {...rest}
+    />
+  );
 };
