@@ -128,7 +128,6 @@ export const FileItem: React.FC<FileItemProps> = (props) => {
     );
   }
 
-  console.log(details);
   const stageName = stageUtil.getStageName(details.settings.stageId as number);
   const players = details.settings.players;
   const duration = details.latestFrame ? convertFrameCountToDurationString(details.latestFrame.frame) : "N/A";

@@ -54,13 +54,13 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   let rightWins = 0;
 
   (games as any[]).forEach((game, i) => {
-    console.log("processing game: ", game);
+    // console.log("processing game: ", game);
     const gameKey = `g${i + 1}`;
     const stageId: number = game.stage.id;
     const gameDuration: string = game.duration;
     const playerInfo = game.players.map((p: any) => [p.characterId, p.characterColor, p.gameResult].join(","));
     const gameValue = [stageId, gameDuration, ...playerInfo].join(",");
-    console.log(`${gameKey} : ${gameValue}`);
+    // console.log(`${gameKey} : ${gameValue}`);
     params[gameKey] = gameValue;
 
     // Increment win counts
@@ -95,7 +95,7 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
         break;
       }
       case "killMoves": {
-        console.log(s);
+        // console.log(s);
         const playerRes = s.results[0].result[0];
         const opponentRes = s.results[1].result[0];
         params.mckm1 = `${playerRes.shortName.toUpperCase()} - ${playerRes.count}`;

@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
+import { EditBlock, OptionalEditBlock } from "components/Block";
 import { useParam } from "lib/hooks";
 import React from "react";
-
-import { EditBlock, OptionalEditBlock } from "components/Block";
 
 const Name = styled.div`
   font-size: 150%;

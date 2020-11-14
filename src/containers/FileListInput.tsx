@@ -102,7 +102,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         console.log(`Finished processing in ${time}ms`);
       });
     },
-    [dispatch]
+    [dispatch, error]
   );
 
   const finishedProcessing = !state.files.find((f) => f.loading);

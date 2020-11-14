@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-import { Block } from "./Block";
 import { InlineEdit } from "../InlineEdit";
+import { Block } from "./Block";
 
 export interface EditBlockProps {
   color: string;
