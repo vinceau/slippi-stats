@@ -1,7 +1,10 @@
 function getStoredValues(keys: string[]): Record<string, string | null> {
   const res: Record<string, string | null> = {};
   keys.forEach((key) => {
-    res[key] = localStorage.getItem(key);
+    const value = localStorage.getItem(key);
+    if (value) {
+      res[key] = value;
+    }
   });
   return res;
 }
