@@ -25,8 +25,10 @@ const OptionalBlock = styled(Block)<{
 }>`
   opacity: ${(p) => (p.show ? 1 : 0)};
   transition: opacity 0.1s ease-in-out;
+  position: relative;
   &:hover {
     opacity: 1;
+    z-index: 10;
   }
 `;
 

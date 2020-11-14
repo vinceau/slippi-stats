@@ -41,8 +41,8 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   const lastGameDetails = filtered[filtered.length - 1];
   const [leftTag, leftCode] = extractNameAndCode(leftPlayer.port, lastGameDetails);
   const [rightTag, rightCode] = extractNameAndCode(rightPlayer.port, lastGameDetails);
-  params.name1 = leftTag.toUpperCase();
-  params.name2 = rightTag.toUpperCase();
+  params.name1 = leftTag.toUpperCase() || leftPlayer.characterName;
+  params.name2 = rightTag.toUpperCase() || rightPlayer.characterName;
   params.sub1 = leftCode;
   params.sub2 = rightCode;
 

@@ -61,14 +61,14 @@ export const RenderDisplay: React.FC<Theme> = (theme) => {
               width: 20%;
             `}
           >
-            <NameBlock nameParam="name1" subtitleParam="sub1" defaultName="Player" {...theme} />
+            <NameBlock nameParam="name1" subtitleParam="sub1" {...theme} />
           </div>
           <div
             css={css`
               width: 20%;
             `}
           >
-            <NameBlock nameParam="name2" subtitleParam="sub2" defaultName="Player" {...theme} />
+            <NameBlock nameParam="name2" subtitleParam="sub2" {...theme} />
           </div>
         </div>
       </div>
