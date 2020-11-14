@@ -9,12 +9,31 @@ export interface InlineEditProps {
   text: string;
   textAlign?: "left" | "right";
   onSetText: (text: string) => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 export const InlineEdit: React.FC<InlineEditProps> = (props) => {
   const { text, onSetText, textAlign } = props;
-  const [isInputActive, setIsInputActive] = useState(false);
+  const [isInputActive, _setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(text);
+
+  const setIsInputActive = React.useCallback(
+    (isActive: boolean) => {
+      if (isActive !== isInputActive) {
+        // Value has changed
+        if (isActive && props.onFocus) {
+          props.onFocus();
+        }
+
+        if (!isActive && props.onBlur) {
+          props.onBlur();
+        }
+      }
+      _setIsInputActive(isActive);
+    },
+    [isInputActive, props]
+  );
 
   const wrapperRef = useRef(null);
   const textRef = useRef(null);
@@ -56,7 +75,7 @@ export const InlineEdit: React.FC<InlineEditProps> = (props) => {
         setIsInputActive(false);
       }
     }
-  }, [tab, enter, esc, isInputActive, onSetText, inputValue, props.text]); // watch for key presses
+  }, [tab, enter, esc, isInputActive, onSetText, setIsInputActive, inputValue, props.text]); // watch for key presses
 
   return (
     <span className="inline-text" ref={wrapperRef}>

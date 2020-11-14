@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useParam } from "lib/hooks";
 import React from "react";
 
-import { TextBlock } from "../components/TextBlock";
+import { EditBlock, OptionalEditBlock } from "components/EditBlock";
 
 const Name = styled.div`
   font-size: 150%;
@@ -32,10 +32,10 @@ export const NameBlock: React.FC<NameBlockProps> = ({ nameParam, defaultName, su
   return (
     <div>
       <Name>
-        <TextBlock value={name} onEdit={setName} color="white" backgroundColor={primaryColor} />
+        <EditBlock value={name} onEdit={setName} color="white" backgroundColor={primaryColor} />
       </Name>
       <Subtitle>
-        <TextBlock value={sub} optional={true} onEdit={setSub} color="black" backgroundColor="white" />
+        <OptionalEditBlock value={sub} onEdit={setSub} color="black" backgroundColor="white" />
       </Subtitle>
     </div>
   );
