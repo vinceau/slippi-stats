@@ -76,7 +76,6 @@ export const MainView: React.FC = () => {
         </div>
         <div
           css={css`
-            overflow-y: auto;
             flex: auto;
           `}
         >
