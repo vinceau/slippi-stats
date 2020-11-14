@@ -2,12 +2,6 @@ import styled from "@emotion/styled";
 import { getStageIcon } from "lib/resources";
 import React from "react";
 
-interface StageTimerProps {
-  stageId: string | number;
-  duration: string;
-  highlight?: boolean;
-}
-
 const Text = styled.span`
   font-size: 2.5rem;
   font-weight: bold;
@@ -17,7 +11,7 @@ const Text = styled.span`
 
 const Outer = styled.div<{
   src: string;
-  highlight?: boolean;
+  borderColor: string;
 }>`
   display: flex;
   justify-content: center;
@@ -25,7 +19,7 @@ const Outer = styled.div<{
   position: relative;
   height: 9rem;
   width: 100%;
-  border: solid 1px rgba(255, 255, 255, ${(p) => (p.highlight ? "0.8" : "0.2")});
+  border: solid 1px ${(p) => p.borderColor};
   z-index: 0;
 
   &::after {
@@ -44,10 +38,16 @@ const Outer = styled.div<{
   }
 `;
 
-export const StageTimer: React.FC<StageTimerProps> = ({ stageId, duration, highlight }) => {
+interface StageTimerProps {
+  stageId: string | number;
+  duration: string;
+  borderColor?: string;
+}
+
+export const StageTimer: React.FC<StageTimerProps> = ({ stageId, duration, borderColor }) => {
   const stageIcon = getStageIcon(stageId);
   return (
-    <Outer src={stageIcon} highlight={highlight}>
+    <Outer src={stageIcon} borderColor={borderColor || "transparent"}>
       <Text>{duration}</Text>
     </Outer>
   );

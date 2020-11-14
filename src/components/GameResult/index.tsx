@@ -20,7 +20,8 @@ export interface GameResultProps {
 }
 
 export const GameResult: React.FC<GameResultProps> = (props) => {
-  const { stageId, duration, ...rest } = props;
+  const { stageId, duration, highlight, ...rest } = props;
+  const borderColor = `rgba(255, 255, 255, ${highlight ? 1 : 0.2})`;
   return (
     <div
       css={css`
@@ -32,8 +33,8 @@ export const GameResult: React.FC<GameResultProps> = (props) => {
         grid-row-gap: 2rem;
       `}
     >
-      <HeadToHead {...rest} />
-      <StageTimer stageId={stageId} duration={duration} highlight={props.highlight} />
+      <HeadToHead borderColor={borderColor} {...rest} />
+      <StageTimer stageId={stageId} duration={duration} borderColor={borderColor} />
     </div>
   );
 };

@@ -3,11 +3,11 @@ import { getCharacterPortrait } from "lib/resources";
 import React from "react";
 
 const Outer = styled.div<{
-  highlight?: boolean;
+  borderColor: string;
 }>`
   position: relative;
   display: block;
-  border: solid 0.1rem rgba(255, 255, 255, ${(p) => (p.highlight ? "0.8" : "0.2")});
+  border: solid 0.1rem ${(p) => p.borderColor};
   height: 5rem;
   width: 100%;
   max-width: 10rem;
@@ -58,7 +58,7 @@ export interface HeadToHeadProps {
   result2: string;
   leftColor: string;
   rightColor: string;
-  highlight?: boolean;
+  borderColor?: string;
 }
 
 export const HeadToHead: React.FC<HeadToHeadProps> = ({
@@ -70,14 +70,14 @@ export const HeadToHead: React.FC<HeadToHeadProps> = ({
   result2,
   leftColor,
   rightColor,
-  highlight,
+  borderColor,
 }) => {
   const waypoint = 55;
   const p1 = getCharacterPortrait(char1, color1);
   const p2 = getCharacterPortrait(char2, color2);
 
   return (
-    <Outer highlight={highlight}>
+    <Outer borderColor={borderColor || "transparent"}>
       <HeadImage backgroundColor={leftColor} imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
       <HeadImage
         backgroundColor={rightColor}
