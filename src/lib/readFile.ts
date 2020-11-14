@@ -41,9 +41,15 @@ export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
 }
 
 export function generateGameDetails(name: string, game: SlippiGame): GameDetails {
+  // For a valid SLP game, at the very least we should have valid settings
+  const settings = game.getSettings();
+  if (!settings) {
+    throw new Error(`Invalid SLP file. Could not find game settings in file: ${name}`);
+  }
+
   return {
     filePath: name,
-    settings: game.getSettings(),
+    settings,
     frames: game.getFrames(),
     stats: game.getStats(),
     metadata: game.getMetadata(),

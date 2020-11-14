@@ -112,7 +112,14 @@ export const FileItem: React.FC<FileItemProps> = (props) => {
   if (error || !details) {
     return (
       <BasicFileItem onRemove={onRemove} name={filename}>
-        error :c
+        <span
+          css={css`
+            color: #bf2600;
+            font-weight: bold;
+          `}
+        >
+          Error: {error.message}
+        </span>
       </BasicFileItem>
     );
   }
