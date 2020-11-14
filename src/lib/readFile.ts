@@ -8,8 +8,6 @@ import {
   StatsType,
 } from "@slippi/slippi-js";
 
-import generateStats from "./stats";
-
 export interface GameDetails {
   filePath: string;
   settings: GameStartType;
@@ -20,24 +18,11 @@ export interface GameDetails {
   gameEnd: GameEndType | null;
 }
 
-export async function generateStatsOutput(files: File[]) {
-  const games = await readFilesAsSlippiGameDetails(files);
-  console.log(games);
-  const output = generateStats(games);
-  console.log(output);
-  return output;
-}
-
 export async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
   const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
   const arr = new Int8Array(data);
   const buf = Buffer.from(arr);
   return new SlippiGame(buf);
-}
-
-export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
-  const game = await readFileAsSlippiGame(file);
-  return generateGameDetails(file.name, game);
 }
 
 export function generateGameDetails(name: string, game: SlippiGame): GameDetails {
@@ -58,28 +43,7 @@ export function generateGameDetails(name: string, game: SlippiGame): GameDetails
   };
 }
 
-export async function readFilesAsSlippiGameDetails(files: File[]): Promise<GameDetails[]> {
-  const promises = files.map(async (f) => {
-    console.log("checking file: ", f);
-    const data = (await readFileAsArrayBuffer(f)) as ArrayBuffer;
-    const arr = new Int8Array(data);
-    const buf = Buffer.from(arr);
-    const game = new SlippiGame(buf);
-    // console.log(game.getStats());
-    return {
-      filePath: f.name,
-      settings: game.getSettings(),
-      frames: game.getFrames(),
-      stats: game.getStats(),
-      metadata: game.getMetadata(),
-      latestFrame: game.getLatestFrame(),
-      gameEnd: game.getGameEnd(),
-    };
-  });
-  return Promise.all(promises);
-}
-
-export async function readFileAsArrayBuffer(file: File): Promise<string | ArrayBufferLike> {
+async function readFileAsArrayBuffer(file: File): Promise<string | ArrayBufferLike> {
   return new Promise((resolve, reject) => {
     const fr = new FileReader();
     fr.onabort = () => reject("file reading was aborted");
