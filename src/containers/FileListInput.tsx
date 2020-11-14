@@ -51,6 +51,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         search,
       });
     } catch (err) {
+      console.error(error);
       setError(err);
     }
   };
@@ -86,6 +87,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
             },
           });
         } catch (err) {
+          console.error(error);
           dispatch({
             type: Types.SET_ERROR,
             payload: {
