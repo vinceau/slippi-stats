@@ -13,8 +13,6 @@ import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
 
 const Container = styled.div`
-  min-width: 1700px;
-  min-height: 980px;
   padding: 0 12rem;
   display: flex;
   flex-direction: column;
@@ -36,7 +34,8 @@ export const RenderView: React.FC = () => {
   return (
     <div
       css={css`
-        overflow: auto;
+        width: 1700px;
+        height: 980px;
       `}
     >
       <Container>
