@@ -25,7 +25,8 @@ const Draggable = styled.a`
 `;
 
 export const OBSDragButton: React.FC = () => {
-  const location = `${window.location.href}&${OBS_PARAMS.toString()}`;
+  const [url, queries] = window.location.href.split("?");
+  const location = url + "?" + OBS_PARAMS.toString() + "&" + queries;
   const wrapperRef = React.useRef(null);
   const pos = 30;
   const handleDragStart = (e: any) => {
