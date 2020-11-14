@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { characters as characterUtil } from "@slippi/slippi-js";
 import styled from "@emotion/styled";
+import { characters as characterUtil } from "@slippi/slippi-js";
 import { ExternalLink as A } from "components/ExternalLink";
 import { OBSDragButton } from "components/OBSDragButton";
 import { useOnClickOutside, useParam } from "lib/hooks";
