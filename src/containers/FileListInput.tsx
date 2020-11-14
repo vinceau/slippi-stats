@@ -8,7 +8,6 @@ import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/read
 import { generateSearchParams } from "lib/searchParams";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { defaultTheme } from "styles/theme";
 
 import { AppContext, Types } from "../store";
 
@@ -36,7 +35,7 @@ const ProcessButton = styled.button<{
   }
 `;
 
-export const FileListInput: React.FC = () => {
+export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }) => {
   const history = useHistory();
   const { state, dispatch } = useContext(AppContext);
 
@@ -112,7 +111,7 @@ export const FileListInput: React.FC = () => {
       <DropPad accept=".slp" onDrop={onDrop} />
       <FileList files={state.files} onRemove={onRemove} />
       <ProcessButton
-        backgroundColor={defaultTheme.primaryColor}
+        backgroundColor={buttonColor}
         color="white"
         disabled={state.files.length === 0 || !finishedProcessing}
         onClick={onClick}

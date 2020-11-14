@@ -35,6 +35,8 @@ const Container = styled.div`
 
 export const MainView: React.FC = () => {
   const { dispatch } = useContext(AppContext);
+  const primaryColor = localStorage.getItem("primaryColor") || defaultTheme.primaryColor;
+  const secondaryColor = localStorage.getItem("secondaryColor") || defaultTheme.secondaryColor;
 
   const clearAll = () => {
     dispatch({
@@ -51,7 +53,7 @@ export const MainView: React.FC = () => {
         margin: 0 auto;
       `}
     >
-      <GlobalTheme {...defaultTheme} />
+      <GlobalTheme primaryColor={primaryColor} secondaryColor={secondaryColor} />
       <Container>
         <div
           css={css`
@@ -74,7 +76,7 @@ export const MainView: React.FC = () => {
             flex: auto;
           `}
         >
-          <FileListInput />
+          <FileListInput buttonColor={primaryColor} />
         </div>
         <div
           css={css`
