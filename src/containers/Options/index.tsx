@@ -110,7 +110,7 @@ export const Options: React.FC = () => {
 
   return (
     <Outer className={open ? "open" : "closed"} ref={outerRef} onClick={showOptions}>
-      <div className="close-button" onClick={closeOptions}>
+      <div className="close-button" onClick={closeOptions} title="Close">
         ✕
       </div>
       <Heading>OPTIONS</Heading>
