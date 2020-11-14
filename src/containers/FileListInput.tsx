@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
+import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
 import { processStats } from "lib/processStats";
 import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
@@ -38,15 +39,20 @@ const ProcessButton = styled.button<{
 export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }) => {
   const history = useHistory();
   const { state, dispatch } = useContext(AppContext);
+  const [error, setError] = React.useState<any>(null);
 
   const onClick = () => {
-    const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
-    const params = processStats(gameDetails);
-    const search = "?" + generateSearchParams(params).toString();
-    history.push({
-      pathname: "/render",
-      search,
-    });
+    try {
+      const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
+      const params = processStats(gameDetails);
+      const search = "?" + generateSearchParams(params).toString();
+      history.push({
+        pathname: "/render",
+        search,
+      });
+    } catch (err) {
+      setError(err);
+    }
   };
 
   const onRemove = (filename: string) => {
@@ -118,6 +124,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
       >
         {buttonText}
       </ProcessButton>
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </div>
   );
 };

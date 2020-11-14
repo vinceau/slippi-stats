@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
+import { ErrorMessage } from "components/ErrorMessage";
 import { getCharacterStockIcon } from "lib/resources";
 import { convertFrameCountToDurationString } from "lib/stats";
 import { findWinner } from "lib/winner";
@@ -122,14 +123,7 @@ export const FileItem: React.FC<FileItemProps> = (props) => {
   if (error || !details) {
     return (
       <BasicFileItem onRemove={onRemove} name={filename}>
-        <span
-          css={css`
-            color: #bf2600;
-            font-weight: bold;
-          `}
-        >
-          Error: {error.message}
-        </span>
+        <ErrorMessage>{error.message}</ErrorMessage>
       </BasicFileItem>
     );
   }
