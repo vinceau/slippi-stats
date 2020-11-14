@@ -10,7 +10,6 @@
 
 - Extremely fast offline stats computation
 - Easy drag-and-drop into OBS
-- hi
 - Highly customizable
 - No download required
 - Free and open source
