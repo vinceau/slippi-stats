@@ -1,21 +1,7 @@
 /** @jsx jsx */ import { css, jsx } from "@emotion/core";
-import styled from "@emotion/styled";
-import { ColorPicker } from "components/ColorPicker";
+import { DualColorPicker } from "components/DualColorPicker";
 import { useParam } from "lib/hooks";
 import React from "react";
-
-const ColorContainer = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 1rem;
-  justify-items: center;
-  align-items: center;
-`;
-
-const ColorLabel = styled.div`
-  font-weight: 600;
-  font-size: 1.6rem;
-`;
 
 export interface DualColorPanelProps {
   panelLabel: string;
@@ -33,6 +19,21 @@ export const DualColorPanel: React.FC<DualColorPanelProps> = (props) => {
   const [rightColor, setRightColor] = useParam(rightColorParam, rightDefault);
 
   return (
+    <Panel title={panelLabel}>
+      <DualColorPicker
+        leftLabel={leftLabel}
+        rightLabel={rightLabel}
+        leftColor={leftColor}
+        rightColor={rightColor}
+        onLeftColorChange={setLeftColor}
+        onRightColorChange={setRightColor}
+      />
+    </Panel>
+  );
+};
+
+const Panel: React.FC<{ title: string }> = (props) => {
+  return (
     <div>
       <div
         css={css`
@@ -42,36 +43,9 @@ export const DualColorPanel: React.FC<DualColorPanelProps> = (props) => {
           font-size: 2rem;
         `}
       >
-        {panelLabel}
+        {props.title}
       </div>
-      <div
-        css={css`
-          display: grid;
-          grid-column-gap: 2.5rem;
-          grid-template-columns: repeat(2, 1fr);
-        `}
-      >
-        <ColorContainer
-          css={css`
-            justify-self: end;
-          `}
-        >
-          <ColorLabel>{leftLabel}</ColorLabel>
-          <div>
-            <ColorPicker value={leftColor} onChange={setLeftColor} />
-          </div>
-        </ColorContainer>
-        <ColorContainer
-          css={css`
-            justify-self: start;
-          `}
-        >
-          <div>
-            <ColorPicker value={rightColor} onChange={setRightColor} />
-          </div>
-          <ColorLabel>{rightLabel}</ColorLabel>
-        </ColorContainer>
-      </div>
+      {props.children}
     </div>
   );
 };
