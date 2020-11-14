@@ -24,16 +24,9 @@ export interface NameBlockProps {
   defaultName: string;
   subtitleParam: string;
   primaryColor: string;
-  secondaryColor: string;
 }
 
-export const NameBlock: React.FC<NameBlockProps> = ({
-  nameParam,
-  defaultName,
-  subtitleParam,
-  primaryColor,
-  secondaryColor,
-}) => {
+export const NameBlock: React.FC<NameBlockProps> = ({ nameParam, defaultName, subtitleParam, primaryColor }) => {
   const [name, setName] = useParam(nameParam, defaultName);
   const [sub, setSub] = useParam(subtitleParam);
   return (
@@ -42,7 +35,7 @@ export const NameBlock: React.FC<NameBlockProps> = ({
         <TextBlock value={name} onEdit={setName} color="white" backgroundColor={primaryColor} />
       </Name>
       <Subtitle>
-        <TextBlock value={sub} optional={true} onEdit={setSub} color={secondaryColor} backgroundColor="white" />
+        <TextBlock value={sub} optional={true} onEdit={setSub} color="black" backgroundColor="white" />
       </Subtitle>
     </div>
   );

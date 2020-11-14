@@ -1,5 +1,5 @@
 import { InlineEdit } from "components/InlineEdit";
-import { TextStat, NumberStat } from "components/Stat";
+import { NumberStat, TextStat } from "components/Stat";
 import { useParam } from "lib/hooks";
 import React from "react";
 import { Theme } from "styles/theme";
