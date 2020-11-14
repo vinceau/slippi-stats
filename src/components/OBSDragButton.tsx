@@ -3,11 +3,19 @@ import React from "react";
 
 import obsImage from "../styles/images/obs.png";
 
-const OBS_PARAMS = new URLSearchParams({
-  "layer-name": "Slippi Stats",
-  "layer-width": "1920",
-  "layer-height": "1080",
-});
+interface OBSLayerOptions {
+  "layer-name": string;
+  "layer-width": number;
+  "layer-height": number;
+}
+
+function generateLink(options?: Partial<OBSLayerOptions>): string {
+  let location = window.location.href;
+  for (const [key, val] of Object.entries(options || {})) {
+    location += `&${key}=${val}`;
+  }
+  return location;
+}
 
 const Draggable = styled.a`
   color: #cccccc;
@@ -24,10 +32,9 @@ const Draggable = styled.a`
   font-weight: bold;
 `;
 
-export const OBSDragButton: React.FC = () => {
-  const [url, queries] = window.location.href.split("?");
-  const location = url + "?" + OBS_PARAMS.toString() + "&" + queries;
+export const OBSDragButton: React.FC<{ options?: Partial<OBSLayerOptions> }> = (props) => {
   const wrapperRef = React.useRef(null);
+  const location = generateLink(props.options);
   const pos = 30;
   const handleDragStart = (e: any) => {
     const img = new Image();

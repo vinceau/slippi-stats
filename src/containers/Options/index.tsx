@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { characters as characterUtil } from "@slippi/slippi-js";
 import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { OBSDragButton } from "components/OBSDragButton";
-import { useOnClickOutside } from "lib/hooks";
+import { useOnClickOutside, useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
 import { defaultTheme } from "styles/theme";
@@ -84,6 +85,13 @@ const Outer = styled.div`
 
 export const Options: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  const [char1] = useParam("char1");
+  const [char2] = useParam("char2");
+
+  const charName1 = characterUtil.getCharacterShortName(+char1);
+  const charName2 = characterUtil.getCharacterShortName(+char2);
+  const obsLayerName = `Slippi Stats - ${charName1} v ${charName2}`;
+
   const outerRef = React.useRef(null);
 
   useOnClickOutside(outerRef, () => {
@@ -124,7 +132,7 @@ export const Options: React.FC = () => {
               margin-top: 1rem;
             `}
           >
-            <OBSDragButton />
+            <OBSDragButton options={{ "layer-name": obsLayerName, "layer-width": 1920, "layer-height": 1080 }} />
           </div>
           <div
             css={css`
