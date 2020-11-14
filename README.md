@@ -18,9 +18,10 @@ Instantly compute Slippi stats in-browser and beautifully render the results. Pe
 
 ## Usage
 
-1. Drag and drop your SLP files
-2. Click "Generate Stats"
-3. Drag the OBS button into OBS to instantly create a source
+1. Go to <https://vinceau.github.io/slippi-stats/>
+2. Drag and drop your SLP files
+3. Click "Generate Stats"
+4. Drag the OBS button into OBS to instantly create a source
 
 ![animated gif showing the usage](docs/images/usage.gif)
 
@@ -46,17 +47,17 @@ body {
 
 In the project directory, you can run:
 
-### `yarn start`
+```
+yarn run start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This runs the app in the development mode. Open <http://localhost:3000> to view it in the browser. The page will reload as you make changes.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+To build the app for production, run:
 
-### `yarn build`
-
-Builds the app for production to the build folder.
+```
+yarn run build
+```
 
 ## Acknowledgements
 
@@ -68,8 +69,7 @@ This project was made possible by:
 
 - [BTS Smash](https://twitter.com/BTSsmash/) for their post-match stats design
 
+
 ## License
 
 This software is released under the terms of [MIT license](LICENSE).
-
-Linking back to [this Github repo](https://github.com/vinceau/slippi-stats) is much appreciated.
