@@ -66,9 +66,12 @@ export const MainView: React.FC = () => {
             title="Refresh page"
             css={css`
               cursor: pointer;
+              font-size: 4rem;
             `}
           >
             Slippi Stats
+            <br />
+            Graphic Generator
           </Header>
         </div>
         <div
