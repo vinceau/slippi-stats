@@ -16,14 +16,14 @@ const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   return [name, netplayCode || ""] as const;
 };
 
-export function processStats(gameDetails: GameDetails[]): URLSearchParams {
+export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   const filtered = filterGames(gameDetails);
   if (!filtered || filtered.length === 0) {
     throw new Error("No valid games");
   }
 
   const { games, summary } = generateStats(filtered);
-  const params: any = {}; // "mckm1": , "mckm2", "mcno1", "mcno2", "opk1", "opk2", "tdd1", "tdd2", "dpo1", "dpo2", "ipm1", "ipm2", "akp1", "akp2", "nw1", "nw2"};
+  const params: Record<string, any> = {}; // "mckm1": , "mckm2", "mcno1", "mcno2", "opk1", "opk2", "tdd1", "tdd2", "dpo1", "dpo2", "ipm1", "ipm2", "akp1", "akp2", "nw1", "nw2"};
 
   // Set character info
   const lastGame = games[games.length - 1];
@@ -128,5 +128,5 @@ export function processStats(gameDetails: GameDetails[]): URLSearchParams {
   });
 
   console.log("returning these params: ", params);
-  return new URLSearchParams(params);
+  return params;
 }

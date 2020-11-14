@@ -15,8 +15,20 @@ export interface DualColorPanelProps {
 
 export const DualColorPanel: React.FC<DualColorPanelProps> = (props) => {
   const { panelLabel, leftLabel, leftColorParam, leftDefault, rightLabel, rightColorParam, rightDefault } = props;
-  const [leftColor, setLeftColor] = useParam(leftColorParam, leftDefault);
-  const [rightColor, setRightColor] = useParam(rightColorParam, rightDefault);
+  const existingLeftColor = localStorage.getItem(leftColorParam);
+  const existingRightColor = localStorage.getItem(rightColorParam);
+  const [leftColor, setLeftColor] = useParam(leftColorParam, existingLeftColor || leftDefault);
+  const [rightColor, setRightColor] = useParam(rightColorParam, existingRightColor || rightDefault);
+
+  const onLeftColorChange = (color: string) => {
+    localStorage.setItem(leftColorParam, color);
+    setLeftColor(color);
+  };
+
+  const onRightColorChange = (color: string) => {
+    localStorage.setItem(rightColorParam, color);
+    setRightColor(color);
+  };
 
   return (
     <Panel title={panelLabel}>
@@ -25,8 +37,8 @@ export const DualColorPanel: React.FC<DualColorPanelProps> = (props) => {
         rightLabel={rightLabel}
         leftColor={leftColor}
         rightColor={rightColor}
-        onLeftColorChange={setLeftColor}
-        onRightColorChange={setRightColor}
+        onLeftColorChange={onLeftColorChange}
+        onRightColorChange={onRightColorChange}
       />
     </Panel>
   );

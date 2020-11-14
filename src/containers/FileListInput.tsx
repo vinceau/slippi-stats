@@ -5,6 +5,7 @@ import { DropPad } from "components/DropPad";
 import { FileList } from "components/FileList";
 import { processStats } from "lib/processStats";
 import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
+import { generateSearchParams } from "lib/searchParams";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { defaultTheme } from "styles/theme";
@@ -41,10 +42,8 @@ export const FileListInput: React.FC = () => {
 
   const onClick = () => {
     const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
-    // const s = generateStats(gameDetails);
-    // setStats(s);
     const params = processStats(gameDetails);
-    const search = "?" + params.toString();
+    const search = "?" + generateSearchParams(params).toString();
     history.push({
       pathname: "/render",
       search,
