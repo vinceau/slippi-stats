@@ -18,6 +18,18 @@ const Outer = styled.div`
   grid-template-columns: 20% 60% 20%;
 `;
 
+const NameBlockContainer = styled.div<{
+  align: "left" | "right";
+}>`
+  ${(p) => `
+  width: 20%;
+  position: absolute;
+  ${p.align}: 0;
+  margin-${p.align}: 2rem;
+  bottom: 15%;
+  `}
+`;
+
 export const RenderDisplay: React.FC<Theme> = (theme) => {
   const [leftColor] = useParam("leftColor", PortColor.P1);
   const [rightColor] = useParam("rightColor", PortColor.P2);
@@ -39,39 +51,12 @@ export const RenderDisplay: React.FC<Theme> = (theme) => {
       >
         <CharDisplay theme={rightColor} charParam="char2" colorParam="color2" align="left" />
       </div>
-      <div
-        css={css`
-          position: absolute;
-          bottom: 15%;
-          display: inline-flex;
-          width: 98%;
-          margin: 0 1%;
-        `}
-      >
-        <div
-          css={css`
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          `}
-        >
-          <div
-            css={css`
-              width: 20%;
-            `}
-          >
-            <NameBlock nameParam="name1" subtitleParam="sub1" {...theme} />
-          </div>
-          <div
-            css={css`
-              width: 20%;
-            `}
-          >
-            <NameBlock nameParam="name2" subtitleParam="sub2" {...theme} />
-          </div>
-        </div>
-      </div>
+      <NameBlockContainer align="left">
+        <NameBlock nameParam="name1" subtitleParam="sub1" {...theme} />
+      </NameBlockContainer>
+      <NameBlockContainer align="right">
+        <NameBlock nameParam="name2" subtitleParam="sub2" {...theme} />
+      </NameBlockContainer>
       <div
         css={css`
           position: absolute;
