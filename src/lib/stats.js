@@ -7,6 +7,7 @@
 const { stages: stageUtil, moves: moveUtil, characters: characterUtil } = require("@slippi/slippi-js");
 const moment = require("moment");
 const _ = require("lodash");
+const { findWinner } = require("./winner");
 
 const stats = {
   OPENINGS_PER_KILL: "openingsPerKill",
@@ -482,54 +483,12 @@ function generateGameInfo(games) {
   const orderedGames = _.orderBy(games, [getStartAt], ["asc"]);
 
   const getResultForPlayer = (game, playerIndex) => {
-    // console.log(game);
-    // Calculate assumed game result
-    const gameEnd = game.gameEnd;
-    if (!gameEnd) {
+    const latestFrame = game.latestFrame;
+    const winner = findWinner(latestFrame);
+    if (winner === null) {
       return "unknown";
     }
-
-    const players = _.get(game.settings, ["players"]);
-    const opp = _.filter(players, (player) => player.playerIndex !== playerIndex);
-    const oppIndex = _.get(opp, [0, "playerIndex"]);
-
-    switch (gameEnd.gameEndMethod) {
-      case 0:
-        // This is an legacy LRAS ending
-        return "unknown";
-      case 1:
-        // This is a TIME! ending, not implemented yet
-        return "unknown";
-      case 2: {
-        // This is a GAME! ending
-        const latestFrame = _.get(game.latestFrame, "players") || [];
-        return determineGameWinner(latestFrame, playerIndex, oppIndex);
-      }
-      case 3: {
-        // This is an legacy generic game ended
-        const latestFrame = _.get(game.latestFrame, "players") || [];
-        return determineGameWinner(latestFrame, playerIndex, oppIndex);
-      }
-      case 7: {
-        return gameEnd.lrasInitiatorIndex === playerIndex ? "loser" : "winner";
-      }
-    }
-
-    return "unknown";
-  };
-
-  const determineGameWinner = (latestFrame, playerIndex, oppIndex) => {
-    const playerStocks = _.get(latestFrame, [playerIndex, "post", "stocksRemaining"]);
-    const oppStocks = _.get(latestFrame, [oppIndex, "post", "stocksRemaining"]);
-    if (playerStocks === 0 && oppStocks === 0) {
-      const playerPercent = _.get(latestFrame, [playerIndex, "post", "percent"]);
-      const oppPercent = _.get(latestFrame, [oppIndex, "post", "percent"]);
-      if (playerPercent === oppPercent) {
-        return "unknown";
-      }
-      return playerPercent < oppPercent ? "winner" : "loser";
-    }
-    return playerStocks === 0 ? "loser" : "winner";
+    return winner === playerIndex ? "winner" : "loser";
   };
 
   const generatePlayerInfo = (game) => (player) => {
