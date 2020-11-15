@@ -5,7 +5,7 @@ import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
 import { processStats } from "lib/processStats";
-import { GameDetails, generateGameDetails, readFileAsSlippiGame } from "lib/readFile";
+import { GameDetails, readFileAsGameDetails } from "lib/readFile";
 import { generateSearchParams } from "lib/searchParams";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
@@ -80,13 +80,11 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
 
       const promises = acceptedFiles.map(async (file) => {
         try {
-          const game = await readFileAsSlippiGame(file);
-          const details = generateGameDetails(file.name, game);
+          const details = await readFileAsGameDetails(file);
           dispatch({
-            type: Types.ADD_GAME,
+            type: Types.SET_DETAILS,
             payload: {
               filename: file.name,
-              game,
               details,
             },
           });

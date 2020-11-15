@@ -18,14 +18,19 @@ export interface GameDetails {
   gameEnd: GameEndType | null;
 }
 
-export async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
+export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
+  const game = await readFileAsSlippiGame(file);
+  return generateGameDetails(file.name, game);
+}
+
+async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
   const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
   const arr = new Int8Array(data);
   const buf = Buffer.from(arr);
   return new SlippiGame(buf);
 }
 
-export function generateGameDetails(name: string, game: SlippiGame): GameDetails {
+function generateGameDetails(name: string, game: SlippiGame): GameDetails {
   // For a valid SLP game, at the very least we should have valid settings
   const settings = game.getSettings();
   if (!settings) {

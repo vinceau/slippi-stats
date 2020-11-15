@@ -1,4 +1,3 @@
-import SlippiGame from "@slippi/slippi-js";
 import { GameDetails } from "lib/readFile";
 
 import { InitialStateType, ProcessedFile } from "./types";
@@ -15,17 +14,16 @@ type ActionMap<M extends { [index: string]: any }> = {
 };
 
 export enum Types {
-  ADD_GAME = "ADD_GAME",
-  SET_ERROR = "SET_ERROR",
   ADD_FILES = "ADD_FILES",
+  SET_DETAILS = "SET_DETAILS",
+  SET_ERROR = "SET_ERROR",
   REMOVE_FILE = "REMOVE_FILE",
   CLEAR_ALL = "CLEAR_ALL",
 }
 
 type ActionPayload = {
-  [Types.ADD_GAME]: {
+  [Types.SET_DETAILS]: {
     filename: string;
-    game: SlippiGame;
     details: GameDetails;
   };
   [Types.SET_ERROR]: {
@@ -45,7 +43,7 @@ export type ReducerActions = ActionMap<ActionPayload>[keyof ActionMap<ActionPayl
 
 export const reducer = (state: InitialStateType, action: ReducerActions) => {
   switch (action.type) {
-    case Types.ADD_GAME: {
+    case Types.SET_DETAILS: {
       const { filename, details } = action.payload;
       const files = state.files;
       const fileToReplace = files.findIndex((f) => f.filename === filename);
