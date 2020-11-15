@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { HeadToHead, StageTimer } from "components/GameResult";
+import { HeadToHead } from "components/HeadToHead";
+import { StageTimer } from "components/StageTimer";
 import { useGameInfo } from "lib/hooks";
 import React from "react";
 
