@@ -485,9 +485,6 @@ function generateGameInfo(games) {
   const getResultForPlayer = (game, playerIndex) => {
     const latestFrame = game.latestFrame;
     const winner = findWinner(latestFrame);
-    if (winner === null) {
-      return "unknown";
-    }
     return winner === playerIndex ? "winner" : "loser";
   };
 

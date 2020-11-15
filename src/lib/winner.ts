@@ -3,11 +3,11 @@ import { FrameEntryType } from "@slippi/slippi-js";
 /**
  * Given the last frame of the game, determine the winner first based on stock count
  * then based on remaining percent.
- * If percents are tied, return null;
+ * If percents are tied, return the player with the lower port number by default.
  *
  * @returns the player index of the winner
  */
-export const findWinner = (lastFrame: FrameEntryType): number | null => {
+export const findWinner = (lastFrame: FrameEntryType): number => {
   const postFrameEntries = Object.keys(lastFrame.players).map((i: any) => (lastFrame.players[i] as any).post);
   const winnerPostFrame = postFrameEntries.reduce((a, b) => {
     // Determine winner based on stock count
@@ -26,8 +26,8 @@ export const findWinner = (lastFrame: FrameEntryType): number | null => {
       return b;
     }
 
-    // Just return null if no winner
-    return null;
+    // Just return a by default
+    return a;
   });
 
   return winnerPostFrame.playerIndex;
