@@ -41,10 +41,6 @@ export function generateDemoValues(): Record<string, any> {
   paramMap.char2 = char2;
   paramMap.color2 = color2;
 
-  // Track game wins
-  let leftWins = 0;
-  let rightWins = 0;
-
   // Random games
   const totalGames = getRandomInt(3, 5);
   paramMap.gt = totalGames;
@@ -55,19 +51,6 @@ export function generateDemoValues(): Record<string, any> {
     const rightPlayerInfo = [char2, color2, leftWillWin ? "loser" : "winner"].join(",");
     const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo]);
     paramMap[gameKey] = gameValue;
-
-    if (leftWillWin) {
-      leftWins += 1;
-    } else {
-      rightWins += 1;
-    }
-  }
-
-  // Set score
-  paramMap.score = `${leftWins} - ${rightWins}`;
-  // Set winner
-  if (leftWins !== rightWins) {
-    paramMap.winner = leftWins > rightWins ? "left" : "right";
   }
 
   // Random moves

@@ -49,10 +49,6 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   // Set game info
   params.gt = games.length; // Set the total number of games
 
-  // Track game wins
-  let leftWins = 0;
-  let rightWins = 0;
-
   (games as any[]).forEach((game, i) => {
     // console.log("processing game: ", game);
     const gameKey = `g${i + 1}`;
@@ -62,19 +58,7 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
     const gameValue = [stageId, gameDuration, ...playerInfo].join(",");
     // console.log(`${gameKey} : ${gameValue}`);
     params[gameKey] = gameValue;
-
-    // Increment win counts
-    if (game.players[0].gameResult === "winner") {
-      leftWins += 1;
-    } else if (game.players[1].gameResult === "winner") {
-      rightWins += 1;
-    }
   });
-
-  params.score = `${leftWins} - ${rightWins}`;
-  if (leftWins !== rightWins) {
-    params.winner = leftWins > rightWins ? "left" : "right";
-  }
 
   // Set the stat values
   (summary as any[]).forEach((s) => {
