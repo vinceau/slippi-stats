@@ -4,6 +4,7 @@ import React from "react";
 
 const Outer = styled.div<{
   borderColor: string;
+  onClick?: any;
 }>`
   position: relative;
   display: block;
@@ -11,6 +12,7 @@ const Outer = styled.div<{
   height: 5rem;
   width: 100%;
   max-width: 10rem;
+  ${(p) => (p.onClick ? "cursor: pointer;" : "")}
 `;
 
 const BaseHeadImage = styled.div`
@@ -59,6 +61,7 @@ export interface HeadToHeadProps {
   leftColor: string;
   rightColor: string;
   borderColor?: string;
+  onClick?: () => void;
 }
 
 export const HeadToHead: React.FC<HeadToHeadProps> = ({
@@ -71,13 +74,20 @@ export const HeadToHead: React.FC<HeadToHeadProps> = ({
   leftColor,
   rightColor,
   borderColor,
+  onClick,
 }) => {
   const waypoint = 55;
   const p1 = getCharacterPortrait(char1, color1);
   const p2 = getCharacterPortrait(char2, color2);
 
+  const clickHandler = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <Outer borderColor={borderColor || "transparent"}>
+    <Outer borderColor={borderColor || "transparent"} onClick={clickHandler}>
       <HeadImage backgroundColor={leftColor} imageSrc={p1} waypoint={waypoint} side="left" dim={result1 === "loser"} />
       <HeadImage
         backgroundColor={rightColor}
