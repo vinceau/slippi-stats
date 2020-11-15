@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { useParam } from "lib/hooks";
+import { Block } from "components/Block";
+import { GameDisplay } from "components/GameDisplay";
+import { useGames } from "lib/hooks";
 import React from "react";
 
-import { GameDisplay } from "../GameDisplay";
 import {
   AverageKillPercent,
   MostCommonKillMove,
@@ -23,13 +24,24 @@ const Divider = styled.div`
   background-color: rgba(255, 255, 255, 0.05);
 `;
 
+const ScoreBlock = styled(Block)`
+  padding: 0.5rem 4rem;
+  font-size: 5rem;
+  font-weight: 800;
+  position: absolute;
+  bottom: -6rem;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const StatDisplay: React.FC<{
   primaryColor: string;
   secondaryColor: string;
   leftColor: string;
   rightColor: string;
 }> = (props) => {
-  const [winningSide] = useParam("winner");
+  const { games, score, setGame } = useGames();
+  const winningSide = score.left > score.right ? "left" : score.right > score.left ? "right" : "";
   const { leftColor, rightColor, ...theme } = props;
   return (
     <div
@@ -54,8 +66,17 @@ export const StatDisplay: React.FC<{
         <AverageKillPercent />
         <NeutralWins />
         <Divider />
-        <GameDisplay winningSide={winningSide} leftColor={leftColor} rightColor={rightColor} />
+        <GameDisplay
+          games={games}
+          updateGameInfo={setGame}
+          winningSide={winningSide}
+          leftColor={leftColor}
+          rightColor={rightColor}
+        />
       </div>
+      <ScoreBlock color="white" backgroundColor={props.primaryColor}>
+        {`${score.left} - ${score.right}`}
+      </ScoreBlock>
     </div>
   );
 };

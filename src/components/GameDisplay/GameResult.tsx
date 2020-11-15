@@ -2,11 +2,12 @@
 import { css, jsx } from "@emotion/core";
 import { HeadToHead } from "components/HeadToHead";
 import { StageTimer } from "components/StageTimer";
-import { useGameInfo } from "lib/hooks";
+import { GameInfo } from "lib/hooks";
 import React from "react";
 
 export interface GameResultProps {
-  index: number;
+  gameInfo: GameInfo | null;
+  onGameInfoChange: (info: Partial<GameInfo>) => void;
   leftColor: string;
   rightColor: string;
   winningSide?: string;
@@ -17,7 +18,7 @@ const switchResult = (res: string): string => {
 };
 
 export const GameResult: React.FC<GameResultProps> = (props) => {
-  const [gameInfo, setGameInfo] = useGameInfo(props.index);
+  const { gameInfo, onGameInfoChange } = props;
   if (!gameInfo) {
     return null;
   }
@@ -29,7 +30,7 @@ export const GameResult: React.FC<GameResultProps> = (props) => {
   const borderColor = `rgba(255, 255, 255, ${highlight ? 1 : 0.2})`;
 
   const onClick = () => {
-    setGameInfo({
+    onGameInfoChange({
       result1: switchResult(gameInfo.result1),
       result2: switchResult(gameInfo.result2),
     });
