@@ -67,14 +67,18 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
+      // Track how long processing takes
       const startTime = new Date().getTime();
+
+      // First add all the files to the store
+      dispatch({
+        type: Types.ADD_FILES,
+        payload: {
+          files: acceptedFiles,
+        },
+      });
+
       const promises = acceptedFiles.map(async (file) => {
-        dispatch({
-          type: Types.ADD_FILE,
-          payload: {
-            filename: file.name,
-          },
-        });
         try {
           const game = await readFileAsSlippiGame(file);
           const details = generateGameDetails(file.name, game);
@@ -97,6 +101,8 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
           });
         }
       });
+
+      // Print the time taken when complete
       Promise.all(promises).then(() => {
         const time = new Date().getTime() - startTime;
         console.log(`Finished processing in ${time}ms`);
