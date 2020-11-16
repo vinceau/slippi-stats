@@ -25,13 +25,13 @@ Instantly compute Slippi stats in-browser and beautifully render the results. Pe
 
 ![animated gif showing the usage](docs/images/usage.gif)
 
-The gif above is real-time speed and is not sped up!
-
 ## FAQ
 
-### How is it so fast?
+### The detected winner is incorrect!
 
-It reads your SLP files locally and does all the computation in-browser. Nothing is sent to any servers so this works offline too! This allows very fast Slippi game parsing so you can generate these graphics instantly.
+Determining who wins a game seems easy at first but once you consider the possibilities of LRAS and quitting out of games, it's actually non-trivial. If the detected winner is incorrect, you can fix the set count by clicking on the head-to-head images.
+
+![how to change the game winner](https://i.imgur.com/QsEiegO.gif)
 
 ### Can I remove the background in OBS?
 
@@ -42,6 +42,16 @@ body {
   background: none !important;
 }
 ```
+
+### Can I change the color scheme?
+
+Yes, you can! Expand the options panel at the bottom to show some more customization options.
+
+![how to change the color scheme](https://i.imgur.com/zFnevxq.gif)
+
+### How does it work?
+
+It reads your SLP files locally and does all the computation in-browser. Nothing is sent to any servers so this works offline too! This allows very fast Slippi game parsing so you can generate these graphics instantly.
 
 ## Development
 
@@ -68,7 +78,6 @@ This project was made possible by:
 - [Jas Laferriere](https://github.com/JLaferri) for his [Slippi Set Stats](https://github.com/project-slippi/slippi-set-stats) script
 
 - [BTS Smash](https://twitter.com/BTSsmash/) for their post-match stats design
-
 
 ## License
 
