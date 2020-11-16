@@ -31,7 +31,7 @@ Instantly compute Slippi stats in-browser and beautifully render the results. Pe
 
 Determining who wins a game seems easy at first but once you consider the possibilities of LRAS and quitting out of games, it's actually non-trivial. If the detected winner is incorrect, you can fix the set count by clicking on the head-to-head images.
 
-![how to change the game winner](https://i.imgur.com/QsEiegO.gif)
+![how to change the game winner](https://i.imgur.com/ZzCvVID.gif)
 
 ### Can I remove the background in OBS?
 
