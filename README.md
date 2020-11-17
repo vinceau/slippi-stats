@@ -43,6 +43,10 @@ body {
 }
 ```
 
+### Dragging the OBS button doesn't work!
+
+If you're using Streamlabs OBS (SLOBS), or just can't get it to work in normal OBS, just copy the browser URL and create a new browser source as you normally would for a website.
+
 ### Can I change the color scheme?
 
 Yes, you can! Expand the options panel at the bottom to show some more customization options.
