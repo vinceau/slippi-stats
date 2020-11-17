@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { characters as characterUtil } from "@slippi/slippi-js";
 import { ExternalLink as A } from "components/ExternalLink";
 import { OBSDragButton } from "components/OBSDragButton";
+import { CopyToClipboard } from "components/CopyToClipboard";
 import { useOnClickOutside, useParam } from "lib/hooks";
 import { PortColor } from "lib/portColor";
 import React from "react";
@@ -133,6 +134,22 @@ export const Options: React.FC = () => {
             `}
           >
             <OBSDragButton options={{ "layer-name": obsLayerName, "layer-width": 1920, "layer-height": 1080 }} />
+            <div
+              css={css`
+                margin-top: 0.5rem;
+                text-align: center;
+                font-size: 1.2rem;
+                opacity: 0.5;
+                transition: opacity 0.1s ease-in-out;
+                &:hover {
+                  opacity: 1;
+                }
+              `}
+            >
+              <CopyToClipboard text={window.location.href}>
+                <span>copy link to clipboard</span>
+              </CopyToClipboard>
+            </div>
           </div>
           <div
             css={css`
