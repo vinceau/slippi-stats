@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/slippi-stats/static/css/main.66e643c1.chunk.css",
-    "main.js": "/slippi-stats/static/js/main.ea5b301f.chunk.js",
-    "main.js.map": "/slippi-stats/static/js/main.ea5b301f.chunk.js.map",
+    "main.js": "/slippi-stats/static/js/main.da1c9e07.chunk.js",
+    "main.js.map": "/slippi-stats/static/js/main.da1c9e07.chunk.js.map",
     "runtime-main.js": "/slippi-stats/static/js/runtime-main.67106a9f.js",
     "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.67106a9f.js.map",
     "static/js/2.7081972a.chunk.js": "/slippi-stats/static/js/2.7081972a.chunk.js",
     "static/js/2.7081972a.chunk.js.map": "/slippi-stats/static/js/2.7081972a.chunk.js.map",
     "index.html": "/slippi-stats/index.html",
-    "precache-manifest.8792720c89dfe945d07bda908547cf9c.js": "/slippi-stats/precache-manifest.8792720c89dfe945d07bda908547cf9c.js",
+    "precache-manifest.4be0d860f3b7326e18eef5fb65b55ffd.js": "/slippi-stats/precache-manifest.4be0d860f3b7326e18eef5fb65b55ffd.js",
     "service-worker.js": "/slippi-stats/service-worker.js",
     "static/css/main.66e643c1.chunk.css.map": "/slippi-stats/static/css/main.66e643c1.chunk.css.map",
     "static/js/2.7081972a.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.7081972a.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.67106a9f.js",
     "static/js/2.7081972a.chunk.js",
     "static/css/main.66e643c1.chunk.css",
-    "static/js/main.ea5b301f.chunk.js"
+    "static/js/main.da1c9e07.chunk.js"
   ]
 }
