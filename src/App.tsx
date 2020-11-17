@@ -10,8 +10,7 @@ import { RenderView } from "./views/RenderView";
 const App: React.FC = () => {
   return (
     <AppProvider>
-      {/* We have to define the basename here as the Github pages URL segment or the SPA won't work. */}
-      <Router basename="/slippi-stats">
+      <Router basename={process.env.PUBLIC_URL}>
         <Route exact path="/" component={MainView} />
         <Route path="/render" component={RenderView} />
         <Route path="/random" component={RandomView} />
