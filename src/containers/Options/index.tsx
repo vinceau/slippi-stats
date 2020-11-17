@@ -11,6 +11,7 @@ import React from "react";
 import { defaultTheme } from "styles/theme";
 
 import { DualColorPanel } from "./Panel";
+import { hasOpacity } from "styles/opacity";
 
 const Content = styled.div`
   padding-top: 2rem;
@@ -139,11 +140,7 @@ export const Options: React.FC = () => {
                 margin-top: 0.5rem;
                 text-align: center;
                 font-size: 1.2rem;
-                opacity: 0.5;
-                transition: opacity 0.1s ease-in-out;
-                &:hover {
-                  opacity: 1;
-                }
+                ${hasOpacity(0.5)};
               `}
             >
               <CopyToClipboard text={window.location.href}>
@@ -154,12 +151,8 @@ export const Options: React.FC = () => {
           <div
             css={css`
               font-size: 1.5rem;
-              padding: 2rem 0;
-              opacity: 0.5;
-              transition: opacity 0.1s ease-in-out;
-              &:hover {
-                opacity: 1;
-              }
+              margin: 2rem 0;
+              ${hasOpacity(0.5)}
               a:hover {
                 text-decoration: underline;
               }

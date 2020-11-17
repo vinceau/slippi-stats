@@ -7,6 +7,7 @@ import { convertFrameCountToDurationString } from "lib/stats";
 import { findWinner } from "lib/winner";
 import React from "react";
 import { ProcessedFile } from "store/types";
+import { hasOpacity } from "styles/opacity";
 import { defaultTheme } from "styles/theme";
 
 const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props) => {
@@ -20,10 +21,8 @@ const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props)
         align-items: center;
         color: rgba(255, 255, 255, 0.8);
         background-color: rgba(0, 0, 0, 0.3);
-        opacity: 0.8;
-        transition: opacity 0.2s ease-in-out;
+        ${hasOpacity(0.8)};
         &:hover {
-          opacity: 1;
           .remove-button {
             opacity: 1;
           }

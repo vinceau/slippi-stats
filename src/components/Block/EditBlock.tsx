@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { hasOpacity } from "styles/opacity";
 
 import { InlineEdit } from "../InlineEdit";
 import { Block } from "./Block";
@@ -23,11 +24,9 @@ export const EditBlock: React.FC<EditBlockProps> = ({ onEdit, backgroundColor, v
 const OptionalBlock = styled(Block)<{
   show?: boolean;
 }>`
-  opacity: ${(p) => (p.show ? 1 : 0)};
-  transition: opacity 0.1s ease-in-out;
+  ${(p) => hasOpacity(p.show ? 1 : 0)};
   position: relative;
   &:hover {
-    opacity: 1;
     z-index: 10;
   }
 `;

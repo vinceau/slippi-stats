@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { useOnClickOutside } from "lib/hooks";
 import React, { useRef } from "react";
 import { ChromePicker } from "react-color";
+import { hasOpacity } from "styles/opacity";
 
 const ColorSquare = styled.div<{
   size: string;
@@ -25,11 +26,7 @@ const ResetButton = styled.div`
   font-size: 1.1rem;
   cursor: pointer;
   padding: 0.2rem 0.5rem;
-  opacity: 0.5;
-  transition: opacity 0.2s ease-in-out;
-  &:hover {
-    opacity: 1;
-  }
+  ${hasOpacity(0.5)};
 `;
 
 export const ColorPicker: React.FC<{

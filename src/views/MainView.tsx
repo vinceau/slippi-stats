@@ -7,6 +7,7 @@ import { FileListInput } from "containers/FileListInput";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext, Types } from "store";
+import { hasOpacity } from "styles/opacity";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
 const linkStyle = css`
@@ -20,11 +21,7 @@ const linkStyle = css`
   font-weight: 700;
   font-size: 2.3rem;
   cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.2s ease-in-out;
-  &:hover {
-    opacity: 1;
-  }
+  ${hasOpacity(0.8)};
 `;
 
 const Container = styled.div`
