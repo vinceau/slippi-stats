@@ -14,8 +14,8 @@ export interface CharDisplayProps {
 // Some characters have their faces to the right so it get cut off
 // so adjust the alignment so you can properly see their faces.
 const RIGHT_CHAR_ALIGNMENT = new Map<string, string>();
-RIGHT_CHAR_ALIGNMENT.set("5", "left top"); // Bowser
-RIGHT_CHAR_ALIGNMENT.set("19", "left top"); // Sheik
+RIGHT_CHAR_ALIGNMENT.set("5", "right top"); // Bowser
+RIGHT_CHAR_ALIGNMENT.set("19", "right top"); // Sheik
 RIGHT_CHAR_ALIGNMENT.set("23", "left 80%"); // Roy
 
 function getAlignment(facing: Side, char: string, defaultAlignment: string): string {
