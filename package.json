@@ -14,7 +14,7 @@
     "test": "react-scripts test",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
-    "lint:fix": "eslint --fix --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx"
+    "lint:fix": "yarn run lint --fix"
   },
   "husky": {
     "hooks": {
