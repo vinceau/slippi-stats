@@ -39,6 +39,8 @@ jobs:
       - name: Build and deploy
         run: |
           CI=false yarn run build
+        env:
+          PUBLIC_URL: /slippi-stats
       - name: Publish
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
