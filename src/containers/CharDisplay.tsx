@@ -11,19 +11,22 @@ export interface CharDisplayProps {
   theme: string;
 }
 
-// Some characters have their faces to the right so it get cut off.
-// e.g. Sheik and Bowser
-// So make sure we return the desired alignment
-const FLIP_RIGHT_CHARS = ["19", "5"];
+// Some characters have their faces to the right so it get cut off
+// so adjust the alignment so you can properly see their faces.
+const RIGHT_CHAR_ALIGNMENT = new Map<string, string>();
+RIGHT_CHAR_ALIGNMENT.set("5", "left top"); // Bowser
+RIGHT_CHAR_ALIGNMENT.set("19", "left top"); // Sheik
+RIGHT_CHAR_ALIGNMENT.set("23", "left 80%"); // Roy
 
-function getAlignment(facing: Side, char: string, defaultAlignment: Side): Side {
+function getAlignment(facing: Side, char: string, defaultAlignment: string): string {
   if (facing === "left") {
     return defaultAlignment;
   }
 
   // We so far only care about the right hand side of the VS-screen
-  if (FLIP_RIGHT_CHARS.includes(char)) {
-    return "right";
+  const customCharAlign = RIGHT_CHAR_ALIGNMENT.get(char);
+  if (customCharAlign) {
+    return customCharAlign;
   }
 
   return defaultAlignment;
@@ -35,7 +38,7 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
   const [char] = useParam(charParam);
   const facing: Side = align === "left" ? "right" : "left";
   const imgSrc = getCharacterVSScreen(facing, char, color);
-  const alignment = getAlignment(facing, char, align);
+  const alignment = getAlignment(facing, char, `${align} top`);
   return (
     <div
       css={css`
@@ -51,7 +54,7 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
           background-image: url("${imgSrc}");
           background-repeat: no-repeat;
           background-size: cover;
-          background-position: top ${alignment};
+          background-position: ${alignment};
         }
       `}
     ></div>
