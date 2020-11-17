@@ -13,6 +13,7 @@ const ColorSquare = styled.div<{
   height: ${(p) => p.size};
   width: ${(p) => p.size};
   border-radius: 0.5rem;
+  border: solid 0.1rem rgba(255, 255, 255, 0.2);
   background-color: ${(p) => p.color};
 `;
 
