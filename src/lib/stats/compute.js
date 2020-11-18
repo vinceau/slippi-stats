@@ -5,10 +5,10 @@
  */
 
 const { stages: stageUtil, moves: moveUtil, characters: characterUtil } = require("@slippi/slippi-js");
-const moment = require("moment");
 const _ = require("lodash");
 const { findWinner } = require("../winner");
 const { Stat } = require("./types");
+const { convertFrameCountToDurationString } = require("../util");
 
 const statDefinitions = {
   [Stat.OPENINGS_PER_KILL]: {
@@ -472,11 +472,6 @@ function generateGameInfo(games) {
       duration: convertFrameCountToDurationString(game.stats.lastFrame),
     };
   });
-}
-
-export function convertFrameCountToDurationString(frameCount) {
-  const duration = moment.duration(frameCount / 60, "seconds");
-  return moment.utc(duration.as("milliseconds")).format("m:ss");
 }
 
 export function generateOutput(statsList, games) {

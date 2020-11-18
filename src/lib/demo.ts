@@ -1,6 +1,6 @@
 import { characters as characterUtil, moves as moveUtil } from "@slippi/slippi-js";
 
-import { convertFrameCountToDurationString } from "./stats";
+import { convertFrameCountToDurationString } from "./util";
 
 /*
  * Random functions are taken from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range

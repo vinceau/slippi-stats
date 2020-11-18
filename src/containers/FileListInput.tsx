@@ -4,14 +4,23 @@ import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
-import { processStats } from "lib/processStats";
+import { generateStatParams } from "lib/stats";
 import { readFileAsGameDetails } from "lib/readFile";
-import { GameDetails } from "lib/stats/types";
+import { GameDetails, Stat } from "lib/stats/types";
 import { generateSearchParams } from "lib/searchParams";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { AppContext, Types } from "../store";
+
+const DEFAULT_STATS = [
+  Stat.KILL_MOVES,
+  Stat.NEUTRAL_OPENER_MOVES,
+  Stat.OPENINGS_PER_KILL,
+  Stat.DAMAGE_DONE,
+  Stat.AVG_KILL_PERCENT,
+  Stat.NEUTRAL_WINS,
+];
 
 const ProcessButton = styled.button<{
   backgroundColor: string;
@@ -45,7 +54,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const onClick = () => {
     try {
       const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
-      const params = processStats(gameDetails);
+      const params = generateStatParams(gameDetails, DEFAULT_STATS);
       const search = "?" + generateSearchParams(params).toString();
       history.push({
         pathname: "/render",

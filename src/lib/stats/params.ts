@@ -1,8 +1,7 @@
-import { generateOutput, filterGames } from "lib/stats";
 import { get } from "lodash";
-
-import { getPortColor } from "./portColor";
-import { GameDetails, Stat } from "./stats/types";
+import { getPortColor } from "../portColor";
+import { GameDetails, Stat } from "./types";
+import { generateOutput, filterGames } from "./compute";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   const settings = details.settings;
@@ -16,20 +15,11 @@ const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   return [name, netplayCode || ""] as const;
 };
 
-export function processStats(gameDetails: GameDetails[]): Record<string, any> {
+export function generateStatParams(gameDetails: GameDetails[], statsList: Stat[]): Record<string, any> {
   const filtered = filterGames(gameDetails);
   if (!filtered || filtered.length === 0) {
     throw new Error("No valid games");
   }
-
-  const statsList = [
-    Stat.KILL_MOVES,
-    Stat.NEUTRAL_OPENER_MOVES,
-    Stat.OPENINGS_PER_KILL,
-    Stat.DAMAGE_DONE,
-    Stat.AVG_KILL_PERCENT,
-    Stat.NEUTRAL_WINS,
-  ];
 
   let stats;
   try {

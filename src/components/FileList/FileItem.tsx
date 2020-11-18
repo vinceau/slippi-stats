@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
 import { ErrorMessage } from "components/ErrorMessage";
 import { getCharacterStockIcon } from "lib/resources";
-import { convertFrameCountToDurationString } from "lib/stats";
+import { convertFrameCountToDurationString } from "lib/util";
 import { findWinner } from "lib/winner";
 import React from "react";
 import { ProcessedFile } from "store/types";
