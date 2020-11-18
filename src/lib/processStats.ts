@@ -3,6 +3,7 @@ import { get } from "lodash";
 
 import { getPortColor } from "./portColor";
 import { GameDetails } from "./readFile";
+import { Stat } from "./stats/types";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   const settings = details.settings;
@@ -23,12 +24,12 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   }
 
   const statsList = [
-    "killMoves",
-    "neutralOpenerMoves",
-    "openingsPerKill",
-    "damageDone",
-    "avgKillPercent",
-    "neutralWins",
+    Stat.KILL_MOVES,
+    Stat.NEUTRAL_OPENER_MOVES,
+    Stat.OPENINGS_PER_KILL,
+    Stat.DAMAGE_DONE,
+    Stat.AVG_KILL_PERCENT,
+    Stat.NEUTRAL_WINS,
   ];
 
   let stats;
@@ -81,22 +82,22 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
   // Set the stat values
   (summary as any[]).forEach((s) => {
     switch (s.id) {
-      case "openingsPerKill": {
+      case Stat.OPENINGS_PER_KILL: {
         params.opk1 = s.results[0].simple.text;
         params.opk2 = s.results[1].simple.text;
         break;
       }
-      case "damagePerOpening": {
+      case Stat.DAMAGE_PER_OPENING: {
         params.dpo1 = s.results[0].simple.text;
         params.dpo2 = s.results[1].simple.text;
         break;
       }
-      case "neutralWins": {
+      case Stat.NEUTRAL_WINS: {
         params.nw1 = s.results[0].simple.text;
         params.nw2 = s.results[1].simple.text;
         break;
       }
-      case "killMoves": {
+      case Stat.KILL_MOVES: {
         // console.log(s);
         const playerRes = s.results[0].result[0];
         const opponentRes = s.results[1].result[0];
@@ -104,24 +105,24 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
         params.mckm2 = `${opponentRes.shortName.toUpperCase()} - ${opponentRes.count}`;
         break;
       }
-      case "neutralOpenerMoves": {
+      case Stat.NEUTRAL_OPENER_MOVES: {
         const playerRes = s.results[0].result[0];
         const opponentRes = s.results[1].result[0];
         params.mcno1 = `${playerRes.shortName.toUpperCase()} - ${playerRes.count}`;
         params.mcno2 = `${opponentRes.shortName.toUpperCase()} - ${opponentRes.count}`;
         break;
       }
-      case "inputsPerMinute": {
+      case Stat.INPUTS_PER_MINUTE: {
         params.ipm1 = s.results[0].simple.text;
         params.ipm2 = s.results[1].simple.text;
         break;
       }
-      case "avgKillPercent": {
+      case Stat.AVG_KILL_PERCENT: {
         params.akp1 = s.results[0].simple.text;
         params.akp2 = s.results[1].simple.text;
         break;
       }
-      case "damageDone": {
+      case Stat.DAMAGE_DONE: {
         params.tdd1 = s.results[0].simple.text;
         params.tdd2 = s.results[1].simple.text;
         break;

@@ -7,26 +7,12 @@
 const { stages: stageUtil, moves: moveUtil, characters: characterUtil } = require("@slippi/slippi-js");
 const moment = require("moment");
 const _ = require("lodash");
-const { findWinner } = require("./winner");
+const { findWinner } = require("../winner");
+const { Stat } = require("./types");
 
-const stats = {
-  OPENINGS_PER_KILL: "openingsPerKill",
-  DAMAGE_PER_OPENING: "damagePerOpening",
-  NEUTRAL_WINS: "neutralWins",
-  KILL_MOVES: "killMoves",
-  NEUTRAL_OPENER_MOVES: "neutralOpenerMoves",
-  EARLY_KILLS: "earlyKills",
-  LATE_DEATHS: "lateDeaths",
-  SELF_DESTRUCTS: "selfDestructs",
-  INPUTS_PER_MINUTE: "inputsPerMinute",
-  AVG_KILL_PERCENT: "avgKillPercent",
-  HIGH_DAMAGE_PUNISHES: "highDamagePunishes",
-  DAMAGE_DONE: "damageDone",
-};
-
-const statDefininitions = {
-  [stats.OPENINGS_PER_KILL]: {
-    id: stats.OPENINGS_PER_KILL,
+const statDefinitions = {
+  [Stat.OPENINGS_PER_KILL]: {
+    id: Stat.OPENINGS_PER_KILL,
     name: "Openings / Kill",
     type: "number",
     betterDirection: "lower",
@@ -35,8 +21,8 @@ const statDefininitions = {
       return genOverallRatioStat(games, playerIndex, "openingsPerKill", 1);
     },
   },
-  [stats.DAMAGE_PER_OPENING]: {
-    id: stats.DAMAGE_PER_OPENING,
+  [Stat.DAMAGE_PER_OPENING]: {
+    id: Stat.DAMAGE_PER_OPENING,
     name: "Damage / Opening",
     type: "number",
     betterDirection: "higher",
@@ -45,8 +31,8 @@ const statDefininitions = {
       return genOverallRatioStat(games, playerIndex, "damagePerOpening", 1);
     },
   },
-  [stats.NEUTRAL_WINS]: {
-    id: stats.NEUTRAL_WINS,
+  [Stat.NEUTRAL_WINS]: {
+    id: Stat.NEUTRAL_WINS,
     name: "Neutral Wins",
     type: "number",
     betterDirection: "higher",
@@ -55,8 +41,8 @@ const statDefininitions = {
       return genOverallRatioStat(games, playerIndex, "neutralWinRatio", 0, "count");
     },
   },
-  [stats.KILL_MOVES]: {
-    id: stats.KILL_MOVES,
+  [Stat.KILL_MOVES]: {
+    id: Stat.KILL_MOVES,
     name: "Most Common Kill Move",
     type: "text",
     calculate: (games, playerIndex) => {
@@ -99,8 +85,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.NEUTRAL_OPENER_MOVES]: {
-    id: stats.NEUTRAL_OPENER_MOVES,
+  [Stat.NEUTRAL_OPENER_MOVES]: {
+    id: Stat.NEUTRAL_OPENER_MOVES,
     name: "Most Common Neutral Opener",
     type: "text",
     calculate: (games, playerIndex) => {
@@ -145,8 +131,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.EARLY_KILLS]: {
-    id: stats.EARLY_KILLS,
+  [Stat.EARLY_KILLS]: {
+    id: Stat.EARLY_KILLS,
     name: "Earliest Kill",
     type: "number",
     betterDirection: "lower",
@@ -179,8 +165,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.LATE_DEATHS]: {
-    id: stats.LATE_DEATHS,
+  [Stat.LATE_DEATHS]: {
+    id: Stat.LATE_DEATHS,
     name: "Latest Death",
     type: "number",
     betterDirection: "higher",
@@ -213,8 +199,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.SELF_DESTRUCTS]: {
-    id: stats.SELF_DESTRUCTS, // Only show this one if greater than 2 for one player
+  [Stat.SELF_DESTRUCTS]: {
+    id: Stat.SELF_DESTRUCTS, // Only show this one if greater than 2 for one player
     name: "Total Self-Destructs",
     type: "number",
     betterDirection: "lower",
@@ -249,8 +235,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.INPUTS_PER_MINUTE]: {
-    id: stats.INPUTS_PER_MINUTE,
+  [Stat.INPUTS_PER_MINUTE]: {
+    id: Stat.INPUTS_PER_MINUTE,
     name: "Inputs / Minute",
     type: "number",
     betterDirection: "higher",
@@ -259,8 +245,8 @@ const statDefininitions = {
       return genOverallRatioStat(games, playerIndex, "inputsPerMinute", 1);
     },
   },
-  [stats.AVG_KILL_PERCENT]: {
-    id: stats.AVG_KILL_PERCENT,
+  [Stat.AVG_KILL_PERCENT]: {
+    id: Stat.AVG_KILL_PERCENT,
     name: "Average Kill Percent",
     type: "number",
     betterDirection: "lower",
@@ -288,8 +274,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.HIGH_DAMAGE_PUNISHES]: {
-    id: stats.HIGH_DAMAGE_PUNISHES,
+  [Stat.HIGH_DAMAGE_PUNISHES]: {
+    id: Stat.HIGH_DAMAGE_PUNISHES,
     name: "Highest Damage Punish",
     type: "number",
     betterDirection: "higher",
@@ -323,8 +309,8 @@ const statDefininitions = {
       };
     },
   },
-  [stats.DAMAGE_DONE]: {
-    id: stats.DAMAGE_DONE,
+  [Stat.DAMAGE_DONE]: {
+    id: Stat.DAMAGE_DONE,
     name: "Total Damage Done",
     type: "number",
     betterDirection: "higher",
@@ -431,7 +417,7 @@ function computeStats(statsList, games) {
   const indices = [orderIndices, reversedIndices];
 
   const statResults = statsList.map((statKey) => {
-    const def = statDefininitions[statKey];
+    const def = statDefinitions[statKey];
     if (!def || !def.calculate) {
       return null;
     }
