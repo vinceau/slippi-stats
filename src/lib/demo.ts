@@ -1,4 +1,5 @@
 import { characters as characterUtil, moves as moveUtil } from "@slippi/slippi-js";
+import { convertFrameCountToDurationString } from "./stats";
 
 /*
  * Random functions are taken from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
@@ -103,9 +104,12 @@ function generateRandomStageId(): number {
 }
 
 function generateRandomDuration(): string {
-  const mins = getRandomInt(0, 7);
-  const secs = String(getRandomInt(0, 60)).padStart(2, "0");
-  return `${mins}:${secs}`;
+  // The number of frames in 30 seconds
+  const minFrames = 30 * 60;
+  // The number of frames in 8 minutes
+  const maxFrames = 8 * 60 * 60;
+  const frames = getRandomInt(minFrames, maxFrames);
+  return convertFrameCountToDurationString(frames);
 }
 
 function generateRandomGame(playerInfos: string[]): string {
