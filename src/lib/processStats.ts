@@ -1,4 +1,4 @@
-import generateStats, { filterGames } from "lib/stats";
+import { generateOutput, filterGames } from "lib/stats";
 import { get } from "lodash";
 
 import { getPortColor } from "./portColor";
@@ -22,7 +22,25 @@ export function processStats(gameDetails: GameDetails[]): Record<string, any> {
     throw new Error("No valid games");
   }
 
-  const { games, summary } = generateStats(filtered);
+  const statsList = [
+    "killMoves",
+    "neutralOpenerMoves",
+    "openingsPerKill",
+    "damageDone",
+    "avgKillPercent",
+    "neutralWins",
+  ];
+
+  let stats;
+  try {
+    stats = generateOutput(statsList, filtered);
+  } catch (err) {
+    console.error(err);
+    throw new Error(err);
+  }
+
+  const { games, summary } = stats;
+  console.log("generated stats: ", stats);
   const params: Record<string, any> = {}; // "mckm1": , "mckm2", "mcno1", "mcno2", "opk1", "opk2", "tdd1", "tdd2", "dpo1", "dpo2", "ipm1", "ipm2", "akp1", "akp2", "nw1", "nw2"};
 
   // Set character info

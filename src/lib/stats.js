@@ -379,32 +379,6 @@ function genSimpleFromRatio(ratio, fixedNum, type = "ratio") {
   return result;
 }
 
-/*
-function parseFilesInFolder() {
-  const dirPath = process.cwd();
-  const dirContents = fs.readdirSync(dirPath, { withFileTypes: true });
-
-  console.log("Reading files in directory...\n");
-  const gameDetails = _.chain(dirContents).filter((item) => {
-    return item.isFile() && path.extname(item.name) === ".slp";
-  }).map((slpItem) => {
-    const slpFilePath = path.join(dirPath, slpItem.name);
-    const game = new SlippiGame(slpFilePath);
-    return {
-      filePath: slpFilePath,
-      settings: game.getSettings(),
-      frames: game.getFrames(),
-      stats: game.getStats(),
-      metadata: game.getMetadata(),
-      latestFrame: game.getLatestFrame(),
-      gameEnd: game.getGameEnd(),
-    };
-  }).value();
-
-  return gameDetails;
-}
-*/
-
 export function filterGames(games) {
   // console.log(games);
   const gamesByIsSingles = _.groupBy(games, (game) => {
@@ -449,30 +423,28 @@ export function filterGames(games) {
   return gamesWithSamePorts;
 }
 
-function computeStats(games) {
+function computeStats(statsList, games) {
   const firstGame = _.first(games);
   // console.log(firstGame);
   const orderIndices = _.map(firstGame.settings.players, "playerIndex");
   const reversedIndices = _.chain(orderIndices).clone().reverse().value();
   const indices = [orderIndices, reversedIndices];
 
-  const statResults = _.flatMap(stats, (statKey) => {
+  const statResults = statsList.map((statKey) => {
     const def = statDefininitions[statKey];
-    if (!def.calculate) {
-      return [];
+    if (!def || !def.calculate) {
+      return null;
     }
 
+    const { calculate, ...output } = def;
     const results = _.map(indices, (iIndices) => {
-      const result = def.calculate(games, iIndices[0], iIndices[1]);
+      const result = calculate(games, iIndices[0], iIndices[1]);
       result.port = iIndices[0] + 1;
       return result;
     });
 
-    const output = { ...def };
-    delete output.calculate;
     output.results = results;
-
-    return [output];
+    return output;
   });
 
   return statResults;
@@ -516,76 +488,14 @@ function generateGameInfo(games) {
   });
 }
 
-function generateBtsSummary(summary) {
-  const fixedStats = [stats.KILL_MOVES, stats.NEUTRAL_OPENER_MOVES, stats.OPENINGS_PER_KILL, stats.DAMAGE_DONE];
-
-  const randomizeCount = 2;
-
-  const generateSummaryItem = (fullStatOutput) => {
-    const type = fullStatOutput.type;
-
-    const output = { ...fullStatOutput };
-    output.results = _.map(fullStatOutput.results, (result) => _.get(result, ["simple", type]));
-
-    return output;
-  };
-
-  const result = [];
-
-  const statsById = _.keyBy(summary, "id");
-  const statsToRandomizeById = statsById;
-
-  // Add fixed stats
-  _.forEach(fixedStats, (statId) => {
-    const statOutput = statsById[statId];
-    result.push(generateSummaryItem(statOutput));
-
-    delete statsToRandomizeById[statId];
-  });
-
-  // Deal with SDs
-  const sdStat = statsById[stats.SELF_DESTRUCTS];
-  const sds1 = sdStat.results[0].simple.number;
-  const sds2 = sdStat.results[0].simple.number;
-  const shouldIncludeSds = sds1 > 1 || sds2 > 1;
-  if (!shouldIncludeSds) {
-    delete statsToRandomizeById[stats.SELF_DESTRUCTS];
-  }
-
-  const shuffled = _.shuffle(statsToRandomizeById);
-  const shuffledToInclude = _.take(shuffled, randomizeCount);
-  _.forEach(shuffledToInclude, (statOutput) => {
-    result.push(generateSummaryItem(statOutput));
-  });
-
-  return result;
-}
-
 export function convertFrameCountToDurationString(frameCount) {
   const duration = moment.duration(frameCount / 60, "seconds");
   return moment.utc(duration.as("milliseconds")).format("m:ss");
 }
 
-export default function generateOutput(games) {
-  const stats = computeStats(games);
-
+export function generateOutput(statsList, games) {
   return {
     games: generateGameInfo(games),
-    summary: stats,
-    btsSummary: generateBtsSummary(stats),
+    summary: computeStats(statsList, games),
   };
 }
-
-// function writeToFile(output) {
-//   console.log(util.inspect(output, { depth: 6, colors: true }));
-//   fs.writeFileSync('output.json', JSON.stringify(output));
-//   console.log("Finished writting stats to output.json!");
-// }
-
-// export default function (games) {
-//   const filteredGames = filterGames(games);
-//   const output = generateOutput(filteredGames);
-//   writeToFile(output);
-//   console.log(output);
-//   return output;
-// }
