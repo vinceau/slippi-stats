@@ -15,7 +15,7 @@ const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   return [name, netplayCode || ""] as const;
 };
 
-export function generateStatParams(gameDetails: GameDetails[], statsList: Stat[]): Record<string, any> {
+export function generateStatParams(gameDetails: GameDetails[], statsList: string[]): Record<string, any> {
   const filtered = filterGames(gameDetails);
   if (!filtered || filtered.length === 0) {
     throw new Error("No valid games");
@@ -71,6 +71,11 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: Stat[]
   params.stats = statsList.join(",");
   // Set the stat values
   (summary as any[]).forEach((s) => {
+    // Stats can be null if the id is invalid or not specified
+    if (!s) {
+      return;
+    }
+
     switch (s.id) {
       case Stat.OPENINGS_PER_KILL: {
         params.opk1 = s.results[0].simple.text;

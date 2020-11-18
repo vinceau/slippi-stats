@@ -16,6 +16,7 @@ import { AppContext, Types } from "../store";
 const DEFAULT_STATS = [
   Stat.KILL_MOVES,
   Stat.NEUTRAL_OPENER_MOVES,
+  "",
   Stat.OPENINGS_PER_KILL,
   Stat.DAMAGE_DONE,
   Stat.AVG_KILL_PERCENT,

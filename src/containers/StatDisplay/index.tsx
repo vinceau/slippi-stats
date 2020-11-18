@@ -48,7 +48,7 @@ export const StatDisplay: React.FC<{
   const winningSide = score.left > score.right ? "left" : score.right > score.left ? "right" : "";
   const { leftColor, rightColor, ...theme } = props;
 
-  const mapStatToElement = (statId: string) => {
+  const mapStatToElement = (statId: string, index: number) => {
     switch (statId) {
       case Stat.KILL_MOVES:
         return <MostCommonKillMove key={statId} {...theme} />;
@@ -67,11 +67,11 @@ export const StatDisplay: React.FC<{
       case Stat.INPUTS_PER_MINUTE:
         return <InputsPerMinute key={statId} />;
     }
+    return <Divider key={`divider-${index}`} />;
   };
 
   const statsList = stats.split(",");
-  const initial = statsList.slice(0, 2).map(mapStatToElement);
-  const rest = statsList.slice(2).map(mapStatToElement);
+  const statComponents = statsList.map(mapStatToElement);
 
   return (
     <div
@@ -88,9 +88,7 @@ export const StatDisplay: React.FC<{
           margin: 4rem;
         `}
       >
-        {initial}
-        <Divider />
-        {rest}
+        {statComponents}
         <Divider />
         <GameDisplay
           games={games}
