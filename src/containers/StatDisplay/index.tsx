@@ -3,11 +3,14 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Block } from "components/Block";
 import { GameDisplay } from "components/GameDisplay";
-import { useGames } from "lib/hooks";
+import { useGames, useParam } from "lib/hooks";
+import { Stat } from "lib/stats";
 import React from "react";
 
 import {
   AverageKillPercent,
+  DamagePerOpening,
+  InputsPerMinute,
   MostCommonKillMove,
   MostCommonNeutralOpener,
   NeutralWins,
@@ -41,8 +44,35 @@ export const StatDisplay: React.FC<{
   rightColor: string;
 }> = (props) => {
   const { games, score, setGame } = useGames();
+  const [stats] = useParam("stats");
   const winningSide = score.left > score.right ? "left" : score.right > score.left ? "right" : "";
   const { leftColor, rightColor, ...theme } = props;
+
+  const mapStatToElement = (statId: string) => {
+    switch (statId) {
+      case Stat.KILL_MOVES:
+        return <MostCommonKillMove key={statId} {...theme} />;
+      case Stat.NEUTRAL_OPENER_MOVES:
+        return <MostCommonNeutralOpener key={statId} {...theme} />;
+      case Stat.OPENINGS_PER_KILL:
+        return <OpeningsPerKill key={statId} />;
+      case Stat.DAMAGE_DONE:
+        return <TotalDamageDone key={statId} />;
+      case Stat.AVG_KILL_PERCENT:
+        return <AverageKillPercent key={statId} />;
+      case Stat.NEUTRAL_WINS:
+        return <NeutralWins key={statId} />;
+      case Stat.DAMAGE_PER_OPENING:
+        return <DamagePerOpening key={statId} />;
+      case Stat.INPUTS_PER_MINUTE:
+        return <InputsPerMinute key={statId} />;
+    }
+  };
+
+  const statsList = stats.split(",");
+  const initial = statsList.slice(0, 2).map(mapStatToElement);
+  const rest = statsList.slice(2).map(mapStatToElement);
+
   return (
     <div
       css={css`
@@ -58,13 +88,9 @@ export const StatDisplay: React.FC<{
           margin: 4rem;
         `}
       >
-        <MostCommonKillMove {...theme} />
-        <MostCommonNeutralOpener {...theme} />
+        {initial}
         <Divider />
-        <OpeningsPerKill />
-        <TotalDamageDone />
-        <AverageKillPercent />
-        <NeutralWins />
+        {rest}
         <Divider />
         <GameDisplay
           games={games}

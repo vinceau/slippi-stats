@@ -68,6 +68,7 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: Stat[]
     params[gameKey] = gameValue;
   });
 
+  params.stats = statsList.join(",");
   // Set the stat values
   (summary as any[]).forEach((s) => {
     switch (s.id) {

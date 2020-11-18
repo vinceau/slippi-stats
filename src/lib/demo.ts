@@ -1,4 +1,5 @@
 import { characters as characterUtil, moves as moveUtil } from "@slippi/slippi-js";
+import { Stat } from "./stats";
 
 import { convertFrameCountToDurationString } from "./util";
 
@@ -54,6 +55,15 @@ export function generateDemoValues(): Record<string, any> {
     const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo]);
     paramMap[gameKey] = gameValue;
   }
+
+  paramMap["stats"] = [
+    Stat.KILL_MOVES,
+    Stat.NEUTRAL_OPENER_MOVES,
+    Stat.OPENINGS_PER_KILL,
+    Stat.DAMAGE_DONE,
+    Stat.AVG_KILL_PERCENT,
+    Stat.NEUTRAL_WINS,
+  ].join(",");
 
   // Random moves
   ["mckm1", "mckm2", "mcno1", "mcno2"].forEach((key) => {
