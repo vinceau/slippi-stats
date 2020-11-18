@@ -90,7 +90,7 @@ export const MainView: React.FC = () => {
           <Link css={linkStyle} to="/random" title="Show random sample stats">
             DEMO
           </Link>
-          <A css={linkStyle} title="Fork this on Github" href="https://github.com/vinceau/slippi-stats#faq">
+          <A css={linkStyle} title="Need help?" href="https://github.com/vinceau/slippi-stats#faq">
             FAQ
           </A>
           <A css={linkStyle} title="Send love" href="https://twitter.com/_vinceau">
