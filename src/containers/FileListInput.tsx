@@ -120,7 +120,6 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         flex-wrap: nowrap;
         width: 100%;
         height: 100%;
-        gap: 1rem;
       `}
     >
       <DropPad accept=".slp" onDrop={onDrop} />
@@ -129,6 +128,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
           overflow: auto;
           display: flex;
           flex-direction: column;
+          margin: 1rem 0;
         `}
       >
         <FileList files={state.files} onRemove={onRemove} />
