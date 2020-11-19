@@ -12,6 +12,7 @@ export enum Stat {
 
   // Custom
   FIRST_BLOOD = "fb",
+  L_CANCEL = "lc",
 
   // Currently unsupported
   EARLY_KILLS = "earlyKills",

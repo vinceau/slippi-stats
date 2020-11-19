@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import { calculateFirstBlood } from "./definitions/firstBlood";
+import { calculateLCancels } from "./definitions/lCancel";
 
 /*
  * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
@@ -140,6 +141,14 @@ export const STAT_DEFINITIONS = {
     betterDirection: "higher",
     recommendedRounding: 0,
     calculate: (games, playerIndex) => calculateFirstBlood(games, playerIndex),
+  },
+  [Stat.L_CANCEL]: {
+    id: Stat.L_CANCEL,
+    name: "L-cancel Rate",
+    type: "number",
+    betterDirection: "higher",
+    recommendedRounding: 0,
+    calculate: (games, playerIndex) => calculateLCancels(games, playerIndex),
   },
   [Stat.EARLY_KILLS]: {
     id: Stat.EARLY_KILLS,
