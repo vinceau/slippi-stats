@@ -115,13 +115,24 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   return (
     <div
       css={css`
-        display: grid;
-        grid-template-columns: 100%;
-        grid-row-gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 100%;
+        gap: 1rem;
       `}
     >
       <DropPad accept=".slp" onDrop={onDrop} />
-      <FileList files={state.files} onRemove={onRemove} />
+      <div
+        css={css`
+          overflow: auto;
+          display: flex;
+          flex-direction: column;
+        `}
+      >
+        <FileList files={state.files} onRemove={onRemove} />
+      </div>
       <ProcessButton
         backgroundColor={buttonColor}
         color="white"
