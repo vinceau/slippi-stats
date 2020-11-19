@@ -76,13 +76,13 @@ export const STAT_DEFINITIONS = {
       const topKillMove = _.first(orderedKillMoveCounts);
       let simpleText = "N/A";
       if (topKillMove) {
-        simpleText = `${topKillMove.shortName} (${topKillMove.count})`;
+        simpleText = `${topKillMove.shortName} - ${topKillMove.count}`;
       }
 
       return {
         result: orderedKillMoveCounts,
         simple: {
-          text: simpleText,
+          text: simpleText.toUpperCase(),
         },
       };
     },
@@ -122,13 +122,13 @@ export const STAT_DEFINITIONS = {
       const topNeutralMove = _.first(orderedNeutralMoveCounts);
       let simpleText = "N/A";
       if (topNeutralMove) {
-        simpleText = `${topNeutralMove.shortName} (${topNeutralMove.count})`;
+        simpleText = `${topNeutralMove.shortName} - ${topNeutralMove.count}`;
       }
 
       return {
         result: orderedNeutralMoveCounts,
         simple: {
-          text: simpleText,
+          text: simpleText.toUpperCase(),
         },
       };
     },

@@ -78,20 +78,7 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: string
     }
 
     switch (s.id) {
-      case Stat.KILL_MOVES: {
-        const playerRes = s.results[0].result[0];
-        const opponentRes = s.results[1].result[0];
-        params.mckm1 = `${playerRes.shortName.toUpperCase()} - ${playerRes.count}`;
-        params.mckm2 = `${opponentRes.shortName.toUpperCase()} - ${opponentRes.count}`;
-        break;
-      }
-      case Stat.NEUTRAL_OPENER_MOVES: {
-        const playerRes = s.results[0].result[0];
-        const opponentRes = s.results[1].result[0];
-        params.mcno1 = `${playerRes.shortName.toUpperCase()} - ${playerRes.count}`;
-        params.mcno2 = `${opponentRes.shortName.toUpperCase()} - ${opponentRes.count}`;
-        break;
-      }
+      // Put any custom logic here
       default: {
         (s.results as any[]).forEach((result, i) => {
           params[`${s.id}${i + 1}`] = result.simple.text;
