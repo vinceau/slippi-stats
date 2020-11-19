@@ -140,7 +140,7 @@ export const STAT_DEFINITIONS = {
     type: "number",
     betterDirection: "higher",
     recommendedRounding: 0,
-    calculate: (games, playerIndex) => calculateFirstBlood(games, playerIndex),
+    calculate: calculateFirstBlood,
   },
   [Stat.L_CANCEL]: {
     id: Stat.L_CANCEL,
@@ -148,7 +148,7 @@ export const STAT_DEFINITIONS = {
     type: "number",
     betterDirection: "higher",
     recommendedRounding: 0,
-    calculate: (games, playerIndex) => calculateLCancels(games, playerIndex),
+    calculate: calculateLCancels,
   },
   [Stat.EARLY_KILLS]: {
     id: Stat.EARLY_KILLS,
