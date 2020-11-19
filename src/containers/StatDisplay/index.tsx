@@ -4,19 +4,9 @@ import styled from "@emotion/styled";
 import { Block } from "components/Block";
 import { GameDisplay } from "components/GameDisplay";
 import { useGames, useParam } from "lib/hooks";
-import { Stat } from "lib/stats";
 import React from "react";
 
-import {
-  AverageKillPercent,
-  DamagePerOpening,
-  InputsPerMinute,
-  MostCommonKillMove,
-  MostCommonNeutralOpener,
-  NeutralWins,
-  OpeningsPerKill,
-  TotalDamageDone,
-} from "./Statistics";
+import { Statistic } from "./Statistic";
 
 const Divider = styled.div`
   content: " ";
@@ -49,23 +39,8 @@ export const StatDisplay: React.FC<{
   const { leftColor, rightColor, ...theme } = props;
 
   const mapStatToElement = (statId: string, index: number) => {
-    switch (statId) {
-      case Stat.KILL_MOVES:
-        return <MostCommonKillMove key={statId} {...theme} />;
-      case Stat.NEUTRAL_OPENER_MOVES:
-        return <MostCommonNeutralOpener key={statId} {...theme} />;
-      case Stat.OPENINGS_PER_KILL:
-        return <OpeningsPerKill key={statId} />;
-      case Stat.DAMAGE_DONE:
-        return <TotalDamageDone key={statId} />;
-      case Stat.AVG_KILL_PERCENT:
-        return <AverageKillPercent key={statId} />;
-      case Stat.NEUTRAL_WINS:
-        return <NeutralWins key={statId} />;
-      case Stat.DAMAGE_PER_OPENING:
-        return <DamagePerOpening key={statId} />;
-      case Stat.INPUTS_PER_MINUTE:
-        return <InputsPerMinute key={statId} />;
+    if (statId) {
+      return <Statistic key={statId} statId={statId} theme={theme} />;
     }
     return <Divider key={`divider-${index}`} />;
   };

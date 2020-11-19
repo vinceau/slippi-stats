@@ -1,6 +1,7 @@
 import { InlineEdit } from "components/InlineEdit";
 import { NumberStat, TextStat } from "components/Stat";
 import { useParam } from "lib/hooks";
+import { STAT_DEFINITIONS } from "lib/stats";
 import React from "react";
 import { Theme } from "styles/theme";
 
@@ -42,34 +43,23 @@ const ConnectedTextStat: React.FC<ConnectedStatProps & Theme> = (props) => {
   );
 };
 
-export const MostCommonKillMove: React.FC<Theme> = (props) => {
-  return <ConnectedTextStat param1="mckm1" param2="mckm2" label="MOST COMMON KILL MOVE" {...props} />;
-};
+export const Statistic: React.FC<{
+  theme: Theme;
+  statId: string;
+}> = (props) => {
+  const { statId, theme } = props;
+  const statInfo = (STAT_DEFINITIONS as any)[statId];
+  if (!statInfo) {
+    return null;
+  }
 
-export const MostCommonNeutralOpener: React.FC<Theme> = (props) => {
-  return <ConnectedTextStat param1="mcno1" param2="mcno2" label="MOST COMMON NEUTRAL OPENER" {...props} />;
-};
+  const { name, type } = statInfo;
+  const label = (name as string).toUpperCase();
+  if (type === "number") {
+    return <ConnectedNumberStat param1={`${statId}1`} param2={`${statId}2`} label={label} />;
+  } else if (type === "text") {
+    return <ConnectedTextStat param1={`${statId}1`} param2={`${statId}2`} label={label} {...theme} />;
+  }
 
-export const AverageKillPercent: React.FC = () => {
-  return <ConnectedNumberStat param1="akp1" param2="akp2" label="AVERAGE KILL PERCENT" />;
-};
-
-export const NeutralWins: React.FC = () => {
-  return <ConnectedNumberStat param1="nw1" param2="nw2" label="NEUTRAL WINS" />;
-};
-
-export const DamagePerOpening: React.FC = () => {
-  return <ConnectedNumberStat param1="dpo1" param2="dpo2" label="DAMAGE / OPENING" />;
-};
-
-export const InputsPerMinute: React.FC = () => {
-  return <ConnectedNumberStat param1="ipm1" param2="ipm2" label="INPUTS / MINUTE" />;
-};
-
-export const OpeningsPerKill: React.FC = () => {
-  return <ConnectedNumberStat param1="opk1" param2="opk2" label="OPENINGS / KILL" />;
-};
-
-export const TotalDamageDone: React.FC = () => {
-  return <ConnectedNumberStat param1="tdd1" param2="tdd2" label="TOTAL DAMAGE DONE" />;
+  return null;
 };

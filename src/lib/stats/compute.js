@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+import { calculateFirstBlood } from "./definitions/firstBlood";
+
 /*
  * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
  */
@@ -10,7 +12,7 @@ const { findWinner } = require("../winner");
 const { Stat } = require("./types");
 const { convertFrameCountToDurationString } = require("../util");
 
-const statDefinitions = {
+export const STAT_DEFINITIONS = {
   [Stat.OPENINGS_PER_KILL]: {
     id: Stat.OPENINGS_PER_KILL,
     name: "Openings / Kill",
@@ -130,6 +132,14 @@ const statDefinitions = {
         },
       };
     },
+  },
+  [Stat.FIRST_BLOOD]: {
+    id: Stat.FIRST_BLOOD,
+    name: "First blood",
+    type: "number",
+    betterDirection: "higher",
+    recommendedRounding: 0,
+    calculate: (games, playerIndex) => calculateFirstBlood(games, playerIndex),
   },
   [Stat.EARLY_KILLS]: {
     id: Stat.EARLY_KILLS,
@@ -417,7 +427,7 @@ function computeStats(statsList, games) {
   const indices = [orderIndices, reversedIndices];
 
   const statResults = statsList.map((statKey) => {
-    const def = statDefinitions[statKey];
+    const def = STAT_DEFINITIONS[statKey];
     if (!def || !def.calculate) {
       return null;
     }

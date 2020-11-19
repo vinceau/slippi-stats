@@ -10,6 +10,9 @@ export enum Stat {
   AVG_KILL_PERCENT = "akp",
   DAMAGE_DONE = "tdd",
 
+  // Custom
+  FIRST_BLOOD = "fb",
+
   // Currently unsupported
   EARLY_KILLS = "earlyKills",
   LATE_DEATHS = "lateDeaths",
@@ -26,3 +29,10 @@ export interface GameDetails {
   latestFrame: FrameEntryType | null;
   gameEnd: GameEndType | null;
 }
+
+export interface StatCalculationResult {
+  result: any;
+  simple: any;
+}
+
+export type StatCalculation = (games: GameDetails[], playerIndex: number) => StatCalculationResult;

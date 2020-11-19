@@ -4,10 +4,10 @@ import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
-import { generateStatParams } from "lib/stats";
 import { readFileAsGameDetails } from "lib/readFile";
-import { GameDetails, Stat } from "lib/stats/types";
 import { generateSearchParams } from "lib/searchParams";
+import { generateStatParams } from "lib/stats";
+import { GameDetails, Stat } from "lib/stats/types";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 

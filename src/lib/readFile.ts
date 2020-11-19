@@ -1,4 +1,5 @@
 import { SlippiGame } from "@slippi/slippi-js";
+
 import { GameDetails } from "./stats/types";
 
 export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
