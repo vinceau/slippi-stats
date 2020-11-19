@@ -11,27 +11,17 @@ export const calculateFirstBlood: StatCalculation = (games, playerIndex) => {
     });
     const orderedDeathStocks = _.orderBy(deathStocks, ["endFrame"], ["asc"]);
     const firstStock = orderedDeathStocks[0];
-    const drewFirstBlood = firstStock.opponentIndex === playerIndex;
-    if (drewFirstBlood) {
-      // console.log(`player ${playerIndex} drew first blood in game ${i + 1}`);
-      // console.log(`first blood for game ${i + 1} and player ${playerIndex}: `, firstStock);
-      return firstStock;
-    } else {
+    if (!firstStock || firstStock.opponentIndex !== playerIndex) {
       // console.log(`player ${playerIndex} did not draw first blood in game ${i + 1}`);
       return null;
     }
+    return firstStock;
   });
   const firstBloodCount = firstBloodStocks.reduce((count, item) => (item !== null ? count + 1 : count), 0);
   const ratio = firstBloodCount / firstBloodStocks.length;
-  const percentage = ratio * 100;
-  // console.log(
-  //   `out of ${
-  //     games.length
-  //   } games, player ${playerIndex} drew first blood ${firstBloodCount} times (${percentage.toFixed(2)}%)`
-  // );
 
   const simple = {
-    text: `${percentage.toFixed(0)}%`,
+    text: isNaN(ratio) ? "N/A" : `${(ratio * 100).toFixed(0)}%`,
     number: ratio,
   };
 
