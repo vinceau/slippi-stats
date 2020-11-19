@@ -5,6 +5,9 @@ on:
     paths-ignore:
       - "docs/**"
       - "**.md"
+    branches-ignore:
+      # Master already has the publish workflow so avoid running twice
+      - "master"
 
 jobs:
   build:
