@@ -10,8 +10,10 @@ import { generateStatParams } from "lib/stats";
 import { GameDetails, Stat } from "lib/stats/types";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { hasOpacity } from "styles/opacity";
 
 import { AppContext, Types } from "../store";
+import { CustomStatsList } from "./CustomStatsList";
 
 const DEFAULT_STATS = [
   Stat.KILL_MOVES,
@@ -51,11 +53,13 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const history = useHistory();
   const { state, dispatch } = useContext(AppContext);
   const [error, setError] = React.useState<any>(null);
+  const [showOptions, setShowOptions] = React.useState(false);
+  const [statsList, setStatsList] = React.useState<string[]>(DEFAULT_STATS);
 
   const onClick = () => {
     try {
       const gameDetails = state.files.filter((f) => f.details !== null).map((f) => f.details as GameDetails);
-      const params = generateStatParams(gameDetails, DEFAULT_STATS);
+      const params = generateStatParams(gameDetails, statsList);
       const search = "?" + generateSearchParams(params).toString();
       history.push({
         pathname: "/render",
@@ -123,6 +127,11 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const finishedProcessing = !state.files.find((f) => f.loading);
   const buttonText =
     state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "GENERATE STATS" : "PLEASE WAIT";
+
+  if (showOptions) {
+    return <CustomStatsList onClose={() => setShowOptions(false)} value={statsList} onChange={setStatsList} />;
+  }
+
   return (
     <div
       css={css`
@@ -144,14 +153,31 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
       >
         <FileList files={state.files} onRemove={onRemove} />
       </div>
-      <ProcessButton
-        backgroundColor={buttonColor}
-        color="white"
-        disabled={state.files.length === 0 || !finishedProcessing}
-        onClick={onClick}
-      >
-        {buttonText}
-      </ProcessButton>
+      <div>
+        <ProcessButton
+          backgroundColor={buttonColor}
+          color="white"
+          disabled={state.files.length === 0 || !finishedProcessing}
+          onClick={onClick}
+        >
+          {buttonText}
+        </ProcessButton>
+        <div
+          css={css`
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 1.4rem;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+            ${hasOpacity(0.5)}
+          `}
+          onClick={() => setShowOptions(true)}
+        >
+          show advanced options
+        </div>
+      </div>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </div>
   );
