@@ -2,7 +2,7 @@ import { get } from "lodash";
 
 import { getPortColor } from "../portColor";
 import { filterGames, generateOutput } from "./compute";
-import { GameDetails, Stat } from "./types";
+import { GameDetails } from "./types";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   const settings = details.settings;
