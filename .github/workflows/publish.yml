@@ -1,14 +1,16 @@
-name: build
+name: publish
 
 on:
   push:
     paths-ignore:
       - "docs/**"
       - "**.md"
+    branches:
+      - master
 
 jobs:
-  build:
-    name: Build project
+  publish:
+    name: Build and deploy to Github pages
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,6 +36,14 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           yarn install
-      - name: Build
+      - name: Build and deploy
         run: |
           CI=false yarn run build
+        env:
+          PUBLIC_URL: /slippi-stats
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v2.4.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./build
