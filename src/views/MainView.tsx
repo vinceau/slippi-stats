@@ -73,7 +73,10 @@ export const MainView: React.FC = () => {
         </div>
         <div
           css={css`
-            flex: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
           `}
         >
           <FileListInput buttonColor={primaryColor} />

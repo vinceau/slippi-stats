@@ -18,8 +18,6 @@ export const FileList: React.FC<FileListProps> = (props) => {
         display: grid;
         grid-template-columns: 100%;
         grid-row-gap: 1rem;
-        max-height: 50rem;
-        overflow-y: auto;
       `}
     >
       {files.map((f) => (
