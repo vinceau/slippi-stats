@@ -17,7 +17,7 @@ function generateLink(options?: Partial<OBSLayerOptions>): string {
   return location;
 }
 
-const Draggable = styled.a`
+const DraggableLink = styled.a`
   color: #cccccc;
   border: solid 0.2rem white;
   background-color: #333333;
@@ -46,7 +46,7 @@ export const OBSDragButton: React.FC<{ options?: Partial<OBSLayerOptions> }> = (
   };
   const handleDragEnd = (e: any) => e.target.blur();
   return (
-    <Draggable
+    <DraggableLink
       href={location}
       onDragStart={(e) => handleDragStart(e)}
       onDragEnd={(e) => handleDragEnd(e)}
@@ -54,6 +54,6 @@ export const OBSDragButton: React.FC<{ options?: Partial<OBSLayerOptions> }> = (
       ref={wrapperRef}
     >
       <img style={{ width: "3rem", marginRight: "1rem" }} src={obsImage} alt="OBS Logo" /> Drag me into OBS
-    </Draggable>
+    </DraggableLink>
   );
 };
