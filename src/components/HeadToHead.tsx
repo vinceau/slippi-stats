@@ -4,7 +4,7 @@ import React from "react";
 
 const Outer = styled.div<{
   borderColor: string;
-  onClick?: any;
+  onClick?: () => void;
 }>`
   position: relative;
   display: block;

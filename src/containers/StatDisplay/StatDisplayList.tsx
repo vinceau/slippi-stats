@@ -2,8 +2,9 @@
 import { css, jsx } from "@emotion/core";
 import { reorder } from "lib/util";
 import React from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Theme } from "styles/theme";
+
 import { Divider } from "./Divider";
 import { StatDisplayItem } from "./StatDisplayItem";
 import { Statistic } from "./Statistic";

@@ -2,6 +2,12 @@
  * Based on: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
  */
 
+import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
+import { PlayerType } from "@slippi/slippi-js";
+import _ from "lodash";
+
+import { convertFrameCountToDurationString } from "../util";
+import { findWinner } from "../winner";
 import {
   averageKillPercent,
   damageDone,
@@ -18,13 +24,7 @@ import {
   openingsPerKill,
   selfDestructs,
 } from "./definitions";
-
-import { stages as stageUtil, characters as characterUtil } from "@slippi/slippi-js";
-import _ from "lodash";
-import { findWinner } from "../winner";
 import { GameDetails, Stat, StatDefinition } from "./types";
-import { convertFrameCountToDurationString } from "../util";
-import { PlayerType } from "@slippi/slippi-js";
 
 export const STAT_DEFINITIONS = new Map<string, StatDefinition>();
 STAT_DEFINITIONS.set(Stat.OPENINGS_PER_KILL, openingsPerKill);

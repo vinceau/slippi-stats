@@ -1,17 +1,15 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import styled from "@emotion/styled";
+import { PrimaryButton, SecondaryButton } from "components/Buttons";
 import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
-import { PrimaryButton, SecondaryButton } from "components/Buttons";
 import { readFileAsGameDetails } from "lib/readFile";
 import { generateSearchParams } from "lib/searchParams";
 import { generateStatParams } from "lib/stats";
 import { GameDetails, Stat } from "lib/stats/types";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { hasOpacity } from "styles/opacity";
 
 import { AppContext, Types } from "../store";
 import { StatOption, StatOptions } from "./StatOptions";

@@ -1,6 +1,7 @@
 import { reorder } from "lib/util";
 import React from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+
 import { StatOptionItem } from "./StatOptionItem";
 import { StatOption } from "./types";
 
