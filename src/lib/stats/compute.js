@@ -460,6 +460,15 @@ function generateGameInfo(games) {
   const orderedGames = _.orderBy(games, [getStartAt], ["asc"]);
 
   const getResultForPlayer = (game, playerIndex) => {
+    const gameEnd = game.gameEnd;
+    if (gameEnd) {
+      // Handle LRAS
+      switch (gameEnd.gameEndMethod) {
+        case 7:
+          return gameEnd.lrasInitiatorIndex === playerIndex ? "loser" : "winner";
+      }
+    }
+
     const latestFrame = game.latestFrame;
     const winner = findWinner(latestFrame);
     return winner === playerIndex ? "winner" : "loser";
