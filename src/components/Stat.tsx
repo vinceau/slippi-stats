@@ -50,8 +50,8 @@ const OuterStat = styled.div`
   }
 `;
 
-const Stat: React.FC<StatProps> = (props) => {
-  const { label, backgroundColor, color, leftComponent, rightComponent } = props;
+const Stat: React.FC<StatProps & Record<string, any>> = (props) => {
+  const { label, backgroundColor, color, leftComponent, rightComponent, children, ...rest } = props;
   return (
     <OuterStat>
       <div
@@ -62,7 +62,7 @@ const Stat: React.FC<StatProps> = (props) => {
       >
         {leftComponent}
       </div>
-      <StatLabel backgroundColor={backgroundColor} color={color}>
+      <StatLabel backgroundColor={backgroundColor} color={color} {...rest}>
         {label}
       </StatLabel>
       <div
