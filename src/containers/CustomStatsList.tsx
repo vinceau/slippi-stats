@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { moveArrayItem } from "lib/util";
+import { reorder } from "lib/util";
 import React from "react";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 
@@ -46,7 +46,7 @@ export const CustomStatsList: React.FC<CustomStatsListProps> = (props) => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-    const newArray = moveArrayItem(props.value, source.index, destination.index);
+    const newArray = reorder(props.value, source.index, destination.index);
     props.onChange(newArray);
   };
   return (

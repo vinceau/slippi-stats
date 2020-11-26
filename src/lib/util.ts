@@ -7,15 +7,10 @@ export function convertFrameCountToDurationString(frameCount: number): string {
   return moment.utc(duration.as("milliseconds")).format("m:ss");
 }
 
-/**
- * Taken from: https://stackoverflow.com/a/6470794
- */
-export function moveArrayItem(array: any, fromIndex: number, toIndex: number) {
-  const element = array[fromIndex];
+export function reorder(list: any[], startIndex: number, endIndex: number) {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
 
-  // Copy the array
-  const arr = [...array];
-  arr.splice(fromIndex, 1);
-  arr.splice(toIndex, 0, element);
-  return arr;
+  return result;
 }

@@ -5,17 +5,8 @@ import { Block } from "components/Block";
 import { GameDisplay } from "components/GameDisplay";
 import { useGames, useParam } from "lib/hooks";
 import React from "react";
-
-import { Statistic } from "./Statistic";
-
-const Divider = styled.div`
-  content: " ";
-  display: block;
-  height: 0.1rem;
-  width: 100%;
-  margin-top: 0.7rem;
-  background-color: rgba(255, 255, 255, 0.05);
-`;
+import { Divider } from "./Divider";
+import { StatDisplayList } from "./StatDisplayList";
 
 const ScoreBlock = styled(Block)`
   padding: 0.5rem 4rem;
@@ -34,19 +25,9 @@ export const StatDisplay: React.FC<{
   rightColor: string;
 }> = (props) => {
   const { games, score, setGame } = useGames();
-  const [stats] = useParam("stats");
+  const [stats, setStats] = useParam("stats");
   const winningSide = score.left > score.right ? "left" : score.right > score.left ? "right" : "";
   const { leftColor, rightColor, ...theme } = props;
-
-  const mapStatToElement = (statId: string, index: number) => {
-    if (statId) {
-      return <Statistic key={statId} statId={statId} theme={theme} />;
-    }
-    return <Divider key={`divider-${index}`} />;
-  };
-
-  const statsList = stats.split(",");
-  const statComponents = statsList.map(mapStatToElement);
 
   return (
     <div
@@ -63,7 +44,7 @@ export const StatDisplay: React.FC<{
           margin: 4rem;
         `}
       >
-        {statComponents}
+        <StatDisplayList stats={stats} setStats={setStats} theme={theme} />
         <Divider />
         <GameDisplay
           games={games}
