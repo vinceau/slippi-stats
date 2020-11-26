@@ -1,8 +1,8 @@
 import { characters as characterUtil, moves as moveUtil, Stage } from "@slippi/slippi-js";
+import { sampleSize } from "lodash";
 
 import { Stat, STAT_DEFINITIONS } from "./stats";
 import { convertFrameCountToDurationString } from "./util";
-import { sampleSize } from "lodash";
 
 const LEGAL_STAGE_IDS = [
   Stage.FOUNTAIN_OF_DREAMS,
