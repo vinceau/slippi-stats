@@ -1401,12 +1401,13 @@
   resolved "https://registry.yarnpkg.com/@shelacek/ubjson/-/ubjson-1.0.1.tgz#009d39ea22fa80e036f97e936650951a8225fafe"
   integrity sha512-0vlllP3M7fUElSd4239wmnv6SqDeymJgjRkb/iusOyDN4I0xjc8hrX4Zk/KYoAesgSdsnnSwhOU7g+IewmdaAw==
 
-"@slippi/slippi-js@^5.0.7":
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/@slippi/slippi-js/-/slippi-js-5.0.7.tgz#45117f5262c45e4adbac3d74a6128bb926f61c9a"
-  integrity sha512-aNwW2BxCt7Mu7ONwjmpkhZ69aYkL0DxxU0mvBzR9HuZ5yRUdIsQnbQkAHYc8nCddJ/UAgvzH5W3Jb1hlk1TPIw==
+"@slippi/slippi-js@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@slippi/slippi-js/-/slippi-js-5.1.1.tgz#63dc0ba131019fcaf9fe01417c6ecbe53db095aa"
+  integrity sha512-5iutrhwfjQNA2Ri9vzWM30wsAY43MVzSWT/hW/CkqS3jEU/I8PIpn5kMVLz2gESYnYOjOSTCB4sqEQJBLrBBSA==
   dependencies:
     "@shelacek/ubjson" "^1.0.1"
+    enet "^0.2.9"
     iconv-lite "^0.6.2"
     lodash "^4.17.19"
     moment "^2.27.0"
@@ -4251,6 +4252,11 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
+
+enet@^0.2.9:
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/enet/-/enet-0.2.9.tgz#d7fd68a0bf8bb3891408ea465e26ed6955822a1a"
+  integrity sha1-1/1ooL+Ls4kUCOpGXibtaVWCKho=
 
 enhanced-resolve@^4.1.0:
   version "4.1.1"
