@@ -14,6 +14,8 @@ import { useHistory } from "react-router-dom";
 import { AppContext, Types } from "../store";
 import { StatOption, StatOptions } from "./StatOptions";
 
+const STAT_OPTIONS_STORE_KEY = "statOptions";
+
 const ALL_STATS: string[] = [
   Stat.INPUTS_PER_MINUTE,
   Stat.DAMAGE_PER_OPENING,
@@ -60,7 +62,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   let statsModified = false;
   // Since we're persisting user options in localStorage, we need to be able to
   // handle the case where new options are available, yet not in their localStorage.
-  const restoredStatsString = localStorage.getItem("statOptions");
+  const restoredStatsString = localStorage.getItem(STAT_OPTIONS_STORE_KEY);
   if (restoredStatsString) {
     statsModified = restoredStatsString !== JSON.stringify(defaultStats);
     defaultStats = JSON.parse(restoredStatsString);
@@ -73,7 +75,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   };
 
   const onStatOptionChange = (options: StatOption[]) => {
-    localStorage.setItem("statOptions", JSON.stringify(options));
+    localStorage.setItem(STAT_OPTIONS_STORE_KEY, JSON.stringify(options));
     setStatOptions(options);
   };
 
