@@ -1,22 +1,6 @@
-import {
-  FrameEntryType,
-  FramesType,
-  GameEndType,
-  GameStartType,
-  MetadataType,
-  SlippiGame,
-  StatsType,
-} from "@slippi/slippi-js";
+import { SlippiGame } from "@slippi/slippi-js";
 
-export interface GameDetails {
-  filePath: string;
-  settings: GameStartType;
-  frames: FramesType;
-  stats: StatsType;
-  metadata: MetadataType;
-  latestFrame: FrameEntryType | null;
-  gameEnd: GameEndType | null;
-}
+import { GameDetails } from "./stats/types";
 
 export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
   const game = await readFileAsSlippiGame(file);

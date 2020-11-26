@@ -1,6 +1,17 @@
-import { characters as characterUtil, moves as moveUtil } from "@slippi/slippi-js";
+import { characters as characterUtil, moves as moveUtil, Stage } from "@slippi/slippi-js";
+import { sampleSize } from "lodash";
 
-import { convertFrameCountToDurationString } from "./stats";
+import { Stat, STAT_DEFINITIONS } from "./stats";
+import { convertFrameCountToDurationString } from "./util";
+
+const LEGAL_STAGE_IDS = [
+  Stage.FOUNTAIN_OF_DREAMS,
+  Stage.POKEMON_STADIUM,
+  Stage.YOSHIS_STORY,
+  Stage.DREAMLAND,
+  Stage.BATTLEFIELD,
+  Stage.FINAL_DESTINATION,
+];
 
 /*
  * Random functions are taken from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
@@ -46,41 +57,59 @@ export function generateDemoValues(): Record<string, any> {
   // Random games
   const totalGames = getRandomInt(3, 5);
   paramMap.gt = totalGames;
-  for (let i = 1; i <= totalGames; i++) {
-    const gameKey = `g${i}`;
+  sampleSize(LEGAL_STAGE_IDS, totalGames).forEach((stage, i) => {
+    const gameKey = `g${i + 1}`;
     const leftWillWin = Math.random() < 0.5;
     const leftPlayerInfo = [char1, color1, leftWillWin ? "winner" : "loser"].join(",");
     const rightPlayerInfo = [char2, color2, leftWillWin ? "loser" : "winner"].join(",");
-    const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo]);
+    const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo], stage);
     paramMap[gameKey] = gameValue;
-  }
-
-  // Random moves
-  ["mckm1", "mckm2", "mcno1", "mcno2"].forEach((key) => {
-    paramMap[key] = generateRandomMove();
   });
 
-  // Random openings per kill
-  ["opk1", "opk2"].forEach((key) => {
-    paramMap[key] = getRandomArbitrary(5, 15).toFixed(1);
-  });
+  const demoStats = [
+    Stat.KILL_MOVES,
+    Stat.NEUTRAL_OPENER_MOVES,
+    "",
+    Stat.OPENINGS_PER_KILL,
+    Stat.DAMAGE_DONE,
+    Stat.AVG_KILL_PERCENT,
+    Stat.NEUTRAL_WINS,
+  ];
 
-  // Total damage done
-  ["tdd1", "tdd2"].forEach((key) => {
-    paramMap[key] = getRandomArbitrary(1000, 2000).toFixed(1);
-  });
+  paramMap.stats = demoStats.join(",");
 
-  // Average kill percent
-  ["akp1", "akp2"].forEach((key) => {
-    paramMap[key] = getRandomArbitrary(50, 200).toFixed(1);
-  });
-
-  // Neutral wins
-  ["nw1", "nw2"].forEach((key) => {
-    paramMap[key] = getRandomInt(30, 80);
-  });
-
+  demoStats
+    .filter((s) => Boolean(s))
+    .forEach((statId) => {
+      [1, 2].forEach((player) => {
+        const key = statId + player;
+        paramMap[key] = generateRandomStat(statId);
+      });
+    });
   return paramMap;
+}
+
+function generateRandomStat(statId: string): string {
+  const stat = STAT_DEFINITIONS.get(statId);
+  if (!stat) {
+    return "";
+  }
+  switch (statId) {
+    case Stat.NEUTRAL_OPENER_MOVES:
+      return generateRandomMove();
+    case Stat.KILL_MOVES:
+      return generateRandomMove();
+    case Stat.OPENINGS_PER_KILL:
+      return getRandomArbitrary(5, 15).toFixed(stat.recommendedRounding);
+    case Stat.DAMAGE_DONE:
+      return getRandomArbitrary(1000, 2000).toFixed(stat.recommendedRounding);
+    case Stat.AVG_KILL_PERCENT:
+      return getRandomArbitrary(50, 200).toFixed(stat.recommendedRounding);
+    case Stat.NEUTRAL_WINS:
+      return getRandomInt(30, 80).toString();
+    default:
+      return "";
+  }
 }
 
 function generateRandomMove(): string {
@@ -97,8 +126,6 @@ function generateRandomCharacter() {
   return [charId, color] as const;
 }
 
-const LEGAL_STAGE_IDS = [2, 3, 8, 28, 31, 32];
-
 function generateRandomStageId(): number {
   const stageIndex = getRandomInt(0, LEGAL_STAGE_IDS.length - 1);
   return LEGAL_STAGE_IDS[stageIndex];
@@ -113,8 +140,8 @@ function generateRandomDuration(): string {
   return convertFrameCountToDurationString(frames);
 }
 
-function generateRandomGame(playerInfos: string[]): string {
-  const stageId = generateRandomStageId();
+function generateRandomGame(playerInfos: string[], stage?: Stage): string {
+  const stageId = stage || generateRandomStageId();
   const gameDuration = generateRandomDuration();
   const gameValue = [stageId, gameDuration, ...playerInfos].join(",");
   return gameValue;

@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { Character } from "@slippi/slippi-js";
 import { useParam } from "lib/hooks";
 import { getCharacterVSScreen, Side } from "lib/resources";
 import React from "react";
@@ -13,10 +14,10 @@ export interface CharDisplayProps {
 
 // Some characters have their faces to the right so it get cut off
 // so adjust the alignment so you can properly see their faces.
-const RIGHT_CHAR_ALIGNMENT = new Map<string, string>();
-RIGHT_CHAR_ALIGNMENT.set("5", "right top"); // Bowser
-RIGHT_CHAR_ALIGNMENT.set("19", "right top"); // Sheik
-RIGHT_CHAR_ALIGNMENT.set("23", "left 80%"); // Roy
+const RIGHT_CHAR_ALIGNMENT = new Map<Character, string>();
+RIGHT_CHAR_ALIGNMENT.set(Character.BOWSER, "right top");
+RIGHT_CHAR_ALIGNMENT.set(Character.SHEIK, "right top");
+RIGHT_CHAR_ALIGNMENT.set(Character.ROY, "left 80%");
 
 function getAlignment(facing: Side, char: string, defaultAlignment: string): string {
   if (facing === "left") {
@@ -24,7 +25,7 @@ function getAlignment(facing: Side, char: string, defaultAlignment: string): str
   }
 
   // We so far only care about the right hand side of the VS-screen
-  const customCharAlign = RIGHT_CHAR_ALIGNMENT.get(char);
+  const customCharAlign = RIGHT_CHAR_ALIGNMENT.get(+char);
   if (customCharAlign) {
     return customCharAlign;
   }

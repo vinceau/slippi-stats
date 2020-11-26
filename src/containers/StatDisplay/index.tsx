@@ -3,26 +3,11 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Block } from "components/Block";
 import { GameDisplay } from "components/GameDisplay";
-import { useGames } from "lib/hooks";
+import { useGames, useParam } from "lib/hooks";
 import React from "react";
 
-import {
-  AverageKillPercent,
-  MostCommonKillMove,
-  MostCommonNeutralOpener,
-  NeutralWins,
-  OpeningsPerKill,
-  TotalDamageDone,
-} from "./Statistics";
-
-const Divider = styled.div`
-  content: " ";
-  display: block;
-  height: 0.1rem;
-  width: 100%;
-  margin-top: 0.7rem;
-  background-color: rgba(255, 255, 255, 0.05);
-`;
+import { Divider } from "./Divider";
+import { StatDisplayList } from "./StatDisplayList";
 
 const ScoreBlock = styled(Block)`
   padding: 0.5rem 4rem;
@@ -41,8 +26,10 @@ export const StatDisplay: React.FC<{
   rightColor: string;
 }> = (props) => {
   const { games, score, setGame } = useGames();
+  const [stats, setStats] = useParam("stats");
   const winningSide = score.left > score.right ? "left" : score.right > score.left ? "right" : "";
   const { leftColor, rightColor, ...theme } = props;
+
   return (
     <div
       css={css`
@@ -58,13 +45,7 @@ export const StatDisplay: React.FC<{
           margin: 4rem;
         `}
       >
-        <MostCommonKillMove {...theme} />
-        <MostCommonNeutralOpener {...theme} />
-        <Divider />
-        <OpeningsPerKill />
-        <TotalDamageDone />
-        <AverageKillPercent />
-        <NeutralWins />
+        <StatDisplayList stats={stats} setStats={setStats} theme={theme} />
         <Divider />
         <GameDisplay
           games={games}
