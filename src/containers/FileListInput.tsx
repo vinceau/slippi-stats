@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
-import { MainButton } from "components/MainButton";
+import { PrimaryButton, SecondaryButton } from "components/Buttons";
 import { readFileAsGameDetails } from "lib/readFile";
 import { generateSearchParams } from "lib/searchParams";
 import { generateStatParams } from "lib/stats";
@@ -16,17 +16,35 @@ import { hasOpacity } from "styles/opacity";
 import { AppContext, Types } from "../store";
 import { StatOption, StatOptions } from "./StatOptions";
 
+const ALL_STATS: string[] = [
+  Stat.INPUTS_PER_MINUTE,
+  Stat.DAMAGE_PER_OPENING,
+  Stat.OPENINGS_PER_KILL,
+  Stat.DAMAGE_DONE,
+  Stat.AVG_KILL_PERCENT,
+  Stat.NEUTRAL_WINS,
+  Stat.L_CANCEL,
+  Stat.FIRST_BLOOD,
+];
+
 const DEFAULT_STATS = [Stat.OPENINGS_PER_KILL, Stat.DAMAGE_DONE, Stat.AVG_KILL_PERCENT, Stat.NEUTRAL_WINS];
 
 const getDefaultStats = (): StatOption[] => {
-  const restoredStatsString = localStorage.getItem("statOptions");
-  if (restoredStatsString) {
-    return JSON.parse(restoredStatsString);
-  }
-  return DEFAULT_STATS.map((s) => ({
+  const current = DEFAULT_STATS.map((s) => ({
     statId: s,
     enabled: true,
   }));
+  return validateStatOptions(current);
+};
+
+const validateStatOptions = (current: StatOption[]): StatOption[] => {
+  const newItems: StatOption[] = ALL_STATS.filter(
+    (statId) => !current.find((option) => option.statId === statId)
+  ).map((statId) => ({ statId, enabled: false }));
+
+  // Make sure the ones we're showing are supported
+  const currentItems = current.filter((c) => ALL_STATS.includes(c.statId));
+  return [...currentItems, ...newItems];
 };
 
 const generateStatsList = (options: StatOption[]): string[] => {
@@ -39,7 +57,22 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const { state, dispatch } = useContext(AppContext);
   const [error, setError] = React.useState<any>(null);
   const [showOptions, setShowOptions] = React.useState(false);
-  const [statOptions, setStatOptions] = React.useState<StatOption[]>(getDefaultStats());
+
+  let defaultStats = getDefaultStats();
+  let statsModified = false;
+  // Since we're persisting user options in localStorage, we need to be able to
+  // handle the case where new options are available, yet not in their localStorage.
+  const restoredStatsString = localStorage.getItem("statOptions");
+  if (restoredStatsString) {
+    statsModified = restoredStatsString !== JSON.stringify(defaultStats);
+    defaultStats = JSON.parse(restoredStatsString);
+  }
+
+  const [statOptions, setStatOptions] = React.useState<StatOption[]>(defaultStats);
+
+  const onStatOptionReset = () => {
+    onStatOptionChange(getDefaultStats());
+  };
 
   const onStatOptionChange = (options: StatOption[]) => {
     localStorage.setItem("statOptions", JSON.stringify(options));
@@ -119,7 +152,15 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
     state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "GENERATE STATS" : "PLEASE WAIT";
 
   if (showOptions) {
-    return <StatOptions onClose={() => setShowOptions(false)} value={statOptions} onChange={onStatOptionChange} />;
+    return (
+      <StatOptions
+        onClose={() => setShowOptions(false)}
+        value={statOptions}
+        onChange={onStatOptionChange}
+        onReset={onStatOptionReset}
+        hideReset={!statsModified}
+      />
+    );
   }
 
   return (
@@ -144,29 +185,15 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         <FileList files={state.files} onRemove={onRemove} />
       </div>
       <div>
-        <MainButton
+        <PrimaryButton
           backgroundColor={buttonColor}
           color="white"
           disabled={state.files.length === 0 || !finishedProcessing}
           onClick={onClick}
         >
           {buttonText}
-        </MainButton>
-        <div
-          css={css`
-            text-align: center;
-            margin-top: 0.5rem;
-            font-size: 1.4rem;
-            cursor: pointer;
-            &:hover {
-              text-decoration: underline;
-            }
-            ${hasOpacity(0.5)}
-          `}
-          onClick={() => setShowOptions(true)}
-        >
-          customize stats
-        </div>
+        </PrimaryButton>
+        <SecondaryButton onClick={() => setShowOptions(true)}>customize stats</SecondaryButton>
       </div>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </div>

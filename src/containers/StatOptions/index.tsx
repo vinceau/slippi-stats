@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { MainButton } from "components/MainButton";
+import { PrimaryButton, SecondaryButton } from "components/Buttons";
 import React from "react";
 import { StatOptionList } from "./StatOptionList";
 import { StatOption } from "./types";
@@ -11,6 +11,8 @@ interface StatOptionsProps {
   onClose: () => void;
   value: StatOption[];
   onChange: (stats: StatOption[]) => void;
+  onReset: () => void;
+  hideReset?: boolean;
 }
 
 export const StatOptions: React.FC<StatOptionsProps> = (props) => {
@@ -41,9 +43,10 @@ export const StatOptions: React.FC<StatOptionsProps> = (props) => {
       >
         <StatOptionList value={props.value} onChange={props.onChange} />
       </div>
-      <MainButton backgroundColor="white" color="black" onClick={props.onClose}>
+      <PrimaryButton backgroundColor="white" color="black" onClick={props.onClose}>
         DONE
-      </MainButton>
+      </PrimaryButton>
+      {!props.hideReset && <SecondaryButton onClick={props.onReset}>reset</SecondaryButton>}
     </div>
   );
 };

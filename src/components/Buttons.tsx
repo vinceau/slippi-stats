@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { hasOpacity } from "styles/opacity";
 
-export const MainButton = styled.button<{
+export const PrimaryButton = styled.button<{
   backgroundColor: string;
   color: string;
 }>`
@@ -22,4 +23,15 @@ export const MainButton = styled.button<{
   &:hover:enabled {
     opacity: 1;
   }
+`;
+
+export const SecondaryButton = styled.div`
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  ${hasOpacity(0.5)}
 `;

@@ -1,41 +1,16 @@
-import styled from "@emotion/styled";
-import { Stat, STAT_DEFINITIONS } from "lib/stats";
 import { reorder } from "lib/util";
 import React from "react";
-import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StatOptionItem } from "./StatOptionItem";
 import { StatOption } from "./types";
-
-const ALL_STATS_LIST: string[] = [
-  Stat.INPUTS_PER_MINUTE,
-  Stat.DAMAGE_PER_OPENING,
-  Stat.OPENINGS_PER_KILL,
-  Stat.DAMAGE_DONE,
-  Stat.AVG_KILL_PERCENT,
-  Stat.NEUTRAL_WINS,
-  Stat.L_CANCEL,
-  Stat.FIRST_BLOOD,
-];
 
 interface StatOptionListProps {
   value: StatOption[];
   onChange: (options: StatOption[]) => void;
 }
 
-const generateStatOptions = (current: StatOption[]): StatOption[] => {
-  // Since we're persisting user options in localStorage, we need to be able to
-  // handle the case where new options are available, yet not in their localStorage.
-  const newItems: StatOption[] = ALL_STATS_LIST.filter(
-    (statId) => !current.find((option) => option.statId === statId)
-  ).map((statId) => ({ statId, enabled: false }));
-
-  // Make sure the ones we're showing are supported
-  const currentItems = current.filter((c) => ALL_STATS_LIST.includes(c.statId));
-  return [...currentItems, ...newItems];
-};
-
 export const StatOptionList: React.FC<StatOptionListProps> = (props) => {
-  const statOptions = generateStatOptions(props.value);
+  const statOptions = props.value;
   const onDragEnd = (result: any) => {
     const { destination, source } = result;
     if (!destination) {
