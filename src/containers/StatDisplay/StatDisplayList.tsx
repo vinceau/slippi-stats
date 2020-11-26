@@ -1,6 +1,9 @@
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { reorder } from "lib/util";
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { hasOpacity } from "styles/opacity";
 import { Theme } from "styles/theme";
 import { Divider } from "./Divider";
 import { Statistic } from "./Statistic";
@@ -37,45 +40,106 @@ export const StatDisplayList: React.FC<StatDisplayListProps> = (props) => {
   React.useEffect(() => {
     setItems(stats.split(","));
   }, [stats]);
+
+  const updateStats = (statIds: string[]) => {
+    // First update the local state
+    setItems(statIds);
+    // Then update the URL state
+    setStats(statIds.join(","));
+  };
+
   const onDragEnd = (result: any) => {
     // dropped outside the list
     if (!result.destination) {
       return;
     }
     const newItems = reorder(items, result.source.index, result.destination.index);
+    updateStats(newItems);
+  };
 
-    // First update the local state
-    setItems(newItems);
-    // Then update the URL state
-    setStats(newItems.join(","));
+  const onRemove = (statId: string) => {
+    const newItems = items.filter((s) => s !== statId);
+    updateStats(newItems);
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable">
-        {(provided, snapshot) => (
-          <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+        {(dropProvided, dropSnapshot) => (
+          <div
+            {...dropProvided.droppableProps}
+            ref={dropProvided.innerRef}
+            style={getListStyle(dropSnapshot.isDraggingOver)}
+          >
             {items.map((item, index) => {
               const key = item ? item : "divider";
               return (
                 <Draggable key={key} draggableId={key} index={index}>
-                  {(provided, snapshot) => {
-                    const additionalStyles = item ? null : provided.dragHandleProps;
+                  {(dragProvided, dragSnapshot) => {
+                    const additionalStyles = item ? null : dragProvided.dragHandleProps;
                     return (
                       <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
+                        ref={dragProvided.innerRef}
+                        {...dragProvided.draggableProps}
                         {...additionalStyles}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                        style={getItemStyle(dragSnapshot.isDragging, dragProvided.draggableProps.style)}
                       >
-                        {item ? <Statistic statId={item} theme={theme} {...provided.dragHandleProps} /> : <Divider />}
+                        {item ? (
+                          <div
+                            css={css`
+                              position: relative;
+                              .remove {
+                                display: none;
+                              }
+                              ${dropSnapshot.isDraggingOver
+                                ? ""
+                                : `&:hover {
+                                .remove {
+                                  display: block;
+                                }
+                              }
+                              `}
+                            `}
+                          >
+                            <Statistic statId={item} theme={theme} {...dragProvided.dragHandleProps} />
+                            <div
+                              className="remove"
+                              css={css`
+                                position: absolute;
+                                top: 0;
+                                left: 50%;
+                                transform: translateX(-50%) translateY(-90%);
+                                padding: 0.5rem 1.5rem;
+                                color: black;
+                                background-color: white;
+                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+                                font-weight: 600;
+                                transition: all 0.2s ease-in-out;
+                                cursor: pointer;
+                                ${hasOpacity(0.4, 0.8)}
+                              `}
+                              onClick={() => onRemove(item)}
+                            >
+                              ✕
+                              <span
+                                css={css`
+                                  margin-left: 1rem;
+                                `}
+                              >
+                                REMOVE
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <Divider />
+                        )}
                       </div>
                     );
                   }}
                 </Draggable>
               );
             })}
-            {provided.placeholder}
+            {dropProvided.placeholder}
           </div>
         )}
       </Droppable>
