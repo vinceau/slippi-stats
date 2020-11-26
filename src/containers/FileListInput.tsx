@@ -188,7 +188,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
           `}
           onClick={() => setShowOptions(true)}
         >
-          show advanced options
+          customize stats
         </div>
       </div>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
