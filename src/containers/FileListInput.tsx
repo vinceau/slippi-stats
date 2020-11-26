@@ -13,9 +13,20 @@ import { useHistory } from "react-router-dom";
 import { hasOpacity } from "styles/opacity";
 
 import { AppContext, Types } from "../store";
-import { CustomStatsList, StatOptions } from "./CustomStatsList";
+import { StatOption, StatOptions } from "./StatOptions";
 
 const DEFAULT_STATS = [Stat.OPENINGS_PER_KILL, Stat.DAMAGE_DONE, Stat.AVG_KILL_PERCENT, Stat.NEUTRAL_WINS];
+
+const getDefaultStats = (): StatOption[] => {
+  const restoredStatsString = localStorage.getItem("statOptions");
+  if (restoredStatsString) {
+    return JSON.parse(restoredStatsString);
+  }
+  return DEFAULT_STATS.map((s) => ({
+    statId: s,
+    enabled: true,
+  }));
+};
 
 const ProcessButton = styled.button<{
   backgroundColor: string;
@@ -41,18 +52,7 @@ const ProcessButton = styled.button<{
   }
 `;
 
-const getDefaultStats = (): StatOptions => {
-  const restoredStatsString = localStorage.getItem("statOptions");
-  if (restoredStatsString) {
-    return JSON.parse(restoredStatsString);
-  }
-  return DEFAULT_STATS.map((s) => ({
-    statId: s,
-    enabled: true,
-  }));
-};
-
-const generateStatsList = (options: StatOptions): string[] => {
+const generateStatsList = (options: StatOption[]): string[] => {
   const statsList = options.filter((s) => s.enabled).map((s) => s.statId);
   return [Stat.KILL_MOVES, Stat.NEUTRAL_OPENER_MOVES, "", ...statsList];
 };
@@ -62,9 +62,9 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const { state, dispatch } = useContext(AppContext);
   const [error, setError] = React.useState<any>(null);
   const [showOptions, setShowOptions] = React.useState(false);
-  const [statOptions, setStatOptions] = React.useState<StatOptions>(getDefaultStats());
+  const [statOptions, setStatOptions] = React.useState<StatOption[]>(getDefaultStats());
 
-  const onStatOptionChange = (options: StatOptions) => {
+  const onStatOptionChange = (options: StatOption[]) => {
     localStorage.setItem("statOptions", JSON.stringify(options));
     setStatOptions(options);
   };
@@ -142,7 +142,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
     state.files.length === 0 ? "NO FILES ADDED" : finishedProcessing ? "GENERATE STATS" : "PLEASE WAIT";
 
   if (showOptions) {
-    return <CustomStatsList onClose={() => setShowOptions(false)} value={statOptions} onChange={onStatOptionChange} />;
+    return <StatOptions onClose={() => setShowOptions(false)} value={statOptions} onChange={onStatOptionChange} />;
   }
 
   return (
