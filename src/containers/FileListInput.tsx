@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { DropPad } from "components/DropPad";
 import { ErrorMessage } from "components/ErrorMessage";
 import { FileList } from "components/FileList";
+import { MainButton } from "components/MainButton";
 import { readFileAsGameDetails } from "lib/readFile";
 import { generateSearchParams } from "lib/searchParams";
 import { generateStatParams } from "lib/stats";
@@ -27,30 +28,6 @@ const getDefaultStats = (): StatOption[] => {
     enabled: true,
   }));
 };
-
-const ProcessButton = styled.button<{
-  backgroundColor: string;
-  color: string;
-}>`
-  background: ${(p) => p.backgroundColor};
-  border: none;
-  color: ${(p) => p.color};
-  cursor: pointer;
-  font: inherit;
-  padding: 1rem 0rem;
-  width: 100%;
-  font-weight: 700;
-  font-size: 3rem;
-  opacity: 0.8;
-  transition: opacity 0.2s ease-in-out;
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  &:hover:enabled {
-    opacity: 1;
-  }
-`;
 
 const generateStatsList = (options: StatOption[]): string[] => {
   const statsList = options.filter((s) => s.enabled).map((s) => s.statId);
@@ -167,14 +144,14 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         <FileList files={state.files} onRemove={onRemove} />
       </div>
       <div>
-        <ProcessButton
+        <MainButton
           backgroundColor={buttonColor}
           color="white"
           disabled={state.files.length === 0 || !finishedProcessing}
           onClick={onClick}
         >
           {buttonText}
-        </ProcessButton>
+        </MainButton>
         <div
           css={css`
             text-align: center;
