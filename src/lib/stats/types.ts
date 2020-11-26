@@ -9,16 +9,14 @@ export enum Stat {
   INPUTS_PER_MINUTE = "ipm",
   AVG_KILL_PERCENT = "akp",
   DAMAGE_DONE = "tdd",
+  EARLY_KILLS = "ek",
+  LATE_DEATHS = "ld",
+  SELF_DESTRUCTS = "sd",
+  HIGH_DAMAGE_PUNISHES = "hdp",
 
   // Custom
   FIRST_BLOOD = "fb",
   L_CANCEL = "lc",
-
-  // Currently unsupported
-  EARLY_KILLS = "earlyKills",
-  LATE_DEATHS = "lateDeaths",
-  SELF_DESTRUCTS = "selfDestructs",
-  HIGH_DAMAGE_PUNISHES = "highDamagePunishes",
 }
 
 export interface GameDetails {
