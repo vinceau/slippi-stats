@@ -136,7 +136,7 @@ export const STAT_DEFINITIONS = {
   },
   [Stat.FIRST_BLOOD]: {
     id: Stat.FIRST_BLOOD,
-    name: "First blood",
+    name: "First Blood",
     type: "number",
     betterDirection: "higher",
     recommendedRounding: 0,
@@ -144,7 +144,7 @@ export const STAT_DEFINITIONS = {
   },
   [Stat.L_CANCEL]: {
     id: Stat.L_CANCEL,
-    name: "L-cancel Rate",
+    name: "L-Cancel Accuracy",
     type: "number",
     betterDirection: "higher",
     recommendedRounding: 0,
