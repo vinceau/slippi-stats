@@ -3,30 +3,10 @@ import { css, jsx } from "@emotion/core";
 import { reorder } from "lib/util";
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { hasOpacity } from "styles/opacity";
 import { Theme } from "styles/theme";
 import { Divider } from "./Divider";
+import { StatDisplayItem } from "./StatDisplayItem";
 import { Statistic } from "./Statistic";
-
-const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-  padding: "1rem 0",
-  // some basic styles to make the items look a bit nicer
-  userSelect: "none",
-  // change background colour if dragging
-  //   background: isDragging ? "lightgreen" : "grey",
-
-  // styles we need to apply on draggables
-  ...draggableStyle,
-});
-
-const getListStyle = (isDraggingOver: boolean) => ({
-  //   background: isDraggingOver ? "lightblue" : "lightgrey",
-  //   display: "grid",
-  //   gridTemplateColumns: "100%",
-  //   rowGap: "2rem",
-  marginTop: "-1rem",
-  marginBottom: "-1rem",
-});
 
 interface StatDisplayListProps {
   theme: Theme;
@@ -69,7 +49,9 @@ export const StatDisplayList: React.FC<StatDisplayListProps> = (props) => {
           <div
             {...dropProvided.droppableProps}
             ref={dropProvided.innerRef}
-            style={getListStyle(dropSnapshot.isDraggingOver)}
+            css={css`
+              margin: -1rem 0;
+            `}
           >
             {items.map((item, index) => {
               const key = item ? item : "divider";
@@ -78,48 +60,22 @@ export const StatDisplayList: React.FC<StatDisplayListProps> = (props) => {
                   {(dragProvided, dragSnapshot) => {
                     const additionalStyles = item ? null : dragProvided.dragHandleProps;
                     return (
-                      <div
+                      <StatDisplayItem
                         ref={dragProvided.innerRef}
+                        hasItem={Boolean(item)}
+                        isDraggingOver={dropSnapshot.isDraggingOver}
                         {...dragProvided.draggableProps}
                         {...additionalStyles}
-                        style={getItemStyle(dragSnapshot.isDragging, dragProvided.draggableProps.style)}
+                        style={dragProvided.draggableProps.style}
                       >
                         {item ? (
                           <div
                             css={css`
                               position: relative;
-                              .remove {
-                                display: none;
-                              }
-                              ${dropSnapshot.isDraggingOver
-                                ? ""
-                                : `&:hover {
-                                .remove {
-                                  display: block;
-                                }
-                              }
-                              `}
                             `}
                           >
                             <Statistic statId={item} theme={theme} {...dragProvided.dragHandleProps} />
-                            <div
-                              className="remove"
-                              css={css`
-                                position: absolute;
-                                top: 0;
-                                left: 50%;
-                                transform: translateX(-50%) translateY(-90%);
-                                padding: 0.5rem 1.5rem;
-                                color: black;
-                                background-color: white;
-                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-                                font-weight: 600;
-                                transition: all 0.2s ease-in-out;
-                                cursor: pointer;
-                                ${hasOpacity(0.4, 0.8)}
-                              `}
-                              onClick={() => onRemove(item)}
-                            >
+                            <div className="remove" onClick={() => onRemove(item)}>
                               ✕
                               <span
                                 css={css`
@@ -133,7 +89,7 @@ export const StatDisplayList: React.FC<StatDisplayListProps> = (props) => {
                         ) : (
                           <Divider />
                         )}
-                      </div>
+                      </StatDisplayItem>
                     );
                   }}
                 </Draggable>
