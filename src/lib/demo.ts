@@ -1,7 +1,17 @@
-import { characters as characterUtil, moves as moveUtil } from "@slippi/slippi-js";
+import { characters as characterUtil, moves as moveUtil, Stage } from "@slippi/slippi-js";
 
 import { Stat, STAT_DEFINITIONS } from "./stats";
 import { convertFrameCountToDurationString } from "./util";
+import { sampleSize } from "lodash";
+
+const LEGAL_STAGE_IDS = [
+  Stage.FOUNTAIN_OF_DREAMS,
+  Stage.POKEMON_STADIUM,
+  Stage.YOSHIS_STORY,
+  Stage.DREAMLAND,
+  Stage.BATTLEFIELD,
+  Stage.FINAL_DESTINATION,
+];
 
 /*
  * Random functions are taken from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
@@ -47,14 +57,14 @@ export function generateDemoValues(): Record<string, any> {
   // Random games
   const totalGames = getRandomInt(3, 5);
   paramMap.gt = totalGames;
-  for (let i = 1; i <= totalGames; i++) {
-    const gameKey = `g${i}`;
+  sampleSize(LEGAL_STAGE_IDS, totalGames).forEach((stage, i) => {
+    const gameKey = `g${i + 1}`;
     const leftWillWin = Math.random() < 0.5;
     const leftPlayerInfo = [char1, color1, leftWillWin ? "winner" : "loser"].join(",");
     const rightPlayerInfo = [char2, color2, leftWillWin ? "loser" : "winner"].join(",");
-    const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo]);
+    const gameValue = generateRandomGame([leftPlayerInfo, rightPlayerInfo], stage);
     paramMap[gameKey] = gameValue;
-  }
+  });
 
   const demoStats = [
     Stat.KILL_MOVES,
@@ -116,8 +126,6 @@ function generateRandomCharacter() {
   return [charId, color] as const;
 }
 
-const LEGAL_STAGE_IDS = [2, 3, 8, 28, 31, 32];
-
 function generateRandomStageId(): number {
   const stageIndex = getRandomInt(0, LEGAL_STAGE_IDS.length - 1);
   return LEGAL_STAGE_IDS[stageIndex];
@@ -132,8 +140,8 @@ function generateRandomDuration(): string {
   return convertFrameCountToDurationString(frames);
 }
 
-function generateRandomGame(playerInfos: string[]): string {
-  const stageId = generateRandomStageId();
+function generateRandomGame(playerInfos: string[], stage?: Stage): string {
+  const stageId = stage || generateRandomStageId();
   const gameDuration = generateRandomDuration();
   const gameValue = [stageId, gameDuration, ...playerInfos].join(",");
   return gameValue;
