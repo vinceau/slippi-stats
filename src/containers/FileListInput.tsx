@@ -65,7 +65,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const restoredStatsString = localStorage.getItem(STAT_OPTIONS_STORE_KEY);
   if (restoredStatsString) {
     statsModified = restoredStatsString !== JSON.stringify(defaultStats);
-    defaultStats = JSON.parse(restoredStatsString);
+    defaultStats = validateStatOptions(JSON.parse(restoredStatsString));
   }
 
   const [statOptions, setStatOptions] = React.useState<StatOption[]>(defaultStats);
