@@ -13,7 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+    "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn run lint --fix"
   },
   "husky": {
