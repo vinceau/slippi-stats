@@ -41,7 +41,10 @@ export const StatOptionItem: React.FC<{
   id: string;
   onChange: (checked: boolean) => void;
 }> = (props) => {
-  const stat = (STAT_DEFINITIONS as any)[props.id];
+  const stat = STAT_DEFINITIONS.get(props.id);
+  if (!stat) {
+    return null;
+  }
   const toggle = () => props.onChange(!props.checked);
   return (
     <Draggable draggableId={props.id} index={props.index}>

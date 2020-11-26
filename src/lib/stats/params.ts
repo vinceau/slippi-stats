@@ -1,7 +1,8 @@
 import { get } from "lodash";
 
 import { getPortColor } from "../portColor";
-import { filterGames, generateOutput } from "./compute";
+import { filterGames } from "./filterGames";
+import { generateOutput } from "./compute";
 import { GameDetails } from "./types";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {
@@ -58,10 +59,10 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: string
   // Set game info
   params.gt = games.length; // Set the total number of games
 
-  (games as any[]).forEach((game, i) => {
+  games.forEach((game, i) => {
     // console.log("processing game: ", game);
     const gameKey = `g${i + 1}`;
-    const stageId: number = game.stage.id;
+    const stageId = game.stage.id as number;
     const gameDuration: string = game.duration;
     const playerInfo = game.players.map((p: any) => [p.characterId, p.characterColor, p.gameResult].join(","));
     const gameValue = [stageId, gameDuration, ...playerInfo].join(",");
@@ -71,7 +72,7 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: string
 
   params.stats = statsList.join(",");
   // Set the stat values
-  (summary as any[]).forEach((s) => {
+  summary.forEach((s) => {
     // Stats can be null if the id is invalid or not specified
     if (!s) {
       return;

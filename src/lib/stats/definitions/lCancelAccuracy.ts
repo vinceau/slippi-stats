@@ -1,31 +1,6 @@
 import { FramesType } from "@slippi/slippi-js";
 
-import { StatCalculation } from "../types";
-
-export const calculateLCancels: StatCalculation = (games, playerIndex) => {
-  const lCancelsPerGame = games.map((game) => {
-    const frames = game.frames;
-    const gameLCancels = getLCancels(frames, playerIndex);
-    return gameLCancels;
-  });
-
-  const totalLCancels = lCancelsPerGame.reduce(
-    (tally, val) => ({
-      successful: tally.successful + val.successful,
-      failed: tally.failed + val.failed,
-    }),
-    { successful: 0, failed: 0 }
-  );
-  const ratio = totalLCancels.successful / (totalLCancels.successful + totalLCancels.failed);
-
-  return {
-    result: totalLCancels,
-    simple: {
-      text: isNaN(ratio) ? "N/A" : `${(ratio * 100).toFixed(0)}%`,
-      number: ratio,
-    },
-  };
-};
+import { StatDefinition } from "../types";
 
 /**
  * Based on pdiot's L Cancel calculation code from here:
@@ -111,3 +86,34 @@ function getAttackAction(id: number) {
     return null;
   }
 }
+
+export const lCancelAccuracy: StatDefinition = {
+  name: "L-Cancel Accuracy",
+  type: "number",
+  betterDirection: "higher",
+  recommendedRounding: 0,
+  calculate(games, playerIndex) {
+    const lCancelsPerGame = games.map((game) => {
+      const frames = game.frames;
+      const gameLCancels = getLCancels(frames, playerIndex);
+      return gameLCancels;
+    });
+
+    const totalLCancels = lCancelsPerGame.reduce(
+      (tally, val) => ({
+        successful: tally.successful + val.successful,
+        failed: tally.failed + val.failed,
+      }),
+      { successful: 0, failed: 0 }
+    );
+    const ratio = totalLCancels.successful / (totalLCancels.successful + totalLCancels.failed);
+
+    return {
+      result: totalLCancels,
+      simple: {
+        text: isNaN(ratio) ? "N/A" : `${(ratio * 100).toFixed(this.recommendedRounding)}%`,
+        number: ratio,
+      },
+    };
+  },
+};

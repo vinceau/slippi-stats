@@ -37,3 +37,11 @@ export interface StatCalculationResult {
 }
 
 export type StatCalculation = (games: GameDetails[], playerIndex: number) => StatCalculationResult;
+
+export interface StatDefinition {
+  name: string;
+  type: string;
+  betterDirection?: string;
+  recommendedRounding?: number;
+  calculate: StatCalculation;
+}

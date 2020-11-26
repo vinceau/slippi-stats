@@ -52,7 +52,7 @@ export const Statistic: React.FC<
   } & Record<string, any>
 > = (props) => {
   const { statId, theme, children, ...rest } = props;
-  const statInfo = (STAT_DEFINITIONS as any)[statId];
+  const statInfo = STAT_DEFINITIONS.get(statId);
   if (!statInfo) {
     return null;
   }
