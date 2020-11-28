@@ -27,13 +27,9 @@ export const StatOptions: React.FC<StatOptionsProps> = (props) => {
         width: 100%;
       `}
     >
-      <h2
-        css={css`
-          text-align: center;
-        `}
-      >
-        CUSTOMIZE STATS
-      </h2>
+      <SecondaryButton align="right" onClick={props.onClose}>
+        close
+      </SecondaryButton>
       <div
         css={css`
           overflow: auto;

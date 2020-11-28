@@ -183,6 +183,9 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         height: 100%;
       `}
     >
+      <SecondaryButton align="right" onClick={() => setShowOptions(true)}>
+        customize stats
+      </SecondaryButton>
       <DropPad accept=".slp" onDrop={onDrop} />
       <div
         css={css`

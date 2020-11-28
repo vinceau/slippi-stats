@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import React from "react";
 import styled from "@emotion/styled";
 import { hasOpacity } from "styles/opacity";
 
@@ -25,13 +28,32 @@ export const PrimaryButton = styled.button<{
   }
 `;
 
-export const SecondaryButton = styled.div`
-  text-align: center;
-  margin-top: 0.5rem;
-  font-size: 1.4rem;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-  ${hasOpacity(0.5)}
-`;
+export const SecondaryButton: React.FC<Record<string, any>> = (props) => {
+  const { align, children, ...rest } = props;
+  const alignment = align || "center";
+  return (
+    <div
+      css={css`
+        user-select: none;
+        text-align: ${alignment};
+      `}
+    >
+      <span
+        css={css`
+          display: inline-block;
+          font-size: 1.4rem;
+          cursor: pointer;
+          margin: 0.5rem 0;
+          padding: 0 0.5rem;
+          ${hasOpacity(0.5)}
+          &:hover {
+            text-decoration: underline;
+          }
+        `}
+        {...rest}
+      >
+        {children}
+      </span>
+    </div>
+  );
+};
