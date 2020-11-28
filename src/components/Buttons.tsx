@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import React from "react";
 import styled from "@emotion/styled";
+import React from "react";
 import { hasOpacity } from "styles/opacity";
 
 export const PrimaryButton = styled.button<{
