@@ -4,9 +4,8 @@ import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { AppContext, Types } from "store";
 import { hasOpacity } from "styles/opacity";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
@@ -32,15 +31,8 @@ const Container = styled.div`
 `;
 
 export const MainView: React.FC = () => {
-  const { dispatch } = useContext(AppContext);
   const primaryColor = localStorage.getItem("primaryColor") || defaultTheme.primaryColor;
   const secondaryColor = localStorage.getItem("secondaryColor") || defaultTheme.secondaryColor;
-
-  const clearAll = () => {
-    dispatch({
-      type: Types.CLEAR_ALL,
-    });
-  };
 
   return (
     <div
@@ -59,8 +51,6 @@ export const MainView: React.FC = () => {
           `}
         >
           <Header
-            onClick={clearAll}
-            title="Refresh page"
             css={css`
               cursor: pointer;
               font-size: 4rem;

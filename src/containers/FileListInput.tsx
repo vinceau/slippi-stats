@@ -62,6 +62,12 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
   const [error, setError] = React.useState<any>(null);
   const [showOptions, setShowOptions] = React.useState(false);
 
+  const clearAll = () => {
+    dispatch({
+      type: Types.CLEAR_ALL,
+    });
+  };
+
   let defaultStats = getDefaultStats();
   let statsModified = false;
   // Since we're persisting user options in localStorage, we need to be able to
@@ -197,7 +203,7 @@ export const FileListInput: React.FC<{ buttonColor: string }> = ({ buttonColor }
         >
           {buttonText}
         </PrimaryButton>
-        <SecondaryButton onClick={() => setShowOptions(true)}>customize stats</SecondaryButton>
+        {state.files.length > 0 && <SecondaryButton onClick={clearAll}>reset</SecondaryButton>}
       </div>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </div>
