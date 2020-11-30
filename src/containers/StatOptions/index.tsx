@@ -41,7 +41,7 @@ export const StatOptions: React.FC<StatOptionsProps> = (props) => {
         <StatOptionList value={props.value} onChange={props.onChange} />
       </div>
       <PrimaryButton backgroundColor="white" color="black" onClick={props.onClose}>
-        DONE
+        CLOSE
       </PrimaryButton>
       {!props.hideReset && <SecondaryButton onClick={props.onReset}>restore defaults</SecondaryButton>}
     </div>
