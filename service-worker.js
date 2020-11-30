@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/slippi-stats/precache-manifest.4a8d5525fc06d3b831ff2b54443c5614.js"
+  "/slippi-stats/precache-manifest.d351f03c04717c46103a4bb0d5884b0d.js"
 );
 
 self.addEventListener('message', (event) => {
