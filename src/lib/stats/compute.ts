@@ -102,7 +102,7 @@ function generateGameInfo(games: GameDetails[]) {
     // console.log(player);
     const characterName = player.characterId ? characterUtil.getCharacterName(player.characterId) : "";
     const characterColor =
-      player.characterId && player.characterColor
+      player.characterId !== null && player.characterColor !== null
         ? characterUtil.getCharacterColorName(player.characterId, player.characterColor)
         : "";
 
