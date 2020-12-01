@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/slippi-stats/static/css/main.66e643c1.chunk.css",
-    "main.js": "/slippi-stats/static/js/main.d3959b54.chunk.js",
-    "main.js.map": "/slippi-stats/static/js/main.d3959b54.chunk.js.map",
+    "main.js": "/slippi-stats/static/js/main.81d1e33f.chunk.js",
+    "main.js.map": "/slippi-stats/static/js/main.81d1e33f.chunk.js.map",
     "runtime-main.js": "/slippi-stats/static/js/runtime-main.6140e489.js",
     "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.6140e489.js.map",
     "static/js/2.884ecc76.chunk.js": "/slippi-stats/static/js/2.884ecc76.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/4.525967f5.chunk.js": "/slippi-stats/static/js/4.525967f5.chunk.js",
     "static/js/4.525967f5.chunk.js.map": "/slippi-stats/static/js/4.525967f5.chunk.js.map",
     "index.html": "/slippi-stats/index.html",
-    "precache-manifest.d351f03c04717c46103a4bb0d5884b0d.js": "/slippi-stats/precache-manifest.d351f03c04717c46103a4bb0d5884b0d.js",
+    "precache-manifest.2a997fbf18f245ad13ddddfe4982fe31.js": "/slippi-stats/precache-manifest.2a997fbf18f245ad13ddddfe4982fe31.js",
     "service-worker.js": "/slippi-stats/service-worker.js",
     "static/css/main.66e643c1.chunk.css.map": "/slippi-stats/static/css/main.66e643c1.chunk.css.map",
     "static/js/2.884ecc76.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.884ecc76.chunk.js.LICENSE.txt",
@@ -23,6 +23,6 @@
     "static/js/runtime-main.6140e489.js",
     "static/js/2.884ecc76.chunk.js",
     "static/css/main.66e643c1.chunk.css",
-    "static/js/main.d3959b54.chunk.js"
+    "static/js/main.81d1e33f.chunk.js"
   ]
 }

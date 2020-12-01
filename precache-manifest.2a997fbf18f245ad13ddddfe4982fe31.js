@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "958ec28292100ea230f12974602e566a",
+    "revision": "c6e3949c70a26dea6b92bdeefa7a9c98",
     "url": "/slippi-stats/index.html"
   },
   {
-    "revision": "0ab3108b3432c42e458d",
+    "revision": "9abb811dff32304f8430",
     "url": "/slippi-stats/static/css/main.66e643c1.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/slippi-stats/static/js/4.525967f5.chunk.js"
   },
   {
-    "revision": "0ab3108b3432c42e458d",
-    "url": "/slippi-stats/static/js/main.d3959b54.chunk.js"
+    "revision": "9abb811dff32304f8430",
+    "url": "/slippi-stats/static/js/main.81d1e33f.chunk.js"
   },
   {
     "revision": "ce2e59cdca550b98d18c",
