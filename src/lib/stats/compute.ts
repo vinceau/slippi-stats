@@ -104,12 +104,11 @@ function generateGameInfo(games: GameDetails[]) {
     const characterColor =
       player.characterId !== null && player.characterColor !== null
         ? characterUtil.getCharacterColorName(player.characterId, player.characterColor)
-        : "";
+        : "Default";
 
     return {
       port: player.port,
       characterId: player.characterId,
-      // characterColor: player.characterColor,
       nametag: player.nametag,
       characterName,
       characterColor,
