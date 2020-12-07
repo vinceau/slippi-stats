@@ -77,7 +77,7 @@ yarn run build
 
 This project was made possible by:
 
-- [Jas Laferriere](https://github.com/JLaferri) and the rest of the [Project Slippi](https://slippi.gg/about) team for Project Slippi
+- [Jas Laferriere](https://github.com/JLaferri) and [the team](https://slippi.gg/about) for Project Slippi
 
 - [Jas Laferriere](https://github.com/JLaferri) for his [Slippi Set Stats](https://github.com/project-slippi/slippi-set-stats) script
 
