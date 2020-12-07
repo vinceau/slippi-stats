@@ -10,7 +10,7 @@ const Text = styled.span`
 `;
 
 const Outer = styled.div<{
-  src: string;
+  image: string;
   borderColor: string;
 }>`
   display: flex;
@@ -29,7 +29,7 @@ const Outer = styled.div<{
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("${(p) => p.src}");
+    background-image: url("${(p) => p.image}");
     background-repeat: no-repeat;
     background-size: 105% auto;
     background-position: center;
@@ -47,7 +47,7 @@ interface StageTimerProps {
 export const StageTimer: React.FC<StageTimerProps> = ({ stageId, duration, borderColor }) => {
   const stageIcon = getStageIcon(stageId);
   return (
-    <Outer src={stageIcon} borderColor={borderColor || "transparent"}>
+    <Outer image={stageIcon} borderColor={borderColor || "transparent"}>
       <Text>{duration}</Text>
     </Outer>
   );
