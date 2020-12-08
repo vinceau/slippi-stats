@@ -33,21 +33,21 @@ Determining who wins a game seems easy at first but once you consider the possib
 
 ![how to change the game winner](https://i.imgur.com/ZzCvVID.gif)
 
-### Can I show different stats?
+### How do I show different stats?
 
 First click the *customize stats* button in the top right of the SLP file list to show the list of available stats. Then toggle the checkboxes to enable and disable certain stats from being calculated.
 
 ![how to customize stats](https://i.imgur.com/6CCWPMr.gif)
 
-### Can I change the color scheme?
+### How do I change the color scheme?
 
-Yes, you can! Expand the options panel at the bottom to show some more customization options.
+Expand the options panel at the bottom to show some more customization options.
 
 ![how to change the color scheme](https://i.imgur.com/zFnevxq.gif)
 
-### Can I remove the background in OBS?
+### How do I remove the background in OBS?
 
-Yes, you can! Just add this to the Custom CSS in the source properties.
+Just add this to the Custom CSS in the source properties.
 
 ```css
 body {
