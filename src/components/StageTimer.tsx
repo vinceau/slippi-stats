@@ -5,7 +5,7 @@ import React from "react";
 const Text = styled.span`
   font-size: 2.5rem;
   font-weight: bold;
-  opacity: 0.7;
+  opacity: 0.85;
   text-shadow: 2px 2px 2px black;
 `;
 
@@ -31,9 +31,9 @@ const Outer = styled.div<{
     left: 0;
     background-image: url("${(p) => p.image}");
     background-repeat: no-repeat;
-    background-size: 105% auto;
+    background-size: cover;
     background-position: center;
-    filter: blur(2px) brightness(30%);
+    filter: brightness(25%);
     z-index: -1;
   }
 `;
