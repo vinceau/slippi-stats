@@ -59,9 +59,19 @@ It reads your SLP files locally and does all the computation in-browser. Nothing
 
 ## Development
 
+### Setup
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/vinceau/slippi-stats
+cd slippi-stats
+yarn install
+```
+
 In the project directory, you can run:
 
-```
+```bash
 yarn run start
 ```
 
@@ -69,9 +79,29 @@ This runs the app in the development mode. Open <http://localhost:3000> to view 
 
 To build the app for production, run:
 
-```
+```bash
 yarn run build
 ```
+
+### Adding Custom Stats
+
+You can add custom stats by extending the `StatDefinition` interface as defined in [`lib/stats/types.ts`](src/lib/stats/types.ts).
+
+```typescript
+export type StatCalculation = (games: GameDetails[], playerIndex: number) => StatCalculationResult;
+
+export interface StatDefinition {
+  name: string;
+  type: string;
+  betterDirection?: string;
+  recommendedRounding?: number;
+  calculate: StatCalculation;
+}
+```
+
+See [`firstBlood.ts`](src/lib/stats/definitions/firstBlood.ts) and [`lCancelAccuracy.ts`](src/lib/stats/definitions/lCancelAccuracy.ts) for an example of custom stats implementations.
+
+Once you have a custom stats definition, simply give it an ID in [`lib/stats/types.ts`](src/lib/stats/types.ts) and register the definition in [`lib/stats/compute.ts`](src/lib/stats/compute.ts).
 
 ## Acknowledgements
 
