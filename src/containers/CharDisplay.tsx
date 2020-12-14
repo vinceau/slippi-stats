@@ -12,22 +12,20 @@ export interface CharDisplayProps {
   theme: string;
 }
 
-// Some characters have their faces to the right so it get cut off
-// so adjust the alignment so you can properly see their faces.
+// Some characters have their faces to the right so it gets cut off.
+// Adjust the alignment so you can properly see their faces.
 const RIGHT_CHAR_ALIGNMENT = new Map<Character, string>();
 RIGHT_CHAR_ALIGNMENT.set(Character.BOWSER, "right top");
 RIGHT_CHAR_ALIGNMENT.set(Character.SHEIK, "right top");
 RIGHT_CHAR_ALIGNMENT.set(Character.ROY, "left 80%");
 
 function getAlignment(facing: Side, char: string, defaultAlignment: string): string {
-  if (facing === "left") {
-    return defaultAlignment;
-  }
-
-  // We so far only care about the right hand side of the VS-screen
-  const customCharAlign = RIGHT_CHAR_ALIGNMENT.get(+char);
-  if (customCharAlign) {
-    return customCharAlign;
+  // We only care custom alignments for the right hand side of the VS-screen
+  if (facing === "right") {
+    const customCharAlign = RIGHT_CHAR_ALIGNMENT.get(+char);
+    if (customCharAlign) {
+      return customCharAlign;
+    }
   }
 
   return defaultAlignment;
