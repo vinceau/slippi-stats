@@ -1,8 +1,8 @@
+import { STAT_DEFINITIONS } from "lib/stats";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import { Option } from "./Option";
-import { STAT_DEFINITIONS } from "lib/stats";
 
 export const StatOptionItem: React.FC<{
   checked: boolean;
