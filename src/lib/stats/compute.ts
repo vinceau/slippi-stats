@@ -100,7 +100,7 @@ function generateGameInfo(games: GameDetails[]) {
 
   const generatePlayerInfo = (game: GameDetails) => (player: PlayerType) => {
     // console.log(player);
-    const characterName = player.characterId ? characterUtil.getCharacterName(player.characterId) : "";
+    const characterName = player.characterId !== null ? characterUtil.getCharacterName(player.characterId) : "";
     const characterColor =
       player.characterId !== null && player.characterColor !== null
         ? characterUtil.getCharacterColorName(player.characterId, player.characterColor)
