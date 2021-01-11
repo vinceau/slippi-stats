@@ -33,7 +33,7 @@ const Outer = styled.div<{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    filter: brightness(25%);
+    filter: brightness(35%);
     z-index: -1;
   }
 `;
