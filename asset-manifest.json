@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/slippi-stats/static/css/main.66e643c1.chunk.css",
-    "main.js": "/slippi-stats/static/js/main.f4fcd5fa.chunk.js",
-    "main.js.map": "/slippi-stats/static/js/main.f4fcd5fa.chunk.js.map",
+    "main.js": "/slippi-stats/static/js/main.1aee6647.chunk.js",
+    "main.js.map": "/slippi-stats/static/js/main.1aee6647.chunk.js.map",
     "runtime-main.js": "/slippi-stats/static/js/runtime-main.6140e489.js",
     "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.6140e489.js.map",
-    "static/js/2.884ecc76.chunk.js": "/slippi-stats/static/js/2.884ecc76.chunk.js",
-    "static/js/2.884ecc76.chunk.js.map": "/slippi-stats/static/js/2.884ecc76.chunk.js.map",
+    "static/js/2.36213f9f.chunk.js": "/slippi-stats/static/js/2.36213f9f.chunk.js",
+    "static/js/2.36213f9f.chunk.js.map": "/slippi-stats/static/js/2.36213f9f.chunk.js.map",
     "static/js/3.a957c9a5.chunk.js": "/slippi-stats/static/js/3.a957c9a5.chunk.js",
     "static/js/3.a957c9a5.chunk.js.map": "/slippi-stats/static/js/3.a957c9a5.chunk.js.map",
     "static/js/4.525967f5.chunk.js": "/slippi-stats/static/js/4.525967f5.chunk.js",
     "static/js/4.525967f5.chunk.js.map": "/slippi-stats/static/js/4.525967f5.chunk.js.map",
     "index.html": "/slippi-stats/index.html",
-    "precache-manifest.8dc3e7d64fd35095c857dcde562cb995.js": "/slippi-stats/precache-manifest.8dc3e7d64fd35095c857dcde562cb995.js",
+    "precache-manifest.4c4e41b6d908c7f18412a9f6b50baafd.js": "/slippi-stats/precache-manifest.4c4e41b6d908c7f18412a9f6b50baafd.js",
     "service-worker.js": "/slippi-stats/service-worker.js",
     "static/css/main.66e643c1.chunk.css.map": "/slippi-stats/static/css/main.66e643c1.chunk.css.map",
-    "static/js/2.884ecc76.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.884ecc76.chunk.js.LICENSE.txt",
+    "static/js/2.36213f9f.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.36213f9f.chunk.js.LICENSE.txt",
     "static/media/obs.png": "/slippi-stats/static/media/obs.f3f8c219.png",
     "static/media/powered-by.png": "/slippi-stats/static/media/powered-by.61867ea8.png"
   },
   "entrypoints": [
     "static/js/runtime-main.6140e489.js",
-    "static/js/2.884ecc76.chunk.js",
+    "static/js/2.36213f9f.chunk.js",
     "static/css/main.66e643c1.chunk.css",
-    "static/js/main.f4fcd5fa.chunk.js"
+    "static/js/main.1aee6647.chunk.js"
   ]
 }
