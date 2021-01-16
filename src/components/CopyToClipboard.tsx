@@ -11,7 +11,7 @@ export interface CopyToClipboardProps {
 
 export const CopyToClipboard: React.FC<CopyToClipboardProps> = (props) => {
   const [copied, setCopied] = React.useState(false);
-  const timeoutMs = props.onCopyTimeoutMs || 2000;
+  const timeoutMs = props.onCopyTimeoutMs ?? 2000;
   const copyText = props.onCopyText || "copied!";
 
   const onCopy = () => {

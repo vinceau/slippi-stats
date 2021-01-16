@@ -141,7 +141,7 @@ function generateRandomDuration(): string {
 }
 
 function generateRandomGame(playerInfos: string[], stage?: Stage): string {
-  const stageId = stage || generateRandomStageId();
+  const stageId = stage !== undefined ? stage : generateRandomStageId();
   const gameDuration = generateRandomDuration();
   const gameValue = [stageId, gameDuration, ...playerInfos].join(",");
   return gameValue;

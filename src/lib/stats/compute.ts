@@ -123,7 +123,7 @@ function generateGameInfo(games: GameDetails[]) {
     return {
       stage: {
         id: game.settings.stageId,
-        name: game.settings.stageId ? stageUtil.getStageName(game.settings.stageId) : "",
+        name: game.settings.stageId !== null ? stageUtil.getStageName(game.settings.stageId) : "",
       },
       players: _.map(game.settings.players, playerInfoGen),
       startTime: game.metadata.startAt,
