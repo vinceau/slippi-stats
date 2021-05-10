@@ -27,7 +27,11 @@ const Container = styled.div`
   }
 `;
 
-export const RenderView: React.FC = () => {
+export interface RenderViewProps {
+  showSlippiLogo?: boolean;
+}
+
+export const RenderView: React.FC<RenderViewProps> = ({ showSlippiLogo }) => {
   const [primaryColor] = useParam("primaryColor");
   const [secondaryColor] = useParam("secondaryColor");
   return (
@@ -45,7 +49,10 @@ export const RenderView: React.FC = () => {
         </Link>
         <div
           css={css`
-            margin-bottom: 2rem;
+            margin-bottom: ${showSlippiLogo ? "2rem" : "4rem"};
+            & > a {
+              display: ${showSlippiLogo ? "block" : "none"};
+            }
           `}
         >
           <A href="https://slippi.gg">
