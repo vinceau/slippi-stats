@@ -9,6 +9,7 @@ const _ = require("lodash");
 
 export * from "./firstBlood";
 export * from "./lCancelAccuracy";
+export * from "./neutralOpenerMoves";
 
 export const openingsPerKill = {
   name: "Openings / Kill",
@@ -77,52 +78,6 @@ export const killMoves = {
 
     return {
       result: orderedKillMoveCounts,
-      simple: {
-        text: simpleText.toUpperCase(),
-      },
-    };
-  },
-};
-
-export const neutralOpenerMoves = {
-  name: "Most Common Neutral Opener",
-  type: "text",
-  calculate(games, playerIndex) {
-    const neutralMoves = _.flatMap(games, (game) => {
-      const conversions = _.get(game, ["stats", "conversions"]) || [];
-      const conversionsForPlayer = _.filter(conversions, (conversion) => {
-        const isForPlayer = conversion.playerIndex === playerIndex;
-        const isNeutralWin = conversion.openingType === "neutral-win";
-        return isForPlayer && isNeutralWin;
-      });
-
-      return _.map(conversionsForPlayer, (conversion) => {
-        return _.first(conversion.moves);
-      });
-    });
-
-    // TODO: This following code is repeated from kill move code, put in function
-
-    const neutralMovesByMove = _.groupBy(neutralMoves, "moveId");
-    const neutralMoveCounts = _.map(neutralMovesByMove, (moves) => {
-      const move = _.first(moves);
-      return {
-        count: moves.length,
-        id: move.moveId,
-        name: moveUtil.getMoveName(move.moveId),
-        shortName: moveUtil.getMoveShortName(move.moveId),
-      };
-    });
-
-    const orderedNeutralMoveCounts = _.orderBy(neutralMoveCounts, ["count"], ["desc"]);
-    const topNeutralMove = _.first(orderedNeutralMoveCounts);
-    let simpleText = "N/A";
-    if (topNeutralMove) {
-      simpleText = `${topNeutralMove.shortName} - ${topNeutralMove.count}`;
-    }
-
-    return {
-      result: orderedNeutralMoveCounts,
       simple: {
         text: simpleText.toUpperCase(),
       },
