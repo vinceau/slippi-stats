@@ -119,6 +119,8 @@ This project was made possible by:
 
 - [BTS Smash](https://twitter.com/BTSsmash/) for their post-match stats design
 
+- [David V. Kimball](https://twitter.com/davidvkimball) for the HD stage screenshots
+
 ## License
 
 This software is released under the terms of [MIT license](LICENSE).
