@@ -26,7 +26,7 @@ import {
 } from "./definitions";
 import { GameDetails, Stat, StatDefinition } from "./types";
 
-export const STAT_DEFINITIONS = new Map<string, StatDefinition>();
+export const STAT_DEFINITIONS = new Map<Stat, StatDefinition>();
 STAT_DEFINITIONS.set(Stat.OPENINGS_PER_KILL, openingsPerKill);
 STAT_DEFINITIONS.set(Stat.DAMAGE_PER_OPENING, damagePerOpening);
 STAT_DEFINITIONS.set(Stat.NEUTRAL_WINS, neutralWins);
@@ -48,7 +48,6 @@ function computeStats(statsList: string[], games: GameDetails[]) {
     return [];
   }
 
-  // console.log(firstGame);
   const orderIndices = _.map(firstGame.settings.players, "playerIndex");
   const reversedIndices = _.chain(orderIndices).clone().reverse().value();
   const indices = [orderIndices, reversedIndices];
@@ -76,26 +75,32 @@ function computeStats(statsList: string[], games: GameDetails[]) {
   return statResults;
 }
 
+const enum WinStatus {
+  winner = "winner",
+  loser = "loser",
+  unknown = "unknown"
+}
+
 function generateGameInfo(games: GameDetails[]) {
   const getStartAt = (game: GameDetails) => game.metadata.startAt;
   const orderedGames = _.orderBy(games, [getStartAt], ["asc"]);
 
-  const getResultForPlayer = (game: GameDetails, playerIndex: number): "winner" | "loser" | "unknown" => {
+  const getResultForPlayer = (game: GameDetails, playerIndex: number): WinStatus => {
     const gameEnd = game.gameEnd;
     if (gameEnd) {
       // Handle LRAS
       switch (gameEnd.gameEndMethod) {
         case 7:
-          return gameEnd.lrasInitiatorIndex === playerIndex ? "loser" : "winner";
+          return gameEnd.lrasInitiatorIndex === playerIndex ? WinStatus.loser : WinStatus.winner;
       }
     }
 
     const latestFrame = game.latestFrame;
     if (!latestFrame) {
-      return "unknown";
+      return WinStatus.unknown;
     }
     const winner = findWinner(latestFrame);
-    return winner === playerIndex ? "winner" : "loser";
+    return winner === playerIndex ? WinStatus.winner : WinStatus.loser;
   };
 
   const generatePlayerInfo = (game: GameDetails) => (player: PlayerType) => {
