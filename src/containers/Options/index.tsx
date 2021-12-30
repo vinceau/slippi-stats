@@ -54,7 +54,7 @@ const Outer = styled.div`
   left: 0;
   width: 100%;
   background-color: black;
-  opacity: 0.2;
+  opacity: 0.5;
   z-index: 10;
   &.closed:hover {
     cursor: pointer;

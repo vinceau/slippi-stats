@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, Global, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { Header } from "components/Header";
@@ -16,15 +16,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  &:hover {
-    .settings {
-      opacity: 1;
-    }
-  }
-  .settings {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-  }
 `;
 
 export interface RenderViewProps {
@@ -67,10 +58,29 @@ export const RenderView: React.FC<RenderViewProps> = ({ showSlippiLogo }) => {
           </A>
         </div>
         <RenderDisplay primaryColor={primaryColor} secondaryColor={secondaryColor} />
-        <div className="settings">
-          <Options />
-        </div>
+        <Settings />
       </Container>
     </div>
+  );
+};
+
+const Settings: React.FC = () => {
+  return (
+    <React.Fragment>
+      <Global
+        styles={css`
+          body:hover .settings {
+            opacity: 1;
+          }
+          .settings {
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+          }
+        `}
+      />
+      <div className="settings">
+        <Options />
+      </div>
+    </React.Fragment>
   );
 };
