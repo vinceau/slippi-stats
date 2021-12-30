@@ -16,7 +16,7 @@ export const firstBlood: StatDefinition = {
       });
       const orderedDeathStocks = _.orderBy(deathStocks, ["endFrame"], ["asc"]);
       const firstStock = orderedDeathStocks[0];
-      if (!firstStock || firstStock.opponentIndex !== playerIndex) {
+      if (!firstStock || firstStock.playerIndex === playerIndex) {
         // console.log(`player ${playerIndex} did not draw first blood in game ${i + 1}`);
         return null;
       }

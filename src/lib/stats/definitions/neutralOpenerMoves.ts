@@ -10,7 +10,7 @@ export const neutralOpenerMoves: StatDefinition = {
     const neutralMoves = _.flatMap(games, (game) => {
       const conversions = _.get(game, ["stats", "conversions"]) ?? [];
       const conversionsForPlayer = _.filter(conversions, (conversion) => {
-        const isForPlayer = conversion.playerIndex === playerIndex;
+        const isForPlayer = conversion.lastHitBy === playerIndex;
         const isNeutralWin = conversion.openingType === "neutral-win";
         return isForPlayer && isNeutralWin;
       });
