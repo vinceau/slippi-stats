@@ -4,13 +4,13 @@
  * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
  */
 
-const { moves: moveUtil } = require("@slippi/slippi-js");
 const _ = require("lodash");
 
 export * from "./firstBlood";
 export * from "./lCancelAccuracy";
 export * from "./neutralOpenerMoves";
 export * from "./killMoves";
+export * from "./selfDestructs";
 
 export const openingsPerKill = {
   name: "Openings / Kill",
@@ -106,43 +106,6 @@ export const lateDeaths = {
     return {
       result: _.take(orderedPlayerStocks, 5),
       simple: simple,
-    };
-  },
-};
-
-export const selfDestructs = {
-  // Only show this one if greater than 2 for one player
-  name: "Total Self-Destructs",
-  type: "number",
-  betterDirection: "lower",
-  recommendedRounding: 0,
-  calculate(games, playerIndex) {
-    const sdCounts = _.map(games, (game) => {
-      const stocks = _.get(game, ["stats", "stocks"]) || [];
-      const playerEndedStocks = _.filter(stocks, (stock) => {
-        const isPlayer = stock.playerIndex === playerIndex;
-        const hasEndPercent = stock.endPercent !== null;
-        return isPlayer && hasEndPercent;
-      });
-
-      const conversions = _.get(game, ["stats", "conversions"]) || [];
-      const oppKillConversions = _.filter(conversions, (conversion) => {
-        const isOpp = conversion.playerIndex !== playerIndex;
-        const didKill = conversion.didKill;
-        return isOpp && didKill;
-      });
-
-      return playerEndedStocks.length - oppKillConversions.length;
-    });
-
-    const sdSum = _.sum(sdCounts);
-
-    return {
-      result: sdSum,
-      simple: {
-        number: sdSum,
-        text: `${sdSum}`,
-      },
     };
   },
 };
