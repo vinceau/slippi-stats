@@ -10,6 +10,7 @@ const _ = require("lodash");
 export * from "./firstBlood";
 export * from "./lCancelAccuracy";
 export * from "./neutralOpenerMoves";
+export * from "./killMoves";
 
 export const openingsPerKill = {
   name: "Openings / Kill",
@@ -38,50 +39,6 @@ export const neutralWins = {
   recommendedRounding: 0,
   calculate(games, playerIndex) {
     return genOverallRatioStat(games, playerIndex, "neutralWinRatio", this.recommendedRounding, "count");
-  },
-};
-
-export const killMoves = {
-  name: "Most Common Kill Move",
-  type: "text",
-  calculate(games, playerIndex) {
-    const killMoves = _.flatMap(games, (game) => {
-      const conversions = _.get(game, ["stats", "conversions"]) || [];
-      const conversionsForPlayer = _.filter(conversions, (conversion) => {
-        const isForPlayer = conversion.playerIndex === playerIndex;
-        const didKill = conversion.didKill;
-        return isForPlayer && didKill;
-      });
-
-      return _.map(conversionsForPlayer, (conversion) => {
-        return _.last(conversion.moves);
-      });
-    });
-
-    const killMovesByMove = _.groupBy(killMoves, "moveId");
-    const killMoveCounts = _.map(killMovesByMove, (moves) => {
-      const move = _.first(moves);
-      return {
-        count: moves.length,
-        id: move.moveId,
-        name: moveUtil.getMoveName(move.moveId),
-        shortName: moveUtil.getMoveShortName(move.moveId),
-      };
-    });
-
-    const orderedKillMoveCounts = _.orderBy(killMoveCounts, ["count"], ["desc"]);
-    const topKillMove = _.first(orderedKillMoveCounts);
-    let simpleText = "N/A";
-    if (topKillMove) {
-      simpleText = `${topKillMove.shortName} - ${topKillMove.count}`;
-    }
-
-    return {
-      result: orderedKillMoveCounts,
-      simple: {
-        text: simpleText.toUpperCase(),
-      },
-    };
   },
 };
 
