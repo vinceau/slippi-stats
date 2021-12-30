@@ -21,12 +21,22 @@ function generateGameDetails(name: string, game: SlippiGame): GameDetails {
     throw new Error(`Invalid SLP file. Could not find game settings in file: ${name}`);
   }
 
+  const stats = game.getStats();
+  if (!stats) {
+    throw new Error(`Failed to process game stats for file: ${name}`);
+  }
+
+  const metadata = game.getMetadata();
+  if (!metadata) {
+    throw new Error(`Failed to load metadata for file: ${name}`);
+  }
+
   return {
     filePath: name,
     settings,
     frames: game.getFrames(),
-    stats: game.getStats(),
-    metadata: game.getMetadata(),
+    stats,
+    metadata,
     latestFrame: game.getLatestFrame(),
     gameEnd: game.getGameEnd(),
   };
