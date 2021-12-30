@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/slippi-stats/static/css/main.66e643c1.chunk.css",
-    "main.js": "/slippi-stats/static/js/main.b1c95710.chunk.js",
-    "main.js.map": "/slippi-stats/static/js/main.b1c95710.chunk.js.map",
-    "runtime-main.js": "/slippi-stats/static/js/runtime-main.6140e489.js",
-    "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.6140e489.js.map",
-    "static/js/2.9246a0d1.chunk.js": "/slippi-stats/static/js/2.9246a0d1.chunk.js",
-    "static/js/2.9246a0d1.chunk.js.map": "/slippi-stats/static/js/2.9246a0d1.chunk.js.map",
-    "static/js/3.a957c9a5.chunk.js": "/slippi-stats/static/js/3.a957c9a5.chunk.js",
-    "static/js/3.a957c9a5.chunk.js.map": "/slippi-stats/static/js/3.a957c9a5.chunk.js.map",
+    "main.js": "/slippi-stats/static/js/main.ba9efa41.chunk.js",
+    "main.js.map": "/slippi-stats/static/js/main.ba9efa41.chunk.js.map",
+    "runtime-main.js": "/slippi-stats/static/js/runtime-main.ecf462c6.js",
+    "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.ecf462c6.js.map",
+    "static/js/2.bff13cee.chunk.js": "/slippi-stats/static/js/2.bff13cee.chunk.js",
+    "static/js/2.bff13cee.chunk.js.map": "/slippi-stats/static/js/2.bff13cee.chunk.js.map",
+    "static/js/3.90bfeffd.chunk.js": "/slippi-stats/static/js/3.90bfeffd.chunk.js",
+    "static/js/3.90bfeffd.chunk.js.map": "/slippi-stats/static/js/3.90bfeffd.chunk.js.map",
     "static/js/4.525967f5.chunk.js": "/slippi-stats/static/js/4.525967f5.chunk.js",
     "static/js/4.525967f5.chunk.js.map": "/slippi-stats/static/js/4.525967f5.chunk.js.map",
     "index.html": "/slippi-stats/index.html",
-    "precache-manifest.2139179713062a74f6b49b393eb00a65.js": "/slippi-stats/precache-manifest.2139179713062a74f6b49b393eb00a65.js",
+    "precache-manifest.8e118bc99665bb0e0846a997e7ef8a9c.js": "/slippi-stats/precache-manifest.8e118bc99665bb0e0846a997e7ef8a9c.js",
     "service-worker.js": "/slippi-stats/service-worker.js",
     "static/css/main.66e643c1.chunk.css.map": "/slippi-stats/static/css/main.66e643c1.chunk.css.map",
-    "static/js/2.9246a0d1.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.9246a0d1.chunk.js.LICENSE.txt",
+    "static/js/2.bff13cee.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.bff13cee.chunk.js.LICENSE.txt",
     "static/media/obs.png": "/slippi-stats/static/media/obs.f3f8c219.png",
     "static/media/powered-by.png": "/slippi-stats/static/media/powered-by.61867ea8.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6140e489.js",
-    "static/js/2.9246a0d1.chunk.js",
+    "static/js/runtime-main.ecf462c6.js",
+    "static/js/2.bff13cee.chunk.js",
     "static/css/main.66e643c1.chunk.css",
-    "static/js/main.b1c95710.chunk.js"
+    "static/js/main.ba9efa41.chunk.js"
   ]
 }
