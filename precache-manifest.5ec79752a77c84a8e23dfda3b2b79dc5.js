@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9b1a44ef739d12da9d7ad03b4bec20f8",
+    "revision": "6e648ed6fe22cdad1aa65f280bb38644",
     "url": "/slippi-stats/index.html"
   },
   {
-    "revision": "dc976ccfac764770017b",
+    "revision": "b4ffc15e794ef9fcd969",
     "url": "/slippi-stats/static/css/main.66e643c1.chunk.css"
   },
   {
-    "revision": "bb46b04d5e60c04febd0",
-    "url": "/slippi-stats/static/js/2.850fda27.chunk.js"
+    "revision": "7688c5cea43a39d295ef",
+    "url": "/slippi-stats/static/js/2.139f8329.chunk.js"
   },
   {
     "revision": "a636ddd461bd633ab63e86040460d655",
-    "url": "/slippi-stats/static/js/2.850fda27.chunk.js.LICENSE.txt"
+    "url": "/slippi-stats/static/js/2.139f8329.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dc976ccfac764770017b",
-    "url": "/slippi-stats/static/js/main.8057fb49.chunk.js"
+    "revision": "b4ffc15e794ef9fcd969",
+    "url": "/slippi-stats/static/js/main.bd5b1370.chunk.js"
   },
   {
-    "revision": "e1981e803de4715bb9cc",
-    "url": "/slippi-stats/static/js/runtime-main.67106a9f.js"
+    "revision": "f93fc7b22673e153ab96",
+    "url": "/slippi-stats/static/js/runtime-main.8e22d777.js"
   },
   {
     "revision": "f3f8c219d800134980573934d8aa5e10",
