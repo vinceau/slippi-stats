@@ -5,19 +5,19 @@
     "main.js.map": "/slippi-stats/static/js/main.bd5b1370.chunk.js.map",
     "runtime-main.js": "/slippi-stats/static/js/runtime-main.8e22d777.js",
     "runtime-main.js.map": "/slippi-stats/static/js/runtime-main.8e22d777.js.map",
-    "static/js/2.139f8329.chunk.js": "/slippi-stats/static/js/2.139f8329.chunk.js",
-    "static/js/2.139f8329.chunk.js.map": "/slippi-stats/static/js/2.139f8329.chunk.js.map",
+    "static/js/2.2d4ba12b.chunk.js": "/slippi-stats/static/js/2.2d4ba12b.chunk.js",
+    "static/js/2.2d4ba12b.chunk.js.map": "/slippi-stats/static/js/2.2d4ba12b.chunk.js.map",
     "index.html": "/slippi-stats/index.html",
-    "precache-manifest.5ec79752a77c84a8e23dfda3b2b79dc5.js": "/slippi-stats/precache-manifest.5ec79752a77c84a8e23dfda3b2b79dc5.js",
+    "precache-manifest.9268e02fd90336e43e018e8fef4745cc.js": "/slippi-stats/precache-manifest.9268e02fd90336e43e018e8fef4745cc.js",
     "service-worker.js": "/slippi-stats/service-worker.js",
     "static/css/main.66e643c1.chunk.css.map": "/slippi-stats/static/css/main.66e643c1.chunk.css.map",
-    "static/js/2.139f8329.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.139f8329.chunk.js.LICENSE.txt",
+    "static/js/2.2d4ba12b.chunk.js.LICENSE.txt": "/slippi-stats/static/js/2.2d4ba12b.chunk.js.LICENSE.txt",
     "static/media/obs.png": "/slippi-stats/static/media/obs.f3f8c219.png",
     "static/media/powered-by.png": "/slippi-stats/static/media/powered-by.61867ea8.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8e22d777.js",
-    "static/js/2.139f8329.chunk.js",
+    "static/js/2.2d4ba12b.chunk.js",
     "static/css/main.66e643c1.chunk.css",
     "static/js/main.bd5b1370.chunk.js"
   ]
