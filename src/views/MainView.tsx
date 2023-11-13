@@ -9,8 +9,11 @@ import { Link } from "react-router-dom";
 import { hasOpacity } from "styles/opacity";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
+import { MainViewMessages as Messages } from "./MainView.messages";
+
 const linkStyle = css`
   display: block;
+  text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   color: ${defaultTheme.secondaryColor};
@@ -56,9 +59,9 @@ export const MainView: React.FC = () => {
               font-size: 4rem;
             `}
           >
-            Slippi Stats
+            {Messages.slippiStats()}
             <br />
-            Graphic Generator
+            {Messages.graphicGenerator()}
           </Header>
         </div>
         <div
@@ -80,14 +83,14 @@ export const MainView: React.FC = () => {
             padding: 2rem 0;
           `}
         >
-          <Link css={linkStyle} to="/random" title="Show random sample stats">
-            DEMO
+          <Link css={linkStyle} to="/random" title={Messages.showSampleStats()}>
+            {Messages.demo()}
           </Link>
-          <A css={linkStyle} title="Need help?" href="https://github.com/vinceau/slippi-stats#faq">
-            FAQ
+          <A css={linkStyle} title={Messages.needHelp()} href="https://github.com/vinceau/slippi-stats#faq">
+            {Messages.faq()}
           </A>
-          <A css={linkStyle} title="Send love" href="https://twitter.com/_vinceau">
-            AUTHOR
+          <A css={linkStyle} title={Messages.sendLove()} href="https://twitter.com/_vinceau">
+            {Messages.author()}
           </A>
         </div>
       </Container>

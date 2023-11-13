@@ -11,6 +11,7 @@ import { GlobalTheme } from "styles/theme";
 
 import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";
+import { RenderViewMessages as Messages } from "./RenderView.messages";
 
 const Container = styled.div`
   display: flex;
@@ -35,8 +36,8 @@ export const RenderView: React.FC<RenderViewProps> = ({ showSlippiLogo }) => {
     >
       <Container>
         <GlobalTheme primaryColor={primaryColor} secondaryColor={secondaryColor} />
-        <Link to="/" title="Home">
-          <Header>Post Match Stats</Header>
+        <Link to="/" title={Messages.home()}>
+          <Header>{Messages.postMatchStats()}</Header>
         </Link>
         <div
           css={css`
@@ -48,8 +49,8 @@ export const RenderView: React.FC<RenderViewProps> = ({ showSlippiLogo }) => {
         >
           <A href="https://slippi.gg">
             <img
-              alt="Powered by Slippi"
-              title="Open Slippi.gg homepage"
+              alt={Messages.poweredBy()}
+              title={Messages.openHomepage()}
               src={poweredByImage}
               css={css`
                 max-height: 5rem;
