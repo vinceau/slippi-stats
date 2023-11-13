@@ -9,9 +9,9 @@
   "license": "MIT",
   "version": "0.0.1",
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts --openssl-legacy-provider test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
