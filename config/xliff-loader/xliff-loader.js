@@ -24,6 +24,9 @@ module.exports = function (source, map, meta) {
 
     const newSource = `module.exports = ${value}`;
     console.log({ newSource });
+
+    // const assetInfo = { sourceFilename: filename };
+    // this.emitFile(filename, newSource, null, assetInfo);
     callback(null, newSource, map, meta);
   });
 };

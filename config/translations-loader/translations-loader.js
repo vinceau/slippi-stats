@@ -12,7 +12,7 @@ module.exports = function (source) {
   // Next, create an asset info object.
   // webpack uses this object when outputting the build's stats,
   // so you could see info about the emitted asset.
-  const assetInfo = { sourceFilename: filename };
+  // const assetInfo = { sourceFilename: filename };
 
   const sourceFile = ts.createSourceFile(this.resourcePath, source, ts.ScriptTarget.Latest);
 
@@ -55,7 +55,7 @@ module.exports = function (source) {
   // Finally, emit the imported audio file's "source"
   // in the webpack's build directory using a built-in
   // "emitFile" method.
-  this.emitFile(filename, newSource, null, assetInfo);
+  // this.emitFile(filename, newSource, null, assetInfo);
 
   // const result = ts.transpile(source, { module: ts.ModuleKind.CommonJS });
   // console.log({ result });
