@@ -1,4 +1,5 @@
 const path = require("path");
+const ts = require("typescript");
 
 module.exports = function (source) {
   // webpack exposes an absolute path to the imported module
@@ -6,7 +7,7 @@ module.exports = function (source) {
   // of the imported module. For example:
   // "/User/admin/audio.mp3" (this.resourcePath) -> "audio.mp3".
   const filename = path.basename(this.resourcePath);
-  console.log(`processing ${this.resourcePath}: ${source}`);
+  console.log(`\n\n\n>>> start processing ${this.resourcePath} <<<\n\n\n`);
 
   // Next, create an asset info object.
   // webpack uses this object when outputting the build's stats,
@@ -18,6 +19,25 @@ module.exports = function (source) {
   // "emitFile" method.
   this.emitFile(filename, source, null, assetInfo);
 
-  // For now, return the mp3 binary as-is.
+  // const result = ts.transpile(source, { module: ts.ModuleKind.CommonJS });
+  // console.log({ result });
+
+  const sourceFile = ts.createSourceFile(this.resourcePath, source, ts.ScriptTarget.Latest);
+  console.log(sourceFile.getChildren());
+  // printRecursiveFrom(sourceFile, 0, sourceFile);
+
+  console.log(`\n\n\n>>> end processing ${this.resourcePath} <<<\n\n\n`);
   return source;
 };
+
+// function findExports(node) {
+// }
+
+function printRecursiveFrom(node, indentLevel, sourceFile) {
+  const indentation = "-".repeat(indentLevel);
+  const syntaxKind = ts.SyntaxKind[node.kind];
+  const nodeText = node.getText(sourceFile);
+  console.log(`${indentation}${syntaxKind}: ${nodeText}`);
+
+  node.forEachChild((child) => printRecursiveFrom(child, indentLevel + 1, sourceFile));
+}
