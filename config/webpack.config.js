@@ -331,12 +331,12 @@ module.exports = function (webpackEnv) {
           ],
           include: paths.appSrc,
         },
-        // {
-        //   test: /\.messages.ts$/,
-        //   // Reference the loader by the same name
-        //   // that you aliased in "resolveLoader.alias" below.
-        //   use: ["translations-loader"],
-        // },
+        {
+          test: /\.messages.ts$/,
+          // Reference the loader by the same name
+          // that you aliased in "resolveLoader.alias" below.
+          use: ["translations-loader"],
+        },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
