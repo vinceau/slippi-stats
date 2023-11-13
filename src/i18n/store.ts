@@ -14,22 +14,40 @@ export const useLanguageStore = create<LanguageState>()((set) => ({
   loading: false,
 }));
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export class LanguagePresenter {
   public async setLanguage(language: SupportedLanguages): Promise<void> {
+    const i18next = (window as any).i18next;
     useLanguageStore.setState({ loading: true });
 
-    // Simulate lazy loading languages
-    await delay(200);
-    (window as any).i18next
-      .changeLanguage(language)
-      .then(() => {
-        useLanguageStore.setState({ language });
-      })
-      .finally(() => {
-        useLanguageStore.setState({ loading: false });
-      });
+    try {
+      await this.loadLanguage(language);
+      await i18next.changeLanguage(language);
+      useLanguageStore.setState({ language });
+    } catch (err) {
+      throw new Error(err as any);
+    } finally {
+      useLanguageStore.setState({ loading: false });
+    }
+  }
+
+  private async loadLanguage(language: SupportedLanguages, namespace = "translation") {
+    const i18next = (window as any).i18next;
+    if (i18next.hasResourceBundle(language, namespace)) {
+      return;
+    }
+
+    switch (language) {
+      case "en":
+        // It should already be loaded
+        break;
+      case "de": {
+        const de = await import("./translations/de.xlf");
+        i18next.addResourceBundle("de", namespace, de.translation);
+        break;
+      }
+      default:
+        throw new Error(`Unsupported language: ${language}`);
+    }
   }
 }
 

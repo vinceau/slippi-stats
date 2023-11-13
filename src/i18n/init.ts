@@ -2,9 +2,6 @@ import i18next from "i18next";
 
 import en from "./en.json";
 import { defaultLanguage } from "./store";
-import de from "./translations/de.xlf";
-
-console.log(de);
 
 export async function initializeTranslations(): Promise<void> {
   (window as any).i18next = i18next;
@@ -14,7 +11,6 @@ export async function initializeTranslations(): Promise<void> {
     debug: true,
     resources: {
       en,
-      de,
     },
   });
 }
