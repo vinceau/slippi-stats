@@ -300,6 +300,7 @@ module.exports = function (webpackEnv) {
     resolveLoader: {
       alias: {
         "translations-loader": path.resolve(__dirname, "./translations-loader/translations-loader.js"),
+        "xliff-loader": path.resolve(__dirname, "./xliff-loader/xliff-loader.js"),
       },
       plugins: [
         // Also related to Plug'n'Play, but this time it tells webpack to load its loaders
@@ -330,6 +331,10 @@ module.exports = function (webpackEnv) {
             },
           ],
           include: paths.appSrc,
+        },
+        {
+          test: /\.xlf$/,
+          use: ["xliff-loader"],
         },
         {
           test: /\.messages.ts$/,
@@ -482,7 +487,7 @@ module.exports = function (webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx|ts|tsx|xlf)$/, /\.html$/, /\.json$/],
               options: {
                 name: "static/media/[name].[hash:8].[ext]",
               },
