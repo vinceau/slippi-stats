@@ -53,6 +53,7 @@ export const MainView: React.FC = () => {
             flex: none;
           `}
         >
+          <h1>{(window as any).i18next.t("something")}</h1>
           <Header
             css={css`
               cursor: pointer;

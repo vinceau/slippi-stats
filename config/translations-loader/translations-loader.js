@@ -22,7 +22,7 @@ module.exports = function (source) {
         node = ts.visitEachChild(node, visit, context);
         if (ts.isReturnStatement(node)) {
           // return ts.createReturnStatement();
-          return ts.factory.createReturnStatement(ts.createIdentifier('i18next.t("something")'));
+          return ts.factory.createReturnStatement(ts.createIdentifier('window.i18next.t("something")'));
         }
 
         // if (ts.isIdentifier(node)) {
@@ -48,7 +48,7 @@ module.exports = function (source) {
 
   console.log(`\n\n\n>>> end processing ${this.resourcePath} <<<\n\n\n`);
 
-  const newSource = result; // source;
+  const newSource = result; // ts.transpile(result, { skipLibCheck: true, checkJs: false, skipDefaultLibCheck: true, allowJs: true, esModuleInterop: true, ignoreDiagnostics: true, transpileOnly: true, transpile: true, strict: false, strictNullChecks: false }); // source;
 
   console.log(newSource);
 
@@ -78,3 +78,5 @@ function printRecursiveFrom(node, indentLevel, sourceFile) {
 
   node.forEachChild((child) => printRecursiveFrom(child, indentLevel + 1, sourceFile));
 }
+
+// module.exports.raw = true
