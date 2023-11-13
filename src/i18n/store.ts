@@ -42,7 +42,7 @@ export class LanguagePresenter {
         break;
       case "de": {
         const de = await import("./translations/de.xlf");
-        i18next.addResourceBundle("de", namespace, de.translation);
+        i18next.addResourceBundle("de", namespace, de[namespace]);
         break;
       }
       default:
