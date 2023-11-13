@@ -298,6 +298,9 @@ module.exports = function (webpackEnv) {
       ],
     },
     resolveLoader: {
+      alias: {
+        "translations-loader": path.resolve(__dirname, "./translations-loader/translations-loader.js"),
+      },
       plugins: [
         // Also related to Plug'n'Play, but this time it tells webpack to load its loaders
         // from the current package.
@@ -327,6 +330,12 @@ module.exports = function (webpackEnv) {
             },
           ],
           include: paths.appSrc,
+        },
+        {
+          test: /\.messages.ts$/,
+          // Reference the loader by the same name
+          // that you aliased in "resolveLoader.alias" below.
+          use: ["translations-loader"],
         },
         {
           // "oneOf" will traverse all following loaders until one will
