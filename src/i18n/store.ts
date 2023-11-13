@@ -14,11 +14,22 @@ export const useLanguageStore = create<LanguageState>()((set) => ({
   loading: false,
 }));
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export class LanguagePresenter {
   public async setLanguage(language: SupportedLanguages): Promise<void> {
-    (window as any).i18next.changeLanguage(language).then(() => {
-      useLanguageStore.setState({ language });
-    });
+    useLanguageStore.setState({ loading: true });
+
+    // Simulate lazy loading languages
+    await delay(200);
+    (window as any).i18next
+      .changeLanguage(language)
+      .then(() => {
+        useLanguageStore.setState({ language });
+      })
+      .finally(() => {
+        useLanguageStore.setState({ loading: false });
+      });
   }
 }
 
