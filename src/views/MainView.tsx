@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
+import { languagePresenter } from "i18n/store";
 import React from "react";
 import { Link } from "react-router-dom";
 import { hasOpacity } from "styles/opacity";
@@ -53,6 +54,8 @@ export const MainView: React.FC = () => {
             flex: none;
           `}
         >
+          <button onClick={() => languagePresenter.setLanguage("en")}>use en</button>
+          <button onClick={() => languagePresenter.setLanguage("de")}>use de</button>
           <h1>{(window as any).i18next.t("something")}</h1>
           <Header
             css={css`
