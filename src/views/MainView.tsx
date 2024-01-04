@@ -4,13 +4,17 @@ import styled from "@emotion/styled";
 import { ExternalLink as A } from "components/ExternalLink";
 import { Header } from "components/Header";
 import { FileListInput } from "containers/FileListInput";
+import { languagePresenter, useLanguageStore } from "i18n/store";
 import React from "react";
 import { Link } from "react-router-dom";
 import { hasOpacity } from "styles/opacity";
 import { defaultTheme, GlobalTheme } from "styles/theme";
 
+import { MainViewMessages as Messages } from "./MainView.messages";
+
 const linkStyle = css`
   display: block;
+  text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   color: ${defaultTheme.secondaryColor};
@@ -31,6 +35,7 @@ const Container = styled.div`
 `;
 
 export const MainView: React.FC = () => {
+  const languageIsLoading: boolean = useLanguageStore((store: any) => store.loading);
   const primaryColor = localStorage.getItem("primaryColor") || defaultTheme.primaryColor;
   const secondaryColor = localStorage.getItem("secondaryColor") || defaultTheme.secondaryColor;
 
@@ -50,15 +55,22 @@ export const MainView: React.FC = () => {
             flex: none;
           `}
         >
+          <button onClick={() => languagePresenter.setLanguage("en")} disabled={languageIsLoading}>
+            {languageIsLoading ? "loading..." : "use en"}
+          </button>
+          <button onClick={() => languagePresenter.setLanguage("de")} disabled={languageIsLoading}>
+            {languageIsLoading ? "loading..." : "use de"}
+          </button>
+          <h1>{(window as any).i18next.t("something")}</h1>
           <Header
             css={css`
               cursor: pointer;
               font-size: 4rem;
             `}
           >
-            Slippi Stats
+            {Messages.slippiStats()}
             <br />
-            Graphic Generator
+            {Messages.graphicGenerator()}
           </Header>
         </div>
         <div
@@ -80,14 +92,14 @@ export const MainView: React.FC = () => {
             padding: 2rem 0;
           `}
         >
-          <Link css={linkStyle} to="/random" title="Show random sample stats">
-            DEMO
+          <Link css={linkStyle} to="/random" title={Messages.showSampleStats()}>
+            {Messages.demo()}
           </Link>
-          <A css={linkStyle} title="Need help?" href="https://github.com/vinceau/slippi-stats#faq">
-            FAQ
+          <A css={linkStyle} title={Messages.needHelp()} href="https://github.com/vinceau/slippi-stats#faq">
+            {Messages.faq()}
           </A>
-          <A css={linkStyle} title="Send love" href="https://twitter.com/_vinceau">
-            AUTHOR
+          <A css={linkStyle} title={Messages.sendLove()} href="https://twitter.com/_vinceau">
+            {Messages.author()}
           </A>
         </div>
       </Container>
