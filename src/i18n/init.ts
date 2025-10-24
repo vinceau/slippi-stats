@@ -7,6 +7,7 @@ export async function initializeTranslations(): Promise<void> {
   (window as any).i18next = i18next;
 
   await i18next.init({
+    fallbackLng: "en",
     lng: defaultLanguage, // if you're using a language detector, do not define the lng option
     debug: true,
     resources: {
