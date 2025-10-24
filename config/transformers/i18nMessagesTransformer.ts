@@ -7,6 +7,8 @@ import * as crypto from "crypto";
 export interface I18nTransformerOptions {
   /** Write XLIFF to this path, e.g. "<projectRoot>/i18n/messages.xliff" */
   xliffOutputPath: string;
+  /** Write default JSON to this path, e.g. "<projectRoot>/i18n/en.json" */
+  jsonOutputPath: string;
   /** XLIFF attributes */
   srcLang?: string; // e.g. "en-US"
   trgLang?: string; // e.g. "de"
@@ -41,6 +43,20 @@ function escapeXml(text: string): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
+}
+
+function writeDefaultJson(filePath: string, pairs: Map<string, string>) {
+  // Ensure directory
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+
+  const json = JSON.stringify(
+    {
+      translation: Object.fromEntries(pairs),
+    },
+    null,
+    2
+  );
+  fs.writeFileSync(filePath, json, "utf8");
 }
 
 function writeXliff(
@@ -118,6 +134,7 @@ export default function i18nMessagesTransformer(
   // const checker = program.getTypeChecker();
   const {
     xliffOutputPath,
+    jsonOutputPath,
     srcLang = "en-US",
     trgLang = "de",
     fileId = "translation",
@@ -213,6 +230,8 @@ export default function i18nMessagesTransformer(
           // Note: this runs multiple times in large projects, but it's fast and deterministic.
           writeXliff(xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
           console.log("writeXliff", xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
+
+          writeDefaultJson(jsonOutputPath, globalStore.seen);
 
           return updated;
         }

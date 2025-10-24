@@ -47,6 +47,7 @@ module.exports = function (source) {
 
   const transformerFactory = i18nMessagesTransformer(undefined, {
     xliffOutputPath: path.resolve(__dirname, "i18n/messages.xliff"),
+    jsonOutputPath: path.resolve(__dirname, "i18n/en.json"),
     srcLang: "en-US",
     trgLang: "de",
     fileId: "translation",
