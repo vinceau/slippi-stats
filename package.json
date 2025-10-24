@@ -23,6 +23,9 @@
       "pre-push": "yarn lint && yarn typecheck"
     }
   },
+  "resolutions": {
+    "fsevents": "^2.3.3"
+  },
   "dependencies": {
     "@babel/core": "7.9.0",
     "@emotion/core": "^10.0.28",
@@ -116,6 +119,8 @@
     "react-hot-loader": "^4.12.21",
     "sass": "^1.69.5",
     "source-map-explorer": "^2.5.2",
+    "ts-loader": "8",
+    "ts-node": "^10.9.2",
     "typescript": "^4.0.5",
     "xliff": "^6.2.0"
   },

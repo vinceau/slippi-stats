@@ -1,6 +1,12 @@
 const path = require("path");
 const ts = require("typescript");
 
+require("ts-node").register({
+  transpileOnly: true, // faster; no type-checking here
+  compilerOptions: { module: "CommonJS" },
+});
+const i18nMessagesTransformer = require("../transformers/i18nMessagesTransformer").default;
+
 module.exports = function (source) {
   // webpack exposes an absolute path to the imported module
   // under the "this.resourcePath" property. Get the file name
@@ -16,6 +22,7 @@ module.exports = function (source) {
 
   const sourceFile = ts.createSourceFile(this.resourcePath, source, ts.ScriptTarget.Latest);
 
+  /*
   const transformerFactory = (context) => {
     return (rootNode) => {
       function visit(node) {
@@ -36,6 +43,16 @@ module.exports = function (source) {
       return ts.visitNode(rootNode, visit);
     };
   };
+  */
+
+  const transformerFactory = i18nMessagesTransformer(undefined, {
+    xliffOutputPath: path.resolve(__dirname, "i18n/messages.xliff"),
+    srcLang: "en-US",
+    trgLang: "de",
+    fileId: "translation",
+    hashLength: 10,
+    onlyMessagesFiles: true,
+  });
 
   const transformationResult = ts.transform(sourceFile, [transformerFactory]);
 
