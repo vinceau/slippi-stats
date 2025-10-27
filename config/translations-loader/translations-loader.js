@@ -7,13 +7,22 @@ require("ts-node").register({
 });
 const i18nMessagesTransformer = require("../transformers/i18nMessagesTransformer").default;
 
+function isMessagesFile(fileName) {
+  return /\.messages\.ts$/.test(fileName);
+}
+
 module.exports = function (source) {
+
   // webpack exposes an absolute path to the imported module
   // under the "this.resourcePath" property. Get the file name
   // of the imported module. For example:
   // "/User/admin/audio.mp3" (this.resourcePath) -> "audio.mp3".
   const filename = path.basename(this.resourcePath);
-  console.log(`\n\n\n>>> start processing ${this.resourcePath} <<<\n\n\n`);
+
+  if (!isMessagesFile(filename)) {
+    return source;
+  }
+  console.log(`\n\n\n>>> start processing ${filename} <<<\n\n\n`);
 
   // Next, create an asset info object.
   // webpack uses this object when outputting the build's stats,
@@ -47,7 +56,7 @@ module.exports = function (source) {
 
   const transformerFactory = i18nMessagesTransformer(undefined, {
     xliffOutputPath: path.resolve(__dirname, "i18n/messages.xliff"),
-    jsonOutputPath: path.resolve(__dirname, "i18n/en.json"),
+    jsonOutputPath: "public/locales/en/translation.json",
     srcLang: "en-US",
     trgLang: "de",
     fileId: "translation",
@@ -64,11 +73,12 @@ module.exports = function (source) {
 
   const result = printer.printNode(ts.EmitHint.Unspecified, transformedSourceFile, undefined);
 
+  const newSource = result; // ts.transpile(result, { skipLibCheck: true, checkJs: false, skipDefaultLibCheck: true, allowJs: true, esModuleInterop: true, ignoreDiagnostics: true, transpileOnly: true, transpile: true, strict: false, strictNullChecks: false }); // source;
+  console.log(newSource);
+
   console.log(`\n\n\n>>> end processing ${this.resourcePath} <<<\n\n\n`);
 
-  const newSource = result; // ts.transpile(result, { skipLibCheck: true, checkJs: false, skipDefaultLibCheck: true, allowJs: true, esModuleInterop: true, ignoreDiagnostics: true, transpileOnly: true, transpile: true, strict: false, strictNullChecks: false }); // source;
 
-  console.log(newSource);
 
   // Finally, emit the imported audio file's "source"
   // in the webpack's build directory using a built-in

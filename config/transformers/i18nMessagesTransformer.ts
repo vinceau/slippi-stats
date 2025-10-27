@@ -49,13 +49,7 @@ function writeDefaultJson(filePath: string, pairs: Map<string, string>) {
   // Ensure directory
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-  const json = JSON.stringify(
-    {
-      translation: Object.fromEntries(pairs),
-    },
-    null,
-    2
-  );
+  const json = JSON.stringify(Object.fromEntries(pairs), null, 2);
   fs.writeFileSync(filePath, json, "utf8");
 }
 
@@ -97,11 +91,6 @@ function writeXliff(
 
   fs.writeFileSync(xliffPath, xml, "utf8");
 }
-
-// function isMessagesFile(sf: ts.SourceFile, onlyMessagesFiles: boolean | undefined) {
-//   if (onlyMessagesFiles === false) return true;
-//   return /\.messages\.ts$/.test(sf.fileName);
-// }
 
 /**
  * Detect arrow function OR function expression returning a *string literal*.
@@ -158,27 +147,12 @@ export default function i18nMessagesTransformer(
     };
 
     const visitNode: ts.Visitor = (node) => {
-      console.log("visitNode", node);
-      // Transform ONLY within *.messages.ts (by default)
-      const sf = node.getSourceFile();
-      // if (!sf || !isMessagesFile(sf, onlyMessagesFiles)) {
-      //   console.log('not a messages file');
-      //   return ts.visitEachChild(node, visitNode, context);
-      // } else {
-      //   console.log('is a messages file');
-      // }
-
-      // We specifically care about property assignments inside object literals:
-      //   export const MainViewMessages = {
-      //     slippiStats: () => "original string"
-      //   }
       if (
         ts.isPropertyAssignment(node) &&
         (ts.isArrowFunction(node.initializer) || ts.isFunctionExpression(node.initializer))
       ) {
         const fn = node.initializer as ts.ArrowFunction | ts.FunctionExpression;
         const original = extractReturnStringLiteral(fn);
-        console.log("original", original);
 
         if (original !== null) {
           // Reuse previous hash for identical strings
@@ -194,7 +168,7 @@ export default function i18nMessagesTransformer(
           }
 
           // Rebuild the function with the same parameters, but a call body
-          console.log("id", id);
+          // console.log("id", id);
           const newBodyExpr = makeI18nextCall(id);
 
           let newFn: ts.ArrowFunction | ts.FunctionExpression;
@@ -229,7 +203,7 @@ export default function i18nMessagesTransformer(
           // Write/refresh XLIFF after this file is processed (simple & robust for watch mode)
           // Note: this runs multiple times in large projects, but it's fast and deterministic.
           writeXliff(xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
-          console.log("writeXliff", xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
+          // console.log("writeXliff", xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
 
           writeDefaultJson(jsonOutputPath, globalStore.seen);
 

@@ -329,19 +329,48 @@ module.exports = function (webpackEnv) {
               },
               loader: require.resolve("eslint-loader"),
             },
+            "translations-loader"
           ],
           include: paths.appSrc,
         },
+        /*
+        {
+          test: /\.messages\.ts$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: false,
+              getCustomTransformers: (program) => ({
+                before: [
+                  i18nMessagesTransformer(program, {
+                    xliffOutputPath: path.resolve(__dirname, "i18n/messages.xliff"),
+                    srcLang: "en-US",
+                    trgLang: "de",
+                    fileId: "translation",
+                    hashLength: 10,
+                    onlyMessagesFiles: true,
+                  }),
+                ],
+              }),
+            },
+          },
+        },
+        */
+
         {
           test: /\.xlf$/,
           use: ["xliff-loader"],
         },
+        /*
         {
           test: /\.messages.ts$/,
           // Reference the loader by the same name
           // that you aliased in "resolveLoader.alias" below.
           use: ["translations-loader"],
         },
+        */
+
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
@@ -537,7 +566,7 @@ module.exports = function (webpackEnv) {
       new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
-      new ModuleNotFoundPlugin(paths.appPath),
+      // new ModuleNotFoundPlugin(paths.appPath),
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
       // It is absolutely essential that NODE_ENV is set to production
