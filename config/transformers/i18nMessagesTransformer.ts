@@ -138,12 +138,11 @@ export default function i18nMessagesTransformer(
   return (context: ts.TransformationContext) => {
     const f = context.factory;
 
-    // Build window.i18next.t("hash") call
+    // create i18next.t("hash") call
     const makeI18nextCall = (hashId: string): ts.CallExpression => {
-      const windowIdent = f.createIdentifier("window");
-      const i18nextAccess = f.createPropertyAccessExpression(windowIdent, "i18next");
-      const tAccess = f.createPropertyAccessExpression(i18nextAccess, "t");
-      return f.createCallExpression(tAccess, /*typeArgs*/ undefined, [f.createStringLiteral(hashId)]);
+      const i18nextIdent = f.createIdentifier("i18next");
+      const tAccess = f.createPropertyAccessExpression(i18nextIdent, "t");
+      return f.createCallExpression(tAccess, undefined, [f.createStringLiteral(hashId)]);
     };
 
     const visitNode: ts.Visitor = (node) => {
@@ -214,6 +213,37 @@ export default function i18nMessagesTransformer(
       return ts.visitEachChild(node, visitNode, context);
     };
 
-    return (sf: ts.SourceFile) => ts.visitNode(sf, visitNode);
+    // return (sf: ts.SourceFile) => ts.visitNode(sf, visitNode);
+    return (sf: ts.SourceFile) => {
+      // 1️⃣ Check if "import i18next from 'i18next'" already exists
+      const alreadyImported = sf.statements.some(
+        (stmt) =>
+          ts.isImportDeclaration(stmt) &&
+          stmt.moduleSpecifier &&
+          ts.isStringLiteral(stmt.moduleSpecifier) &&
+          stmt.moduleSpecifier.text === "i18next"
+      );
+
+      // 2️⃣ Visit and transform nodes as before
+      let updated = ts.visitNode(sf, visitNode);
+
+      // 3️⃣ If missing, prepend a new import
+      if (!alreadyImported) {
+        const importDecl = f.createImportDeclaration(
+          undefined,
+          undefined,
+          f.createImportClause(
+            false, // isTypeOnly
+            f.createIdentifier("i18next"), // default import name
+            undefined
+          ),
+          f.createStringLiteral("i18next")
+        );
+
+        updated = f.updateSourceFile(updated, [importDecl, ...updated.statements]);
+      }
+
+      return updated;
+    };
   };
 }

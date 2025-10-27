@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import i18next from "i18next";
 
 export type SupportedLanguages = "en" | "de";
 
@@ -16,11 +17,9 @@ export const useLanguageStore = create<LanguageState>()((set) => ({
 
 export class LanguagePresenter {
   public async setLanguage(language: SupportedLanguages): Promise<void> {
-    const i18next = (window as any).i18next;
     useLanguageStore.setState({ loading: true });
 
     try {
-      // await this.loadLanguage(language);
       await i18next.changeLanguage(language);
       useLanguageStore.setState({ language });
     } catch (err) {

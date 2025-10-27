@@ -61,7 +61,6 @@ export const MainView: React.FC = () => {
           <button onClick={() => languagePresenter.setLanguage("de")} disabled={languageIsLoading}>
             {languageIsLoading ? "loading..." : "use de"}
           </button>
-          <h1>{(window as any).i18next.t("something")}</h1>
           <Header
             css={css`
               cursor: pointer;

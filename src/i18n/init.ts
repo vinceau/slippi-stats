@@ -4,8 +4,6 @@ import HttpApi from "i18next-http-backend";
 import { defaultLanguage } from "./store";
 
 export async function initializeTranslations(): Promise<void> {
-  (window as any).i18next = i18next;
-
   await i18next.use(HttpApi).init({
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
