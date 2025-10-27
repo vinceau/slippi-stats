@@ -329,7 +329,7 @@ module.exports = function (webpackEnv) {
               },
               loader: require.resolve("eslint-loader"),
             },
-            "translations-loader"
+            "translations-loader",
           ],
           include: paths.appSrc,
         },

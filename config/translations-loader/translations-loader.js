@@ -12,7 +12,6 @@ function isMessagesFile(fileName) {
 }
 
 module.exports = function (source) {
-
   // webpack exposes an absolute path to the imported module
   // under the "this.resourcePath" property. Get the file name
   // of the imported module. For example:
@@ -77,8 +76,6 @@ module.exports = function (source) {
   console.log(newSource);
 
   console.log(`\n\n\n>>> end processing ${this.resourcePath} <<<\n\n\n`);
-
-
 
   // Finally, emit the imported audio file's "source"
   // in the webpack's build directory using a built-in
