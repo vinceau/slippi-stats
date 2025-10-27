@@ -202,7 +202,7 @@ export default function i18nMessagesTransformer(
 
           // Write/refresh XLIFF after this file is processed (simple & robust for watch mode)
           // Note: this runs multiple times in large projects, but it's fast and deterministic.
-          writeXliff(xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
+          // writeXliff(xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
           // console.log("writeXliff", xliffOutputPath, globalStore.seen, srcLang, trgLang, fileId);
 
           writeDefaultJson(jsonOutputPath, globalStore.seen);
