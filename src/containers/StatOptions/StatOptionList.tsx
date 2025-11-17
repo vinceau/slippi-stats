@@ -1,4 +1,4 @@
-import { reorder } from "lib/util";
+import { reorder } from "~/lib/util";
 import React from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { Character } from "@slippi/slippi-js";
-import { useParam } from "lib/hooks";
-import { getCharacterVSScreen, Side } from "lib/resources";
+import { useParam } from "~/lib/hooks";
+import { getCharacterVSScreen, Side } from "~/lib/resources";
 import React from "react";
 
 export interface CharDisplayProps {
@@ -46,7 +46,7 @@ export const CharDisplay: React.FC<CharDisplayProps> = (props) => {
         position: relative;
         background: radial-gradient(circle at center -30%, ${theme}, transparent);
         &::after {
-          content: ' ';
+          content: " ";
           position: absolute;
           height: 100%;
           width: 100%;

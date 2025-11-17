@@ -1,5 +1,5 @@
 import { ConversionType } from "@slippi/slippi-js";
-import { exists } from "lib/exists";
+import { exists } from "~/lib/exists";
 import _ from "lodash";
 
 import { StatDefinition } from "../types";

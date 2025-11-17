@@ -1,4 +1,4 @@
-import { GameDetails } from "lib/stats/types";
+import { GameDetails } from "~/lib/stats/types";
 
 export interface ProcessedFile {
   filename: string;

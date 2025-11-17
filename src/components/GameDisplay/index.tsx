@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { GameInfo } from "lib/hooks";
+import { GameInfo } from "~/lib/hooks";
 import React from "react";
 
 import { GameResult } from "./GameResult";

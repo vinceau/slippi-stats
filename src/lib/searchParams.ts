@@ -1,4 +1,4 @@
-import { defaultTheme } from "styles/theme";
+import { defaultTheme } from "~/styles/theme";
 
 function getStoredValues(keys: string[]): Record<string, string | null> {
   const res: Record<string, string | null> = {};

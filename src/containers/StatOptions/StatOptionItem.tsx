@@ -1,4 +1,4 @@
-import { STAT_DEFINITIONS } from "lib/stats";
+import { STAT_DEFINITIONS } from "~/lib/stats";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { PrimaryButton, SecondaryButton } from "components/Buttons";
+import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
 import React from "react";
 
 import { StatOptionList } from "./StatOptionList";

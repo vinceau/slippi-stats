@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { PrimaryButton, SecondaryButton } from "components/Buttons";
-import { DropPad } from "components/DropPad";
-import { ErrorMessage } from "components/ErrorMessage";
-import { FileList } from "components/FileList";
-import { readFileAsGameDetails } from "lib/readFile";
-import { generateSearchParams } from "lib/searchParams";
-import { generateStatParams } from "lib/stats";
-import { GameDetails, Stat } from "lib/stats/types";
+import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
+import { DropPad } from "~/components/DropPad";
+import { ErrorMessage } from "~/components/ErrorMessage";
+import { FileList } from "~/components/FileList";
+import { readFileAsGameDetails } from "~/lib/readFile";
+import { generateSearchParams } from "~/lib/searchParams";
+import { generateStatParams } from "~/lib/stats";
+import { GameDetails, Stat } from "~/lib/stats/types";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -42,9 +42,9 @@ const getDefaultStats = (): StatOption[] => {
 };
 
 const validateStatOptions = (current: StatOption[]): StatOption[] => {
-  const newItems: StatOption[] = ALL_STATS.filter(
-    (statId) => !current.find((option) => option.statId === statId)
-  ).map((statId) => ({ statId, enabled: false }));
+  const newItems: StatOption[] = ALL_STATS.filter((statId) => !current.find((option) => option.statId === statId)).map(
+    (statId) => ({ statId, enabled: false })
+  );
 
   // Make sure the ones we're showing are supported
   const currentItems = current.filter((c) => ALL_STATS.includes(c.statId));

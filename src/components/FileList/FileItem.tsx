@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
-import { ErrorMessage } from "components/ErrorMessage";
-import { getCharacterStockIcon } from "lib/resources";
-import { convertFrameCountToDurationString } from "lib/util";
-import { findWinner } from "lib/winner";
+import { ErrorMessage } from "~/components/ErrorMessage";
+import { getCharacterStockIcon } from "~/lib/resources";
+import { convertFrameCountToDurationString } from "~/lib/util";
+import { findWinner } from "~/lib/winner";
 import React from "react";
-import { ProcessedFile } from "store/types";
-import { hasOpacity } from "styles/opacity";
-import { defaultTheme } from "styles/theme";
+import { ProcessedFile } from "~/store/types";
+import { hasOpacity } from "~/styles/opacity";
+import { defaultTheme } from "~/styles/theme";
 
 const BasicFileItem: React.FC<{ name: string; onRemove?: () => void }> = (props) => {
   const { onRemove, name, children } = props;

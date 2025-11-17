@@ -2,14 +2,14 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { characters as characterUtil } from "@slippi/slippi-js";
-import { CopyToClipboard } from "components/CopyToClipboard";
-import { ExternalLink as A } from "components/ExternalLink";
-import { OBSDragButton } from "components/OBSDragButton";
-import { useOnClickOutside, useParam } from "lib/hooks";
-import { PortColor } from "lib/portColor";
+import { CopyToClipboard } from "~/components/CopyToClipboard";
+import { ExternalLink as A } from "~/components/ExternalLink";
+import { OBSDragButton } from "~/components/OBSDragButton";
+import { useOnClickOutside, useParam } from "~/lib/hooks";
+import { PortColor } from "~/lib/portColor";
 import React from "react";
-import { hasOpacity } from "styles/opacity";
-import { defaultTheme } from "styles/theme";
+import { hasOpacity } from "~/styles/opacity";
+import { defaultTheme } from "~/styles/theme";
 
 import { DualColorPanel } from "./Panel";
 

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { useParam } from "lib/hooks";
-import { PortColor } from "lib/portColor";
+import { useParam } from "~/lib/hooks";
+import { PortColor } from "~/lib/portColor";
 import React from "react";
-import { Theme } from "styles/theme";
+import { Theme } from "~/styles/theme";
 
 import { CharDisplay } from "./CharDisplay";
 import { NameBlock } from "./NameBlock";

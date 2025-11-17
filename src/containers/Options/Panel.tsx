@@ -1,6 +1,6 @@
 /** @jsx jsx */ import { css, jsx } from "@emotion/core";
-import { DualColorPicker } from "components/ColorPicker";
-import { useParam } from "lib/hooks";
+import { DualColorPicker } from "~/components/ColorPicker";
+import { useParam } from "~/lib/hooks";
 import React from "react";
 
 export interface DualColorPanelProps {

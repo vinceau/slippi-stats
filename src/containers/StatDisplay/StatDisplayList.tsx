@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { reorder } from "lib/util";
+import { reorder } from "~/lib/util";
 import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Theme } from "styles/theme";
+import { Theme } from "~/styles/theme";
 
 import { Divider } from "./Divider";
 import { StatDisplayItem } from "./StatDisplayItem";
