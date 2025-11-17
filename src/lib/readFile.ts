@@ -9,9 +9,7 @@ export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
 
 async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
   const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
-  // Use Uint8Array instead of Node.js Buffer for browser compatibility
-  const arr = new Uint8Array(data);
-  return new SlippiGame(arr);
+  return new SlippiGame(data);
 }
 
 function generateGameDetails(name: string, game: SlippiGame): GameDetails {
