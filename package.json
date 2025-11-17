@@ -1,5 +1,6 @@
 {
   "name": "slippi-stats",
+  "type": "module",
   "homepage": ".",
   "author": {
     "name": "Vince Au",
