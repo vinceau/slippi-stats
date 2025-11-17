@@ -4,7 +4,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/slippi-stats/",
+  base: process.env.PUBLIC_URL || "/",
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
