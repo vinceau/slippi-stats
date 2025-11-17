@@ -2,7 +2,6 @@ import { get } from "lodash";
 
 import { getPortColor } from "../portColor";
 import { generateOutput } from "./compute";
-// @ts-ignore - JavaScript module without declaration file
 import { filterGames } from "./filterGames";
 import type { GameDetails } from "./types";
 

@@ -8,7 +8,6 @@ import _ from "lodash";
 
 import { convertFrameCountToDurationString } from "../util";
 import { findWinner } from "../winner";
-// @ts-ignore - JavaScript module without declaration file
 import {
   averageKillPercent,
   damageDone,
