@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 export function useParam(key: string, defaultValue = "") {
-  const [value, setValue] = useState<string>(defaultValue);
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
+  const value = useMemo(() => {
     const params = new URLSearchParams(location.search);
     const currentValue = params.get(key);
-    if (currentValue !== value) {
-      setValue(currentValue || defaultValue);
-    }
-  }, [key, defaultValue, location, value]);
+    return currentValue || defaultValue;
+  }, [key, defaultValue, location.search]);
 
   const setParam = (val: string) => {
     const params = new URLSearchParams(location.search);
