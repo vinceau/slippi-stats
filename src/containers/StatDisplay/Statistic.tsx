@@ -3,7 +3,7 @@ import { NumberStat, TextStat } from "~/components/Stat";
 import { useParam } from "~/lib/hooks";
 import { STAT_DEFINITIONS } from "~/lib/stats";
 import React from "react";
-import { Theme } from "~/styles/theme";
+import type { Theme } from "~/styles/theme";
 
 interface ConnectedStatProps {
   param1: string;

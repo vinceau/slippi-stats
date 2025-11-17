@@ -2,8 +2,9 @@ import { get } from "lodash";
 
 import { getPortColor } from "../portColor";
 import { generateOutput } from "./compute";
+// @ts-ignore - JavaScript module without declaration file
 import { filterGames } from "./filterGames";
-import { GameDetails } from "./types";
+import type { GameDetails } from "./types";
 
 const extractNameAndCode = (playerPort: number, details: GameDetails) => {
   const settings = details.settings;
@@ -28,7 +29,7 @@ export function generateStatParams(gameDetails: GameDetails[], statsList: string
     stats = generateOutput(statsList, filtered);
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(String(err));
   }
 
   const { games, summary } = stats;

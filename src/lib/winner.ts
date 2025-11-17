@@ -1,4 +1,4 @@
-import { FrameEntryType } from "@slippi/slippi-js";
+import type { FrameEntryType } from "@slippi/slippi-js";
 
 /**
  * Given the last frame of the game, determine the winner first based on stock count

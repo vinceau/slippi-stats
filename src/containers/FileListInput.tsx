@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
 import { DropPad } from "~/components/DropPad";
 import { ErrorMessage } from "~/components/ErrorMessage";
@@ -7,12 +6,12 @@ import { FileList } from "~/components/FileList";
 import { readFileAsGameDetails } from "~/lib/readFile";
 import { generateSearchParams } from "~/lib/searchParams";
 import { generateStatParams } from "~/lib/stats";
-import { GameDetails, Stat } from "~/lib/stats/types";
+import { Stat, type GameDetails } from "~/lib/stats/types";
 import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { AppContext, Types } from "../store";
-import { StatOption, StatOptions } from "./StatOptions";
+import { StatOptions, type StatOption } from "./StatOptions";
 
 const STAT_OPTIONS_STORE_KEY = "statOptions";
 

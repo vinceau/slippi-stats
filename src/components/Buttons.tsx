@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import React from "react";
 import { hasOpacity } from "~/styles/opacity";

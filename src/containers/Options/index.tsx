@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { characters as characterUtil } from "@slippi/slippi-js";
 import { CopyToClipboard } from "~/components/CopyToClipboard";

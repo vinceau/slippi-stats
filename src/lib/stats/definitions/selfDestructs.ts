@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { StatDefinition } from "../types";
+import type { StatDefinition } from "../types";
 
 export const selfDestructs: StatDefinition = {
   // Only show this one if greater than 2 for one player

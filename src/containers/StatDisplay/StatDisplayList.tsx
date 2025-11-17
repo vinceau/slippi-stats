@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import { reorder } from "~/lib/util";
 import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Theme } from "~/styles/theme";
+import type { Theme } from "~/styles/theme";
 
 import { Divider } from "./Divider";
 import { StatDisplayItem } from "./StatDisplayItem";
@@ -58,7 +57,7 @@ export const StatDisplayList: React.FC<StatDisplayListProps> = (props) => {
               const key = item ? item : "divider";
               return (
                 <Draggable key={key} draggableId={key} index={index}>
-                  {(dragProvided, dragSnapshot) => {
+                  {(dragProvided) => {
                     const additionalStyles = item ? null : dragProvided.dragHandleProps;
                     return (
                       <StatDisplayItem

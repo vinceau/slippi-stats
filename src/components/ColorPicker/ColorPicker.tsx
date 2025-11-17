@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useOnClickOutside } from "~/lib/hooks";
 import React, { useRef } from "react";

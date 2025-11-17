@@ -1,8 +1,8 @@
-import { ConversionType } from "@slippi/slippi-js";
+import type { ConversionType } from "@slippi/slippi-js";
 import { exists } from "~/lib/exists";
 import _ from "lodash";
 
-import { StatDefinition } from "../types";
+import type { StatDefinition } from "../types";
 
 export const highDamagePunishes: StatDefinition = {
   name: "Highest Damage Punish",

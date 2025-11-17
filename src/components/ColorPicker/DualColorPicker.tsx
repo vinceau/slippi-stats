@@ -1,4 +1,4 @@
-/** @jsx jsx */ import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { ColorPicker } from "~/components/ColorPicker";
 import React from "react";

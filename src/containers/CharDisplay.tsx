@@ -1,8 +1,7 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import { Character } from "@slippi/slippi-js";
 import { useParam } from "~/lib/hooks";
-import { getCharacterVSScreen, Side } from "~/lib/resources";
+import { getCharacterVSScreen, type Side } from "~/lib/resources";
 import React from "react";
 
 export interface CharDisplayProps {

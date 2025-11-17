@@ -1,4 +1,4 @@
-import { StatDefinition } from "../types";
+import type { StatDefinition } from "../types";
 
 export const lCancelAccuracy: StatDefinition = {
   name: "L-Cancel Accuracy",

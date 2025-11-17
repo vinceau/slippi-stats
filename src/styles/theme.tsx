@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, Global, jsx } from "@emotion/core";
+import { css, Global } from "@emotion/core";
 
 export interface Theme {
   primaryColor: string;
