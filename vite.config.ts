@@ -9,4 +9,8 @@ export default defineConfig({
       "~": "/src",
     },
   },
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
+    "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || ""),
+  },
 });
