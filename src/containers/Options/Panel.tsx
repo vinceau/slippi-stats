@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { DualColorPicker } from "~/components/ColorPicker";
 import { useParam } from "~/lib/hooks";
 import React from "react";

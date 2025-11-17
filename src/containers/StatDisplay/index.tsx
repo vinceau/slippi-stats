@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Block } from "~/components/Block";
 import { GameDisplay } from "~/components/GameDisplay";

@@ -1,4 +1,4 @@
-import { css, Global } from "@emotion/core";
+import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
 import { ExternalLink as A } from "~/components/ExternalLink";
 import { Header } from "~/components/Header";

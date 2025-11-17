@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
 import { ErrorMessage } from "~/components/ErrorMessage";
 import { getCharacterStockIcon } from "~/lib/resources";

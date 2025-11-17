@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { HeadToHead } from "~/components/HeadToHead";
 import { StageTimer } from "~/components/StageTimer";
 import type { GameInfo } from "~/lib/hooks";

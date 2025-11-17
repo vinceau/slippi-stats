@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
 import { DropPad } from "~/components/DropPad";
 import { ErrorMessage } from "~/components/ErrorMessage";

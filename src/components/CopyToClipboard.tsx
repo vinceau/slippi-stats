@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import React from "react";
 import Copy from "react-copy-to-clipboard";
 

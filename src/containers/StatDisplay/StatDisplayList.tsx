@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { reorder } from "~/lib/util";
 import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";

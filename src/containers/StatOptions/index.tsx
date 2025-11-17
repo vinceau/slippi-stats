@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
 import React from "react";
 

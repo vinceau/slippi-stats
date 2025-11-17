@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { Character } from "@slippi/slippi-js";
 import { useParam } from "~/lib/hooks";
 import { getCharacterVSScreen, type Side } from "~/lib/resources";

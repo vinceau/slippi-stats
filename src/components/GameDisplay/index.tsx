@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import type { GameInfo } from "~/lib/hooks";
 import React from "react";
 
