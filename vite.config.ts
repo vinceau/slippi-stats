@@ -1,10 +1,25 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.PUBLIC_URL || "/",
+  build: {
+    rollupOptions: {
+      treeshake: {
+        moduleSideEffects: false, // Assume no side effects by default
+        propertyReadSideEffects: false, // Don't preserve property access
+        tryCatchDeoptimization: false, // More aggressive optimization
+      },
+      external: (id) => {
+        // Externalize unused encodings if you can identify them
+        if (id.includes("iconv-lite/encodings/") && !id.includes("shiftjis")) {
+          return true;
+        }
+      },
+    },
+  },
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
