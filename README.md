@@ -35,7 +35,7 @@ Determining who wins a game seems easy at first but once you consider the possib
 
 ### How do I show different stats?
 
-First click the *customize stats* button in the top right of the SLP file list to show the list of available stats. Then toggle the checkboxes to enable and disable certain stats from being calculated.
+First click the _customize stats_ button in the top right of the SLP file list to show the list of available stats. Then toggle the checkboxes to enable and disable certain stats from being calculated.
 
 ![how to customize stats](https://i.imgur.com/6CCWPMr.gif)
 
@@ -72,13 +72,13 @@ Clone the repo and install dependencies:
 ```bash
 git clone https://github.com/vinceau/slippi-stats
 cd slippi-stats
-yarn install
+npm install
 ```
 
 In the project directory, you can run:
 
 ```bash
-yarn run start
+npm run start
 ```
 
 This runs the app in the development mode. Open <http://localhost:3000> to view it in the browser. The page will reload as you make changes.
@@ -86,7 +86,7 @@ This runs the app in the development mode. Open <http://localhost:3000> to view 
 To build the app for production, run:
 
 ```bash
-yarn run build
+npm run build
 ```
 
 ### Adding Custom Stats

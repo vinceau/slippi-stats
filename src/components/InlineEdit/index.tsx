@@ -2,7 +2,7 @@
 
 import "./index.scss";
 
-import { useKeyPress, useOnClickOutside } from "lib/hooks";
+import { useKeyPress, useOnClickOutside } from "~/lib/hooks";
 import React, { useEffect, useRef, useState } from "react";
 
 export interface InlineEditProps {

@@ -1,7 +1,7 @@
 import { moves as moveUtil } from "@slippi/slippi-js";
 import _ from "lodash";
 
-import { StatDefinition } from "../types";
+import type { StatDefinition } from "../types";
 
 export const neutralOpenerMoves: StatDefinition = {
   name: "Most Common Neutral Opener",

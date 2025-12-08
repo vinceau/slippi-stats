@@ -1,4 +1,4 @@
-import { STAT_DEFINITIONS } from "lib/stats";
+import { STAT_DEFINITIONS } from "~/lib/stats";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
@@ -25,7 +25,7 @@ export const StatOptionItem: React.FC<{
             onChange={props.onChange}
             draggable={true}
             name={stat.name}
-            handleProps={provided.dragHandleProps}
+            handleProps={provided.dragHandleProps || undefined}
           />
         </div>
       )}

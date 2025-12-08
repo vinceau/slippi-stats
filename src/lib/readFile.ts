@@ -1,6 +1,6 @@
 import { SlippiGame } from "@slippi/slippi-js";
 
-import { GameDetails } from "./stats/types";
+import type { GameDetails } from "./stats/types";
 
 export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
   const game = await readFileAsSlippiGame(file);
@@ -9,9 +9,7 @@ export async function readFileAsGameDetails(file: File): Promise<GameDetails> {
 
 async function readFileAsSlippiGame(file: File): Promise<SlippiGame> {
   const data = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
-  const arr = new Int8Array(data);
-  const buf = Buffer.from(arr);
-  return new SlippiGame(buf);
+  return new SlippiGame(data);
 }
 
 function generateGameDetails(name: string, game: SlippiGame): GameDetails {

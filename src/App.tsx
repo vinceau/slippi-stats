@@ -1,7 +1,6 @@
 import React from "react";
-import { hot } from "react-hot-loader/root";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { RandomView } from "views/RandomView";
+import { RandomView } from "./views/RandomView";
 
 import { AppProvider } from "./store";
 import { MainView } from "./views/MainView";
@@ -19,4 +18,4 @@ const App: React.FC = () => {
   );
 };
 
-export default hot(App);
+export default App;

@@ -1,4 +1,11 @@
-import { FrameEntryType, FramesType, GameEndType, GameStartType, MetadataType, StatsType } from "@slippi/slippi-js";
+import type {
+  FrameEntryType,
+  FramesType,
+  GameEndType,
+  GameStartType,
+  MetadataType,
+  StatsType,
+} from "@slippi/slippi-js";
 
 export enum Stat {
   OPENINGS_PER_KILL = "opk",

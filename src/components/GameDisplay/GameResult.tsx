@@ -1,8 +1,7 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import { HeadToHead } from "components/HeadToHead";
-import { StageTimer } from "components/StageTimer";
-import { GameInfo } from "lib/hooks";
+import { css } from "@emotion/react";
+import { HeadToHead } from "~/components/HeadToHead";
+import { StageTimer } from "~/components/StageTimer";
+import type { GameInfo } from "~/lib/hooks";
 import React from "react";
 
 export interface GameResultProps {

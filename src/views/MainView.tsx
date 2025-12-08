@@ -1,13 +1,12 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ExternalLink as A } from "components/ExternalLink";
-import { Header } from "components/Header";
-import { FileListInput } from "containers/FileListInput";
+import { ExternalLink as A } from "~/components/ExternalLink";
+import { Header } from "~/components/Header";
+import { FileListInput } from "~/containers/FileListInput";
 import React from "react";
 import { Link } from "react-router-dom";
-import { hasOpacity } from "styles/opacity";
-import { defaultTheme, GlobalTheme } from "styles/theme";
+import { hasOpacity } from "~/styles/opacity";
+import { defaultTheme, GlobalTheme } from "~/styles/theme";
 
 const linkStyle = css`
   display: block;

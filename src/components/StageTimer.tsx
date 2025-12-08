@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { getStageIcon } from "lib/resources";
+import { getStageIcon } from "~/lib/resources";
 import React from "react";
 
 const Text = styled.span`
@@ -23,7 +23,7 @@ const Outer = styled.div<{
   z-index: 0;
 
   &::after {
-    content: ' ';
+    content: " ";
     height: 100%;
     width: 100%;
     position: absolute;

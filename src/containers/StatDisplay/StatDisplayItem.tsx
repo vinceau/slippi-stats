@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { hasOpacity } from "styles/opacity";
+import { hasOpacity } from "~/styles/opacity";
 
 export const StatDisplayItem = styled.div<{
   hasItem: boolean;

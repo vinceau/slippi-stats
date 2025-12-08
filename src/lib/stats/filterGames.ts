@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 
 /*
  * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
@@ -6,9 +7,9 @@
 
 import _ from "lodash";
 
-export function filterGames(games) {
+export function filterGames(games: any) {
   // console.log(games);
-  const gamesByIsSingles = _.groupBy(games, (game) => {
+  const gamesByIsSingles = _.groupBy(games, (game: any) => {
     const numberOfPlayers = game.settings.players.length;
     return numberOfPlayers === 2;
   });
@@ -16,7 +17,7 @@ export function filterGames(games) {
   const nonSinglesGames = _.get(gamesByIsSingles, false) || [];
   if (_.some(nonSinglesGames)) {
     console.log("The following games have been excluded because they are not singles games:");
-    _.forEach(nonSinglesGames, (game) => {
+    _.forEach(nonSinglesGames, (game: any) => {
       console.log(game.filePath);
     });
     console.log();
@@ -24,7 +25,7 @@ export function filterGames(games) {
 
   const singlesGames = _.get(gamesByIsSingles, true) || [];
   const gamesByPorts = _.chain(singlesGames)
-    .groupBy((game) => {
+    .groupBy((game: any) => {
       const ports = _.map(game.settings.players, "port");
       return _.join(ports, "-");
     })
@@ -35,7 +36,7 @@ export function filterGames(games) {
   if (_.some(gamesByPorts)) {
     console.log("The following games have been excluded because the player ports differ:");
     const flatGames = _.flatten(gamesByPorts);
-    _.forEach(flatGames, (game) => {
+    _.forEach(flatGames, (game: any) => {
       console.log(game.filePath);
     });
     console.log();

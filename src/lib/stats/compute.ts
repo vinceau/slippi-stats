@@ -3,7 +3,7 @@
  */
 
 import { characters as characterUtil, stages as stageUtil } from "@slippi/slippi-js";
-import { PlayerType } from "@slippi/slippi-js";
+import type { PlayerType } from "@slippi/slippi-js";
 import _ from "lodash";
 
 import { convertFrameCountToDurationString } from "../util";
@@ -24,7 +24,7 @@ import {
   openingsPerKill,
   selfDestructs,
 } from "./definitions";
-import { GameDetails, Stat, StatDefinition } from "./types";
+import { Stat, type GameDetails, type StatDefinition } from "./types";
 
 export const STAT_DEFINITIONS = new Map<string, StatDefinition>();
 STAT_DEFINITIONS.set(Stat.OPENINGS_PER_KILL, openingsPerKill);

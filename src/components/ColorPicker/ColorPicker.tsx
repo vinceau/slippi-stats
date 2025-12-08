@@ -1,10 +1,9 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useOnClickOutside } from "lib/hooks";
+import { useOnClickOutside } from "~/lib/hooks";
 import React, { useRef } from "react";
 import { ChromePicker } from "react-color";
-import { hasOpacity } from "styles/opacity";
+import { hasOpacity } from "~/styles/opacity";
 
 const ColorSquare = styled.div<{
   size: string;

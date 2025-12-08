@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Block } from "components/Block";
-import { GameDisplay } from "components/GameDisplay";
-import { useGames, useParam } from "lib/hooks";
+import { Block } from "~/components/Block";
+import { GameDisplay } from "~/components/GameDisplay";
+import { useGames, useParam } from "~/lib/hooks";
 import React from "react";
 
 import { Divider } from "./Divider";

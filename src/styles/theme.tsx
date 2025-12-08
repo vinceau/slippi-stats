@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, Global, jsx } from "@emotion/core";
+import { css, Global } from "@emotion/react";
 
 export interface Theme {
   primaryColor: string;
@@ -15,8 +14,9 @@ export const GlobalTheme: React.FC<Theme> = ({ primaryColor, secondaryColor }) =
   return (
     <Global
       styles={css`
-        body.themed {
+        body {
           background: radial-gradient(circle at center -30%, ${primaryColor}, ${secondaryColor});
+          min-height: 100vh;
         }
       `}
     />

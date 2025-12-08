@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/react";
 import React from "react";
 
 export const ErrorMessage: React.FC = (props) => {

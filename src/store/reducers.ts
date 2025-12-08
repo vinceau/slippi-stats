@@ -1,6 +1,6 @@
-import { GameDetails } from "lib/stats/types";
+import type { GameDetails } from "~/lib/stats/types";
 
-import { InitialStateType, ProcessedFile } from "./types";
+import type { InitialStateType, ProcessedFile } from "./types";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined

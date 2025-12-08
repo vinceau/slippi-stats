@@ -1,5 +1,5 @@
-import { generateDemoValues } from "lib/demo";
-import { generateSearchParams } from "lib/searchParams";
+import { generateDemoValues } from "~/lib/demo";
+import { generateSearchParams } from "~/lib/searchParams";
 import React from "react";
 import { Redirect } from "react-router-dom";
 

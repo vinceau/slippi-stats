@@ -1,7 +1,6 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/react";
 import React from "react";
-import { ProcessedFile } from "store/types";
+import type { ProcessedFile } from "~/store/types";
 
 import { FileItem } from "./FileItem";
 

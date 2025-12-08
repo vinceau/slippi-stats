@@ -1,13 +1,12 @@
-/** @jsx jsx */
-import { css, Global, jsx } from "@emotion/core";
+import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ExternalLink as A } from "components/ExternalLink";
-import { Header } from "components/Header";
-import { Options } from "containers/Options";
-import { useParam } from "lib/hooks";
+import { ExternalLink as A } from "~/components/ExternalLink";
+import { Header } from "~/components/Header";
+import { Options } from "~/containers/Options";
+import { useParam } from "~/lib/hooks";
 import React from "react";
 import { Link } from "react-router-dom";
-import { GlobalTheme } from "styles/theme";
+import { GlobalTheme } from "~/styles/theme";
 
 import { RenderDisplay } from "../containers/RenderDisplay";
 import poweredByImage from "../styles/images/powered-by.png";

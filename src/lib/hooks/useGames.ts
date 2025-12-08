@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 export interface GameInfo {
@@ -13,12 +13,10 @@ export interface GameInfo {
 }
 
 export function useGames() {
-  const [games, setGames] = useState<Array<GameInfo | null>>([]);
-  const [score, setScore] = useState<{ left: number; right: number }>({ left: 0, right: 0 });
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
+  const { games, score } = useMemo(() => {
     const params = new URLSearchParams(location.search);
     const gt = params.get("gt") || "0";
     const totalGames = parseInt(gt, 10) || 0;
@@ -60,9 +58,11 @@ export function useGames() {
       }
     }
 
-    setGames(gameInfos);
-    setScore({ left: char1Score, right: char2Score });
-  }, [location]);
+    return {
+      games: gameInfos,
+      score: { left: char1Score, right: char2Score },
+    };
+  }, [location.search]);
 
   const setParam = (gameNumber: number, val: Partial<GameInfo>) => {
     const currentGameData = games[gameNumber - 1];

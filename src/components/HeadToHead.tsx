@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { getCharacterPortrait } from "lib/resources";
+import { getCharacterPortrait } from "~/lib/resources";
 import React from "react";
 
 const Outer = styled.div<{

@@ -1,10 +1,11 @@
 /* eslint-disable */
+// @ts-nocheck
 
 /*
  * Taken from: https://github.com/project-slippi/slippi-set-stats/blob/master/main.js
  */
 
-const _ = require("lodash");
+import _ from "lodash";
 
 export * from "./firstBlood";
 export * from "./lCancelAccuracy";
@@ -18,7 +19,7 @@ export const openingsPerKill = {
   type: "number",
   betterDirection: "lower",
   recommendedRounding: 1,
-  calculate(games, playerIndex) {
+  calculate(games: any, playerIndex: any) {
     return genOverallRatioStat(games, playerIndex, "openingsPerKill", this.recommendedRounding);
   },
 };
@@ -28,7 +29,7 @@ export const damagePerOpening = {
   type: "number",
   betterDirection: "higher",
   recommendedRounding: 1,
-  calculate(games, playerIndex) {
+  calculate(games: any, playerIndex: any) {
     return genOverallRatioStat(games, playerIndex, "damagePerOpening", this.recommendedRounding);
   },
 };
@@ -38,7 +39,7 @@ export const neutralWins = {
   type: "number",
   betterDirection: "higher",
   recommendedRounding: 0,
-  calculate(games, playerIndex) {
+  calculate(games: any, playerIndex: any) {
     return genOverallRatioStat(games, playerIndex, "neutralWinRatio", this.recommendedRounding, "count");
   },
 };
@@ -48,10 +49,10 @@ export const earlyKills = {
   type: "number",
   betterDirection: "lower",
   recommendedRounding: 1,
-  calculate(games, playerIndex) {
-    const oppStocks = _.flatMap(games, (game) => {
+  calculate(games: any, playerIndex: any) {
+    const oppStocks = _.flatMap(games, (game: any) => {
       const stocks = _.get(game, ["stats", "stocks"]) || [];
-      return _.filter(stocks, (stock) => {
+      return _.filter(stocks, (stock: any) => {
         const isOpp = stock.playerIndex !== playerIndex;
         const hasEndPercent = stock.endPercent !== null;
         return isOpp && hasEndPercent;
@@ -82,10 +83,10 @@ export const lateDeaths = {
   type: "number",
   betterDirection: "higher",
   recommendedRounding: 0,
-  calculate(games, playerIndex) {
-    const playerStocks = _.flatMap(games, (game) => {
+  calculate(games: any, playerIndex: any) {
+    const playerStocks = _.flatMap(games, (game: any) => {
       const stocks = _.get(game, ["stats", "stocks"]) || [];
-      return _.filter(stocks, (stock) => {
+      return _.filter(stocks, (stock: any) => {
         const isPlayer = stock.playerIndex === playerIndex;
         const hasEndPercent = stock.endPercent !== null;
         return isPlayer && hasEndPercent;
@@ -116,7 +117,7 @@ export const inputsPerMinute = {
   type: "number",
   betterDirection: "higher",
   recommendedRounding: 0,
-  calculate(games, playerIndex) {
+  calculate(games: any, playerIndex: any) {
     return genOverallRatioStat(games, playerIndex, "inputsPerMinute", this.recommendedRounding);
   },
 };
@@ -126,10 +127,10 @@ export const averageKillPercent = {
   type: "number",
   betterDirection: "lower",
   recommendedRounding: 0,
-  calculate(games, playerIndex) {
-    const oppStocks = _.flatMap(games, (game) => {
+  calculate(games: any, playerIndex: any) {
+    const oppStocks = _.flatMap(games, (game: any) => {
       const stocks = _.get(game, ["stats", "stocks"]) || [];
-      return _.filter(stocks, (stock) => {
+      return _.filter(stocks, (stock: any) => {
         const isOpp = stock.playerIndex !== playerIndex;
         const hasEndPercent = stock.endPercent !== null;
         return isOpp && hasEndPercent;
@@ -155,13 +156,13 @@ export const damageDone = {
   type: "number",
   betterDirection: "higher",
   recommendedRounding: 0,
-  calculate(games, playerIndex) {
+  calculate(games: any, playerIndex: any) {
     return genOverallRatioStat(games, playerIndex, "damagePerOpening", this.recommendedRounding, "count");
   },
 };
 
-function genOverallRatioStat(games, playerIndex, field, fixedNum, type = "ratio") {
-  const statRatios = _.map(games, (game) => {
+function genOverallRatioStat(games: any, playerIndex: any, field: any, fixedNum: any, type = "ratio") {
+  const statRatios = _.map(games, (game: any) => {
     const overallStats = _.get(game, ["stats", "overall"]);
     const overallStatsByPlayer = _.keyBy(overallStats, "playerIndex");
     const overallStatsForPlayer = overallStatsByPlayer[playerIndex];
@@ -177,8 +178,8 @@ function genOverallRatioStat(games, playerIndex, field, fixedNum, type = "ratio"
   };
 }
 
-function averageRatios(ratios) {
-  const result = {};
+function averageRatios(ratios: any) {
+  const result: any = {};
 
   result.count = _.sumBy(ratios, "count") || 0;
   result.total = _.sumBy(ratios, "total") || 0;
@@ -187,8 +188,8 @@ function averageRatios(ratios) {
   return result;
 }
 
-function genSimpleFromRatio(ratio, fixedNum, type = "ratio") {
-  const result = {};
+function genSimpleFromRatio(ratio: any, fixedNum: any, type = "ratio") {
+  const result: any = {};
 
   switch (type) {
     case "ratio":

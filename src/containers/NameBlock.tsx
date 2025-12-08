@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { OptionalEditBlock } from "components/Block";
-import { useParam } from "lib/hooks";
+import { OptionalEditBlock } from "~/components/Block";
+import { useParam } from "~/lib/hooks";
 import React from "react";
 
 const Name = styled.div`

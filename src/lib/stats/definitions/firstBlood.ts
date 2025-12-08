@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { StatDefinition } from "../types";
+import type { StatDefinition } from "../types";
 
 export const firstBlood: StatDefinition = {
   name: "First Blood",
@@ -9,7 +9,7 @@ export const firstBlood: StatDefinition = {
   recommendedRounding: 0,
   calculate(games, playerIndex) {
     // For each game return either the first blood stock if taken or null if lost
-    const firstBloodStocks = games.map((game, i) => {
+    const firstBloodStocks = games.map((game) => {
       const deathStocks = game.stats.stocks.filter((stock) => {
         const hasEndPercent = stock.endPercent !== null;
         return hasEndPercent;
