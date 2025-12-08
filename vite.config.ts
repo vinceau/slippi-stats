@@ -30,7 +30,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+        globPatterns: ["**/*.{js,css,html,ico}"],
+        globIgnores: ["**/images/characters/**"],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -40,6 +41,28 @@ export default defineConfig({
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+              },
+            },
+          },
+          {
+            urlPattern: /\/images\/characters\/.*\.png$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "character-images-cache",
+              expiration: {
+                maxEntries: 100, // Cache most-used characters
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+              },
+            },
+          },
+          {
+            urlPattern: /\/images\/stages\/.*\.png$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "stage-images-cache",
+              expiration: {
+                maxEntries: 50, // All stages
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
               },
             },
           },
