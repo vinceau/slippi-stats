@@ -12,12 +12,6 @@ export default defineConfig({
         propertyReadSideEffects: false, // Don't preserve property access
         tryCatchDeoptimization: false, // More aggressive optimization
       },
-      external: (id) => {
-        // Externalize unused encodings if you can identify them
-        if (id.includes("iconv-lite/encodings/") && !id.includes("shiftjis")) {
-          return true;
-        }
-      },
     },
   },
   plugins: [
